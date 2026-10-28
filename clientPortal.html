@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L.O.V.E. Client Portal</title>
+  
+  <!-- Controls the different states of the links and the colors to represent them. -->
+  <style>
+    #filter-controls fieldset {
+      margin-bottom: 1rem;
+    }
+    #inventory-list li {
+      margin-bottom: 1rem;
+    }
+    [hidden] {
+      display: none !important;
+    }
+    nav a {
+      color: blue;
+      text-decoration: underline;
+      padding: 5px;
+    }
+    nav a:hover {
+      color: darkblue;
+      background-color: lightgray;
+    }
+    nav a:focus {
+      outline: 3px solid orange;
+    }
+    nav a:active {
+      color: red;
+    }
+    .status-in {
+      color: green;
+      font-weight: bold;
+    }
+    .status-out {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <p><a href="index.html">Return to Main Home Page</a></p>
+
+  <header>
+    <h1>LAUREL ORGANIZATION FOR VOLUNTEER & RESOURCE EQUITY (L.O.V.E.) CLIENT PORTAL</h1>
+    <p>Sample pantry inventory is organized by cooking setup. The filters are interactive, but the current stock levels are not live right now.</p>
+  </header>
+
+  <hr>
+
+  <!-- Radio buttons and Checkbox Interfaces  -->
+  <section id="filter-controls">
+    <h2>Filter Inventory Tools</h2>
+    <p>Please, choose any combination of filters to narrow the sample inventory to your preferences.</p>
+    
+    <!-- Radio buttons: No Cook, Microwave, Full Kitchen -->
+    <fieldset>
+      <legend>Select Your Cooking Setup (Choose Only One):</legend>
+      <p>
+        <input type="radio" id="setup-all" name="cooking-setup" value="all" checked>
+        <label for="setup-all">Show ALL Layouts</label>
+      </p>
+      <p>
+        <input type="radio" id="setup-nocook" name="cooking-setup" value="nocook">
+        <label for="setup-nocook">No-Cook / Shelter Friendly</label>
+      </p>
+      <p>
+        <input type="radio" id="setup-microwave" name="cooking-setup" value="microwave">
+        <label for="setup-microwave">Microwave-Only</label>
+      </p>
+      <p>
+        <input type="radio" id="setup-kitchen" name="cooking-setup" value="kitchen">
+        <label for="setup-kitchen">Full Kitchen Required</label>
+      </p>
+    </fieldset>
+    
+    <br>
+
+    <!-- Checkbox and Dropdown Interfaces -->
+    <fieldset>
+      <legend>Dietary Preferences & Options:</legend>
+      <p>
+        <label for="pref-stock-select">Stock availability:</label>
+        <select id="pref-stock-select" name="stock-status">
+          <option value="all">Show All Items</option>
+          <option value="instock" selected>In-stock items only</option>
+        </select>
+      </p>
+      <p>
+        <input type="checkbox" id="pref-soft" name="diet-pref" value="soft">
+        <label for="pref-soft">Soft Food Options Only</label>
+      </p>
+      <p>
+        <input type="checkbox" id="pref-utensils" name="diet-pref" value="utensils">
+        <label for="pref-utensils">Includes Eating Utensils</label>
+      </p>
+    </fieldset>
+  </section>
+
+  <br>
+  <hr>
+
+  <!-- Navigation Bar -->
+  <nav id="top">
+    <strong>Click on Options to Jump Straight To Category Setup:</strong>
+    <p>
+      <a href="#no-cook">No-Cook Options</a> | 
+      <a href="#microwave">Microwave-Only</a> | 
+      <a href="#full-kitchen">Full Kitchen Required</a>
+    </p>
+  </nav>
+
+  <hr>
+
+  <!-- Inventory Content -->
+  <main id="inventory-list">
+    <!-- Category 1 -->
+    <section id="no-cook" data-setup="nocook">
+      <h2>No-Cook / Shelter Friendly</h2>
+      <p>Optimized for clients without appliances, kitchen spaces, or tool access.</p>
+      <ul>
+        <li data-stock="instock">
+          <strong>Fruit Snack & Granola Bars</strong> - <span class="status-in">In Stock</span>
+          <br><small>Type: Snack | Packaging: Box/Pouch | Note: Ready-to-eat wrapper</small>
+        </li>
+        <li data-stock="instock" data-soft="true">
+          <strong>Applesauce Cups</strong> - <span class="status-in">In Stock</span>
+          <br><small>Type: Fruit | Packaging: Plastic Cup | Note: Soft food, requires plastic spoon</small>
+        </li>
+      </ul>
+      <p><a href="#top">Scroll Back to Category Setup</a></p>
+    </section>
+
+    <hr>
+
+    <!-- Category 2 -->
+    <section id="microwave" data-setup="microwave">
+      <h2>Microwave-Only Quick Meals</h2>
+      <p>Optimized for temporary housing or quick meals requiring minimal cooking tools.</p>
+      <ul>
+        <li data-stock="instock" data-utensils="true">
+          <strong>Mac & Cheese Cups</strong> - <span class="status-in">In Stock</span>
+          <br><small>Type: Meal | Packaging: Disposable Cup | Note: Includes plastic forks/napkins</small>
+        </li>
+        <li data-stock="instock">
+          <strong>Canned Vegetable Soup</strong> - <span class="status-in">In Stock</span>
+          <br><small>Type: Soup | Packaging: Can | Note: Pull-tab lid (no can opener tool needed)</small>
+        </li>
+      </ul>
+      <p><a href="#top">Scroll Back to Category Setup</a></p>
+    </section>
+
+    <hr>
+
+    <!-- Category 3 -->
+    <section id="full-kitchen" data-setup="kitchen">
+      <h2>Full Kitchen Required / Family Dinners</h2>
+      <p>Bulk family resources requiring preparation tools, stove burners, or boiling water.</p>
+      <ul>
+        <li data-stock="instock">
+          <strong>Spaghetti & Pasta Sauce</strong> - <span class="status-in">In Stock</span>
+          <br><small>Type: Grains/Sauce | Packaging: Box & Jar | Note: Dynamic bulk family combo</small>
+        </li>
+        <li data-stock="out">
+          <strong>Maseca Corn Flour</strong> - <span class="status-out">Out of Stock</span>
+          <br><small>Type: Flour | Packaging: Large Dry Bag | Note: Tortilla base flour</small>
+        </li>
+      </ul>
+      <p><a href="#top">Scroll Back to Category Setup</a></p>
+    </section>
+
+  </main>
+
+  <hr>
+
+  <footer>
+    <p>L.O.V.E. Client Portal Interface Prototype | SMLP 470</p>
+  </footer>
+
+  <!-- JavaScript to handle filtering logic -->
+  <script>
+    const filterControls = document.getElementById("filter-controls");
+    const inventorySections = document.querySelectorAll("#inventory-list section");
+
+    function updateInventory() {
+      const selectedSetup = filterControls.querySelector(
+        'input[name="cooking-setup"]:checked'
+      ).value;
+      const stockStatus = document.getElementById("pref-stock-select").value;
+      const softOnly = document.getElementById("pref-soft").checked;
+      const utensilsOnly = document.getElementById("pref-utensils").checked;
+
+      for (const section of inventorySections) {
+        const setupMatches = selectedSetup === "all" || section.dataset.setup === selectedSetup;
+        let hasVisibleItems = false;
+
+        const items = section.querySelectorAll("li");
+        for (const item of items) {
+          const stockMatches = stockStatus === "all" || item.dataset.stock === "instock";
+          const softMatches = !softOnly || item.dataset.soft === "true";
+          const utensilsMatch = !utensilsOnly || item.dataset.utensils === "true";
+          const isVisible = setupMatches && stockMatches && softMatches && utensilsMatch;
+
+          item.hidden = !isVisible;
+          if (isVisible) {
+            hasVisibleItems = true;
+          }
+        }
+
+        section.hidden = !hasVisibleItems;
+      }
+    }
+
+    filterControls.addEventListener("change", updateInventory);
+    updateInventory();
+  </script>
+</body>
+</html>
