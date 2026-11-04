@@ -10,11 +10,53 @@
     #filter-controls fieldset {
       margin-bottom: 1rem;
     }
+    .radio-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+    .radio-options p {
+      margin: 0;
+    }
+    .checkbox-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+    .checkbox-options p {
+      margin: 0;
+    }
+    .item-features {
+      display: block;
+    }
     #inventory-list li {
       margin-bottom: 1rem;
     }
     [hidden] {
       display: none !important;
+    }
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 3px solid orange;
+      outline-offset: 2px;
+    }
+    input[type="search"] {
+      box-sizing: border-box;
+      max-width: 24rem;
+      width: 100%;
+      min-height: 2.5rem;
+    }
+    .alphabet-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.5rem;
+    }
+    .alphabet-links label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      padding: 0.25rem;
     }
     nav a {
       color: blue;
@@ -32,11 +74,11 @@
       color: red;
     }
     .status-in {
-      color: green;
+      color: #176b2c;
       font-weight: bold;
     }
     .status-out {
-      color: red;
+      color: #b00020;
       font-weight: bold;
     }
   </style>
@@ -47,7 +89,7 @@
 
   <header>
     <h1>LAUREL ORGANIZATION FOR VOLUNTEER & RESOURCE EQUITY (L.O.V.E.) CLIENT PORTAL</h1>
-    <p>Sample pantry inventory is organized by cooking setup. The filters are interactive, but the current stock levels are not live right now.</p>
+    <p>This prototype shows illustrative quantities and availability, not live inventory. Cooking setup and preparation time depend on the recipe.</p>
   </header>
 
   <hr>
@@ -55,29 +97,95 @@
   <!-- Radio buttons and Checkbox Interfaces  -->
   <section id="filter-controls">
     <h2>Filter Inventory Tools</h2>
-    <p>Please, choose any combination of filters to narrow the sample inventory to your preferences.</p>
+    <p>All items, recipes, quantities, availability, and descriptions on this page are sample data and do not represent live items or inventory.</p>
+    <p>These filters apply to the cooking items and recipes shown, not the Available Ingredients or Out of Stock lists, which are controlled by their own respective filters.</p>
     
-    <!-- Radio buttons: No Cook, Microwave, Full Kitchen -->
+    <!-- Radio buttons: No Cook and Microwave -->
     <fieldset>
       <legend>Select Your Cooking Setup (Choose Only One):</legend>
-      <p>
-        <input type="radio" id="setup-all" name="cooking-setup" value="all" checked>
-        <label for="setup-all">Show ALL Layouts</label>
-      </p>
-      <p>
-        <input type="radio" id="setup-nocook" name="cooking-setup" value="nocook">
-        <label for="setup-nocook">No-Cook / Shelter Friendly</label>
-      </p>
-      <p>
-        <input type="radio" id="setup-microwave" name="cooking-setup" value="microwave">
-        <label for="setup-microwave">Microwave-Only</label>
-      </p>
-      <p>
-        <input type="radio" id="setup-kitchen" name="cooking-setup" value="kitchen">
-        <label for="setup-kitchen">Full Kitchen Required</label>
-      </p>
+      <div class="radio-options">
+        <p>
+          <input type="radio" id="setup-all" name="cooking-setup" value="all" checked>
+          <label for="setup-all">Show ALL Layouts</label>
+        </p>
+        <p>
+          <input type="radio" id="setup-nocook" name="cooking-setup" value="nocook">
+          <label for="setup-nocook">No-Cook / Shelter Friendly</label>
+        </p>
+        <p>
+          <input type="radio" id="setup-microwave" name="cooking-setup" value="microwave">
+          <label for="setup-microwave">Microwave-Only</label>
+        </p>
+      </div>
     </fieldset>
-    
+
+    <fieldset>
+      <legend>Equipment You Have:</legend>
+      <p>Check the tools you have. Items appear when you have all the tools they require. Leave all unchecked to show items regardless of their tool requirements.</p>
+      <div class="checkbox-options">
+        <p>
+          <input type="checkbox" id="tool-spoon" name="kitchen-tools" value="spoon">
+          <label for="tool-spoon">Spoon</label>
+        </p>
+        <p>
+          <input type="checkbox" id="tool-knife" name="kitchen-tools" value="knife">
+          <label for="tool-knife">Knife</label>
+        </p>
+        <p>
+          <input type="checkbox" id="tool-can-opener" name="kitchen-tools" value="can-opener">
+          <label for="tool-can-opener">Can opener</label>
+        </p>
+        <p>
+          <input type="checkbox" id="tool-microwave" name="kitchen-tools" value="microwave">
+          <label for="tool-microwave">Microwave</label>
+        </p>
+        <p>
+          <input type="checkbox" id="tool-microwave-safe-bowl" name="kitchen-tools" value="microwave-safe-bowl">
+          <label for="tool-microwave-safe-bowl">Microwave-safe bowl</label>
+        </p>
+        <p>
+          <input type="checkbox" id="tool-stovetop" name="kitchen-tools" value="stovetop">
+          <label for="tool-stovetop">Stovetop</label>
+        </p>
+        <p>
+          <input type="checkbox" id="tool-pot" name="kitchen-tools" value="pot">
+          <label for="tool-pot">Pot</label>
+        </p>
+        <p>
+          <input type="checkbox" id="tool-skillet-comal" name="kitchen-tools" value="skillet-comal">
+          <label for="tool-skillet-comal">Skillet or comal</label>
+        </p>
+      </div>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+      <legend>Preparation Time (Choose One):</legend>
+      <div class="radio-options">
+        <p>
+          <input type="radio" id="time-all" name="preparation-time" value="all" checked>
+          <label for="time-all">Show All Preparation Times</label>
+        </p>
+        <p>
+          <input type="radio" id="time-under-15" name="preparation-time" value="under-15">
+          <label for="time-under-15">Under 15 Minutes</label>
+        </p>
+        <p>
+          <input type="radio" id="time-15-to-30" name="preparation-time" value="15-to-30">
+          <label for="time-15-to-30">15 to 30 Minutes</label>
+        </p>
+        <p>
+          <input type="radio" id="time-30-to-60" name="preparation-time" value="30-to-60">
+          <label for="time-30-to-60">30 to 60 Minutes</label>
+        </p>
+        <p>
+          <input type="radio" id="time-over-60" name="preparation-time" value="over-60">
+          <label for="time-over-60">Over 1 Hour</label>
+        </p>
+      </div>
+    </fieldset>
+
     <br>
 
     <!-- Checkbox and Dropdown Interfaces -->
@@ -90,14 +198,28 @@
           <option value="instock" selected>In-stock items only</option>
         </select>
       </p>
-      <p>
-        <input type="checkbox" id="pref-soft" name="diet-pref" value="soft">
-        <label for="pref-soft">Soft Food Options Only</label>
-      </p>
-      <p>
-        <input type="checkbox" id="pref-utensils" name="diet-pref" value="utensils">
-        <label for="pref-utensils">Includes Eating Utensils</label>
-      </p>
+      <div class="checkbox-options">
+        <p>
+          <input type="checkbox" id="pref-soft" name="diet-pref" value="soft">
+          <label for="pref-soft">Soft Food Options Only</label>
+        </p>
+        <p>
+          <input type="checkbox" id="pref-utensils" name="diet-pref" value="utensils">
+          <label for="pref-utensils">Includes Eating Utensils</label>
+        </p>
+        <p>
+          <input type="checkbox" id="pref-ready" name="diet-pref" value="ready">
+          <label for="pref-ready">Ready to Eat / No Cooking Needed</label>
+        </p>
+        <p>
+          <input type="checkbox" id="pref-easy-open" name="diet-pref" value="easy-open">
+          <label for="pref-easy-open">Easy-Open Packaging</label>
+        </p>
+        <p>
+          <input type="checkbox" id="pref-no-appliance" name="diet-pref" value="no-appliance">
+          <label for="pref-no-appliance">No Cooking Appliance Needed</label>
+        </p>
+      </div>
     </fieldset>
   </section>
 
@@ -106,11 +228,13 @@
 
   <!-- Navigation Bar -->
   <nav id="top">
-    <strong>Click on Options to Jump Straight To Category Setup:</strong>
+    <strong>Jump to a Category:</strong>
     <p>
       <a href="#no-cook">No-Cook Options</a> | 
       <a href="#microwave">Microwave-Only</a> | 
-      <a href="#full-kitchen">Full Kitchen Required</a>
+      <a href="#full-kitchen">Full Kitchen Required</a> |
+      <a href="#available-ingredients">Available Ingredients</a> |
+      <a href="#out-of-stock">Out of Stock</a>
     </p>
   </nav>
 
@@ -118,18 +242,142 @@
 
   <!-- Inventory Content -->
   <main id="inventory-list">
+    <p id="inventory-status" role="status" aria-live="polite" aria-atomic="true"></p>
     <!-- Category 1 -->
-    <section id="no-cook" data-setup="nocook">
+    <section id="no-cook" data-setup="nocook" data-ready="true" data-no-appliance="true">
       <h2>No-Cook / Shelter Friendly</h2>
       <p>Optimized for clients without appliances, kitchen spaces, or tool access.</p>
       <ul>
-        <li data-stock="instock">
-          <strong>Fruit Snack & Granola Bars</strong> - <span class="status-in">In Stock</span>
-          <br><small>Type: Snack | Packaging: Box/Pouch | Note: Ready-to-eat wrapper</small>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Fruit Snack & Granola Bars</strong> - <span class="status-in">In Stock | 24 units</span>
+          <br><small>Type: Snack | Packaging: Box/Pouch | Note: Ready-to-eat wrapper | Equipment needed: None | Preparation time: None needed</small>
         </li>
-        <li data-stock="instock" data-soft="true">
-          <strong>Applesauce Cups</strong> - <span class="status-in">In Stock</span>
-          <br><small>Type: Fruit | Packaging: Plastic Cup | Note: Soft food, requires plastic spoon</small>
+        <li data-stock="instock" data-soft="true" data-minutes="0" data-tools="spoon">
+          <strong>Applesauce Cups</strong> - <span class="status-in">In Stock | 12 units</span>
+          <br><small>Type: Fruit | Packaging: Plastic Cup | Note: Soft food, requires plastic spoon | Equipment needed: Spoon | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Apple rings</strong> - <span class="status-in">In Stock | 8 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Banana chips</strong> - <span class="status-in">In Stock | 6 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Blueberries (dried)</strong> - <span class="status-in">In Stock | 5 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0" data-tools="knife">
+          <strong>Cantaloupe (whole)</strong> - <span class="status-in">In Stock | 3 units</span>
+          <br><small>Type: Fruit | Note: Whole fruit | Equipment needed: Knife may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Clementines</strong> - <span class="status-in">In Stock | 8 units</span>
+          <br><small>Type: Fruit | Note: Peel by hand | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Coconut flakes / shreds</strong> - <span class="status-in">In Stock | 5 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Currants</strong> - <span class="status-in">In Stock | 4 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Dates (Medjool, Deglet Noor)</strong> - <span class="status-in">In Stock | 6 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat; remove pits if present | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Figs (Mission, Turkish)</strong> - <span class="status-in">In Stock | 4 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Goji berries</strong> - <span class="status-in">In Stock | 4 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="out" data-minutes="0" data-restock-days="3" data-tools="knife">
+          <strong>Grapefruit</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span>
+          <br><small>Type: Fruit | Note: Whole fruit; knife may be needed | Equipment needed: Knife may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0" data-tools="can-opener">
+          <strong>Grapefruit segments (canned)</strong> - <span class="status-in">In Stock | 5 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat after opening | Equipment needed: Can opener may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0" data-tools="knife">
+          <strong>Honeydew melon (whole)</strong> - <span class="status-in">In Stock | 2 units</span>
+          <br><small>Type: Fruit | Note: Whole fruit | Equipment needed: Knife may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="out" data-minutes="0" data-restock-days="4" data-tools="can-opener">
+          <strong>Jackfruit (green in brine or sweet in syrup)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 4 days</span>
+          <br><small>Type: Fruit | Note: Canned, ready to eat after opening | Equipment needed: Can opener may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0" data-tools="can-opener">
+          <strong>Lychees (canned)</strong> - <span class="status-in">In Stock | 5 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat after opening | Equipment needed: Can opener may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0" data-tools="can-opener">
+          <strong>Mandarin oranges (canned)</strong> - <span class="status-in">In Stock | 7 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat after opening | Equipment needed: Can opener may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Maraschino cherries</strong> - <span class="status-in">In Stock | 4 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Oranges</strong> - <span class="status-in">In Stock | 8 units</span>
+          <br><small>Type: Fruit | Note: Peel by hand | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0" data-tools="can-opener">
+          <strong>Pears (canned slices or halves)</strong> - <span class="status-in">In Stock | 6 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat after opening | Equipment needed: Can opener may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0" data-tools="spoon">
+          <strong>Pie fillings (apple, cherry, blueberry)</strong> - <span class="status-in">In Stock | 4 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat; commonly used for baking | Equipment needed: Spoon | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Pineapple chunks (dried)</strong> - <span class="status-in">In Stock | 5 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0" data-tools="can-opener">
+          <strong>Pineapple slices, chunks, tidbits, or crushed (canned)</strong> - <span class="status-in">In Stock | 7 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat after opening | Equipment needed: Can opener may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="out" data-minutes="0" data-restock-days="5" data-tools="knife">
+          <strong>Pomegranates</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 5 days</span>
+          <br><small>Type: Fruit | Note: Whole fruit; knife may be needed | Equipment needed: Knife may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0">
+          <strong>Prunes (dried plums)</strong> - <span class="status-in">In Stock | 5 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat | Equipment needed: None | Preparation time: None needed</small>
+        </li>
+        <li data-stock="instock" data-minutes="0" data-tools="can-opener">
+          <strong>Pumpkin puree (canned)</strong> - <span class="status-in">In Stock | 4 units</span>
+          <br><small>Type: Fruit | Note: Ready to eat; commonly used for cooking or baking | Equipment needed: Can opener may be needed | Preparation time: None needed</small>
+        </li>
+        <li data-stock="out" data-minutes="0" data-restock-days="3" data-tools="knife">
+          <strong>Watermelon (whole)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span>
+          <br><small>Type: Fruit | Note: Whole fruit | Equipment needed: Knife may be needed | Preparation time: None needed</small>
+        </li>
+      </ul>
+      <h3>Quick No-Cook Recipes</h3>
+      <ul>
+        <li data-stock="instock" data-minutes="12" data-utensils="true" data-tools="can-opener knife spoon">
+          <strong>Mediterranean Chickpea Salad</strong> - <span class="status-in">In Stock | 4 servings</span>
+          <br><small>Type: Main Course | Packaging: Canned/Fresh | Ingredients: Chickpeas (Canned), Cherry tomatoes, Olives, Capers, Flat-leaf parsley, Extra virgin olive oil, Lemons, Kosher salt, Black peppercorns | Equipment needed: Can opener, knife, spoon | Preparation time: About 12 minutes</small>
+        </li>
+        <li data-stock="instock" data-minutes="5" data-soft="true" data-utensils="true" data-tools="spoon">
+          <strong>Fruit &amp; Seed Energy Bowl</strong> - <span class="status-in">In Stock | 4 servings</span>
+          <br><small>Type: Breakfast / Snack | Packaging: Tub/Pouch | Ingredients: Plain yogurt (regular or Greek), Apple rings, Banana chips, Chia seeds, Flax seeds, Hemp seeds, Agave syrup | Equipment needed: Spoon | Preparation time: About 5 minutes</small>
+        </li>
+        <li data-stock="instock" data-minutes="12" data-easy-open="true" data-tools="can-opener knife spoon">
+          <strong>Canned Chicken Salad Romaine Wraps</strong> - <span class="status-in">In Stock | 4 servings</span>
+          <br><small>Type: Main Course | Packaging: Pouch/Canned/Fresh | Ingredients: Chicken (Canned &amp; pouches), Mayonnaise, Mustard (Dijon or whole grain), Celery, Romaine or mixed greens, Fine salt, Black peppercorns | Note: Easy-open packaging varies by product | Equipment needed: Can opener, knife, spoon | Preparation time: About 12 minutes</small>
+        </li>
+        <li data-stock="instock" data-minutes="10" data-utensils="true" data-tools="knife spoon">
+          <strong>Spicy Avocado &amp; Cracker Mash</strong> - <span class="status-in">In Stock | 4 servings</span>
+          <br><small>Type: Snack | Packaging: Fresh/Box | Ingredients: Avocados, Limes, Hot sauce (Tabasco, Sriracha or sambal), Cilantro, Crackers, Fine salt | Equipment needed: Knife, spoon | Preparation time: About 10 minutes</small>
         </li>
       </ul>
       <p><a href="#top">Scroll Back to Category Setup</a></p>
@@ -142,13 +390,17 @@
       <h2>Microwave-Only Quick Meals</h2>
       <p>Optimized for temporary housing or quick meals requiring minimal cooking tools.</p>
       <ul>
-        <li data-stock="instock" data-utensils="true">
-          <strong>Mac & Cheese Cups</strong> - <span class="status-in">In Stock</span>
-          <br><small>Type: Meal | Packaging: Disposable Cup | Note: Includes plastic forks/napkins</small>
+        <li data-stock="instock" data-utensils="true" data-minutes="5" data-tools="microwave">
+          <strong>Mac & Cheese Cups</strong> - <span class="status-in">In Stock | 8 units</span>
+          <br><small>Type: Meal | Packaging: Disposable Cup | Note: Includes plastic forks/napkins | Equipment needed: Microwave | Preparation time: About 5 minutes</small>
         </li>
-        <li data-stock="instock">
-          <strong>Canned Vegetable Soup</strong> - <span class="status-in">In Stock</span>
-          <br><small>Type: Soup | Packaging: Can | Note: Pull-tab lid (no can opener tool needed)</small>
+        <li data-stock="instock" data-minutes="5" data-easy-open="true" data-tools="microwave microwave-safe-bowl">
+          <strong>Canned Vegetable Soup</strong> - <span class="status-in">In Stock | 6 units</span>
+          <br><small>Type: Soup | Packaging: Can | Note: Pull-tab lid (no can opener tool needed) | Equipment needed: Microwave and microwave-safe bowl | Preparation time: About 5 minutes</small>
+        </li>
+        <li data-stock="instock" data-minutes="10" data-soft="true" data-utensils="true" data-tools="microwave microwave-safe-bowl can-opener spoon">
+          <strong>Microwave Mac and Cheese Up-grade</strong> - <span class="status-in">In Stock | 4 servings</span>
+          <br><small>Type: Main Course | Packaging: Cup/Canned | Ingredients: Mac and cheese (Cups &amp; boxes), Spam, Peas (Canned), Black peppercorns | Note: Microwave-friendly | Equipment needed: Microwave, microwave-safe bowl, can opener, spoon | Preparation time: About 10 minutes</small>
         </li>
       </ul>
       <p><a href="#top">Scroll Back to Category Setup</a></p>
@@ -161,14 +413,375 @@
       <h2>Full Kitchen Required / Family Dinners</h2>
       <p>Bulk family resources requiring preparation tools, stove burners, or boiling water.</p>
       <ul>
+        <li data-stock="instock" data-minutes="30" data-tools="stovetop pot">
+          <strong>Spaghetti & Pasta Sauce</strong> - <span class="status-in">In Stock | 5 units</span>
+          <br><small>Type: Grains/Sauce | Packaging: Box & Jar | Note: Dynamic bulk family combo | Equipment needed: Stovetop and pot | Preparation time: About 30 minutes</small>
+        </li>
+        <li data-stock="out" data-minutes="20" data-tools="stovetop skillet-comal">
+          <strong>Maseca Corn Flour</strong> - <span class="status-out">Out of Stock | 0 units</span>
+          <br><small>Type: Flour | Packaging: Large Dry Bag | Note: Tortilla base flour | Equipment needed: Stovetop and skillet or comal | Preparation time: About 20 minutes</small>
+        </li>
+      </ul>
+      <p><a href="#top">Scroll Back to Category Setup</a></p>
+    </section>
+
+    <hr>
+
+    <section id="available-ingredients" data-setup="ingredients">
+      <h2>Available Ingredients</h2>
+      <p>Example unit counts are placeholders. Check with the pantry for current stock.</p>
+      <p>
+        <label for="available-ingredient-search">Search available ingredients:</label><br>
+        <input type="search" id="available-ingredient-search" name="available-ingredient-search">
+      </p>
+      <fieldset id="available-ingredient-letter-controls">
+        <legend>Filter by First Letter (Choose One):</legend>
+        <div id="available-ingredient-alphabet" class="alphabet-links"></div>
+      </fieldset>
+      <p id="available-ingredient-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      <ul id="available-ingredient-list">
         <li data-stock="instock">
-          <strong>Spaghetti & Pasta Sauce</strong> - <span class="status-in">In Stock</span>
-          <br><small>Type: Grains/Sauce | Packaging: Box & Jar | Note: Dynamic bulk family combo</small>
+          <strong>Applesauce cups</strong> - <span class="status-in">In Stock | 12 units</span>
         </li>
-        <li data-stock="out">
-          <strong>Maseca Corn Flour</strong> - <span class="status-out">Out of Stock</span>
-          <br><small>Type: Flour | Packaging: Large Dry Bag | Note: Tortilla base flour</small>
+        <li data-stock="instock">
+          <strong>Black beans (Dry)</strong> - <span class="status-in">In Stock | 8 units</span>
         </li>
+        <li data-stock="instock">
+          <strong>Brown rice</strong> - <span class="status-in">In Stock | 10 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Chicken (Canned &amp; pouches)</strong> - <span class="status-in">In Stock | 9 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Chicken breast (Canned &amp; pouches)</strong> - <span class="status-in">In Stock | 7 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Chickpeas (Canned)</strong> - <span class="status-in">In Stock | 8 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Coconut milk (Canned)</strong> - <span class="status-in">In Stock | 5 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Corn (Canned)</strong> - <span class="status-in">In Stock | 10 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Cornflakes</strong> - <span class="status-in">In Stock | 6 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Crispy rice</strong> - <span class="status-in">In Stock | 6 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Egg noodles</strong> - <span class="status-in">In Stock | 7 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Fruit snack pouches</strong> - <span class="status-in">In Stock | 12 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Granola bars</strong> - <span class="status-in">In Stock | 24 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Green beans (Canned)</strong> - <span class="status-in">In Stock | 8 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Kidney beans (Canned)</strong> - <span class="status-in">In Stock | 8 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Lentils (Dry)</strong> - <span class="status-in">In Stock | 7 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Mac and cheese (Cups &amp; boxes)</strong> - <span class="status-in">In Stock | 8 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Mixed fruit cans</strong> - <span class="status-in">In Stock | 6 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Mixed vegetables (Canned)</strong> - <span class="status-in">In Stock | 8 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Oat milk (Boxed)</strong> - <span class="status-in">In Stock | 7 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Oatmeal (Packets, containers, &amp; boxes)</strong> - <span class="status-in">In Stock | 10 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Peas (Canned)</strong> - <span class="status-in">In Stock | 8 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Pinto beans (Canned)</strong> - <span class="status-in">In Stock | 8 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Pinto beans (Dry)</strong> - <span class="status-in">In Stock | 5 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Potatoes (Canned)</strong> - <span class="status-in">In Stock | 6 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Raisins</strong> - <span class="status-in">In Stock | 6 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Red beans (Dry)</strong> - <span class="status-in">In Stock | 5 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Rice mixes</strong> - <span class="status-in">In Stock | 7 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Rotini</strong> - <span class="status-in">In Stock | 6 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Shells</strong> - <span class="status-in">In Stock | 6 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Spam</strong> - <span class="status-in">In Stock | 5 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Spaghetti</strong> - <span class="status-in">In Stock | 6 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Tomatoes (Diced, crushed, paste, &amp; peeled)</strong> - <span class="status-in">In Stock | 10 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>Tuna (Canned &amp; pouches)</strong> - <span class="status-in">In Stock | 8 units</span>
+        </li>
+        <li data-stock="instock">
+          <strong>White rice</strong> - <span class="status-in">In Stock | 10 units</span>
+        </li>
+        <li data-stock="instock"><strong>Agave syrup</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Cajun seasoning</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Anchovy fillets or paste</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Apple cider vinegar</strong> - <span class="status-in">In Stock | 7 units</span></li>
+        <li data-stock="instock"><strong>Apricots</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Asian fish sauce</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Avocados</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Bananas</strong> - <span class="status-in">In Stock | 8 units</span></li>
+        <li data-stock="instock"><strong>Baking soda</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Balsamic or sherry vinegar</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Bay leaves</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Bell peppers</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Berries</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Biscuits</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Black peppercorns</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Boston lettuce</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Breadcrumbs (plain or panko)</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Bulgur</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Cannellini beans</strong> - <span class="status-in">In Stock | 7 units</span></li>
+        <li data-stock="instock"><strong>Capers</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Cauliflower</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Cayenne pepper</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Celery</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Chard</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Cherries</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Cherry tomatoes</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Chia seeds</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Chile powder</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Chiles (chipotles in adobo or pickled jalapenos)</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Chocolate (chips or bar)</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Cilantro</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Cocoa powder (unsweetened)</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Confectioners' sugar</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Cookies</strong> - <span class="status-in">In Stock | 8 units</span></li>
+        <li data-stock="instock"><strong>Couscous</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Crackers</strong> - <span class="status-in">In Stock | 7 units</span></li>
+        <li data-stock="instock"><strong>Cream of tartar</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Crushed red pepper</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Curry powder</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Dill seed</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Evaporated milk</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Extra virgin olive oil</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Farro</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Fennel seed</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Fine salt</strong> - <span class="status-in">In Stock | 7 units</span></li>
+        <li data-stock="instock"><strong>Flax seeds</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Flat-leaf parsley</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Garlic</strong> - <span class="status-in">In Stock | 8 units</span></li>
+        <li data-stock="instock"><strong>Ginger</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Goat cheese</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Granulated garlic</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Granulated sugar</strong> - <span class="status-in">In Stock | 8 units</span></li>
+        <li data-stock="instock"><strong>Grape tomatoes</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Ground cinnamon</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Ground cloves</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Ground cumin</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Ground ginger</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Ground turkey</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Hemp seeds</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Hominy</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Hot sauce (Tabasco, Sriracha or sambal)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Italian sausage</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Jam</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Jelly</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Kale</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Ketchup</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Kosher salt</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Lemons</strong> - <span class="status-in">In Stock | 7 units</span></li>
+        <li data-stock="instock"><strong>Lettuce (romaine or mixed greens)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Limes</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Long-grain white rice</strong> - <span class="status-in">In Stock | 8 units</span></li>
+        <li data-stock="instock"><strong>Mangos</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Maple syrup</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Marshmallows</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Mayonnaise</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Mustard (Dijon or whole grain)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Navy beans</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Old-fashioned rolled oats</strong> - <span class="status-in">In Stock | 7 units</span></li>
+        <li data-stock="instock"><strong>Olives</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Oregano</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Paprika (sweet and smoked)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Pecans</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Pickles</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Pie dough</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Pizza dough</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Plain yogurt (regular or Greek)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Polenta</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Popcorn kernels</strong> - <span class="status-in">In Stock | 7 units</span></li>
+        <li data-stock="instock"><strong>Preserves</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Pretzels</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Puff pastry</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Red wine vinegar</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Rice noodles</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Rice vinegar (unseasoned)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Roasted red peppers</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Rosemary</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Salads/Greens</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Salsa</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Scallions</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Seasonal beefsteak tomatoes</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Sesame seeds</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Soybean oil</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Soy sauce or tamari</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Sunflower seeds</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Tea</strong> - <span class="status-in">In Stock | 8 units</span></li>
+        <li data-stock="instock"><strong>Thyme</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Toasted sesame oil</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Vanilla ice cream</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Vegetable oil</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Walnut oil</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Walnuts</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Whole grain pasta</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Whole nutmeg</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Apple rings</strong> - <span class="status-in">In Stock | 8 units</span></li>
+        <li data-stock="instock"><strong>Banana chips</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Blueberries (dried)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Cantaloupe (whole)</strong> - <span class="status-in">In Stock | 3 units</span></li>
+        <li data-stock="instock"><strong>Clementines</strong> - <span class="status-in">In Stock | 8 units</span></li>
+        <li data-stock="instock"><strong>Coconut flakes / shreds</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Currants</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Dates (Medjool, Deglet Noor)</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Figs (Mission, Turkish)</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Goji berries</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Grapefruit segments (canned)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Honeydew melon (whole)</strong> - <span class="status-in">In Stock | 2 units</span></li>
+        <li data-stock="instock"><strong>Lychees (canned)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Mandarin oranges (canned)</strong> - <span class="status-in">In Stock | 7 units</span></li>
+        <li data-stock="instock"><strong>Maraschino cherries</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Oranges</strong> - <span class="status-in">In Stock | 8 units</span></li>
+        <li data-stock="instock"><strong>Pears (canned slices or halves)</strong> - <span class="status-in">In Stock | 6 units</span></li>
+        <li data-stock="instock"><strong>Pie fillings (apple, cherry, blueberry)</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Pineapple chunks (dried)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Pineapple slices, chunks, tidbits, or crushed (canned)</strong> - <span class="status-in">In Stock | 7 units</span></li>
+        <li data-stock="instock"><strong>Prunes (dried plums)</strong> - <span class="status-in">In Stock | 5 units</span></li>
+        <li data-stock="instock"><strong>Pumpkin puree (canned)</strong> - <span class="status-in">In Stock | 4 units</span></li>
+        <li data-stock="instock"><strong>Worcestershire sauce</strong> - <span class="status-in">In Stock | 5 units</span></li>
+      </ul>
+      <p><a href="#top">Scroll Back to Category Setup</a></p>
+    </section>
+
+    <hr>
+
+    <section id="out-of-stock" data-setup="out-of-stock">
+      <h2>Out of Stock</h2>
+      <p>Out-of-stock items and restock estimates are examples only and are not live pantry or delivery information.</p>
+      <fieldset id="restock-filter-controls">
+        <legend>Filter by Estimated Restock Time (Choose One):</legend>
+        <p>
+          <input type="radio" id="restock-all" name="restock-time" value="all" checked>
+          <label for="restock-all">Show All Restock Estimates</label>
+        </p>
+        <p>
+          <input type="radio" id="restock-two-days" name="restock-time" value="two-days">
+          <label for="restock-two-days">2 Days or Less</label>
+        </p>
+        <p>
+          <input type="radio" id="restock-three-to-five-days" name="restock-time" value="three-to-five-days">
+          <label for="restock-three-to-five-days">3–5 Days</label>
+        </p>
+        <p>
+          <input type="radio" id="restock-six-plus-days" name="restock-time" value="six-plus-days">
+          <label for="restock-six-plus-days">6+ Days</label>
+        </p>
+      </fieldset>
+      <p>
+        <label for="out-of-stock-search">Search out-of-stock items:</label><br>
+        <input type="search" id="out-of-stock-search" name="out-of-stock-search">
+      </p>
+      <fieldset id="out-of-stock-letter-controls">
+        <legend>Filter by First Letter (Choose One):</legend>
+        <div id="out-of-stock-alphabet" class="alphabet-links"></div>
+      </fieldset>
+      <p id="out-of-stock-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      <ul id="out-of-stock-list">
+        <li data-stock="out" data-restock-days="1">
+          <strong>Almond milk (Boxed)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 1 day</span>
+        </li>
+        <li data-stock="out" data-restock-days="7">
+          <strong>Canned peaches</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 7 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="4">
+          <strong>Chickpeas (Dry)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 4 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="5">
+          <strong>Dried cranberries</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 5 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="4">
+          <strong>Kidney beans (Dry)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 4 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="8">
+          <strong>Maseca corn flour</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 8 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="2">
+          <strong>Multi-grain cereal</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 2 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="6">
+          <strong>Oatmeal bars</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 6 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="2">
+          <strong>Pumpkin (Canned)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 2 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="3">
+          <strong>White beans (Dry)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="3">
+          <strong>Yams</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span>
+        </li>
+        <li data-stock="out" data-restock-days="4"><strong>Almonds</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 4 days</span></li>
+        <li data-stock="out" data-restock-days="2"><strong>Apples</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 2 days</span></li>
+        <li data-stock="out" data-restock-days="3"><strong>Bacon</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span></li>
+        <li data-stock="out" data-restock-days="2"><strong>Baguette</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 2 days</span></li>
+        <li data-stock="out" data-restock-days="4"><strong>Baking powder</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 4 days</span></li>
+        <li data-stock="out" data-restock-days="6"><strong>Blue cheese</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 6 days</span></li>
+        <li data-stock="out" data-restock-days="7"><strong>Boneless, skinless chicken breasts (freezer)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 7 days</span></li>
+        <li data-stock="out" data-restock-days="3"><strong>Broccoli</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span></li>
+        <li data-stock="out" data-restock-days="2"><strong>Carrots</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 2 days</span></li>
+        <li data-stock="out" data-restock-days="5"><strong>Cheddar</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 5 days</span></li>
+        <li data-stock="out" data-restock-days="4"><strong>Chicken broth</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 4 days</span></li>
+        <li data-stock="out" data-restock-days="6"><strong>Coffee</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 6 days</span></li>
+        <li data-stock="out" data-restock-days="2"><strong>Flour (all purpose, whole wheat or pastry)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 2 days</span></li>
+        <li data-stock="out" data-restock-days="5"><strong>Ground beef</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 5 days</span></li>
+        <li data-stock="out" data-restock-days="3"><strong>Honey</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span></li>
+        <li data-stock="out" data-restock-days="2"><strong>Milk</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 2 days</span></li>
+        <li data-stock="out" data-restock-days="4"><strong>Mozzarella</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 4 days</span></li>
+        <li data-stock="out" data-restock-days="2"><strong>Onions</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 2 days</span></li>
+        <li data-stock="out" data-restock-days="6"><strong>Parmesan (wedge)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 6 days</span></li>
+        <li data-stock="out" data-restock-days="5"><strong>Quinoa</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 5 days</span></li>
+        <li data-stock="out" data-restock-days="1"><strong>Sandwich bread</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 1 day</span></li>
+        <li data-stock="out" data-restock-days="3"><strong>Spinach</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span></li>
+        <li data-stock="out" data-restock-days="4"><strong>Sweet potatoes</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 4 days</span></li>
+        <li data-stock="out" data-restock-days="2"><strong>Tortillas</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 2 days</span></li>
+        <li data-stock="out" data-restock-days="3"><strong>Unsalted butter</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span></li>
+        <li data-stock="out" data-restock-days="5"><strong>White potatoes</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 5 days</span></li>
+        <li data-stock="out" data-restock-days="3"><strong>Grapefruit</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span></li>
+        <li data-stock="out" data-restock-days="4"><strong>Jackfruit (green in brine or sweet in syrup)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 4 days</span></li>
+        <li data-stock="out" data-restock-days="5"><strong>Pomegranates</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 5 days</span></li>
+        <li data-stock="out" data-restock-days="3"><strong>Watermelon (whole)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span></li>
       </ul>
       <p><a href="#top">Scroll Back to Category Setup</a></p>
     </section>
@@ -185,38 +798,228 @@
   <script>
     const filterControls = document.getElementById("filter-controls");
     const inventorySections = document.querySelectorAll("#inventory-list section");
+    const inventoryStatus = document.getElementById("inventory-status");
+    const restockFilterControls = document.getElementById("restock-filter-controls");
+    const alphabetLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const ingredientLists = new Map([
+      ["available-ingredient-list", Array.from(document.querySelectorAll("#available-ingredient-list > li[data-stock]"))],
+      ["out-of-stock-list", Array.from(document.querySelectorAll("#out-of-stock-list > li[data-stock]"))]
+    ]);
+
+    function updateIngredientList(listId, searchId, alphabetId, statusId, selectedRestockTime = "all") {
+      const items = ingredientLists.get(listId);
+      const searchTerm = document.getElementById(searchId).value.trim().toLowerCase();
+      const selectedLetter = document.querySelector(`input[name="${alphabetId}"]:checked`).value;
+      const list = document.getElementById(listId);
+      const status = document.getElementById(statusId);
+      let visibleItemCount = 0;
+
+      for (const item of items) {
+        const name = item.querySelector("strong").textContent.trim();
+        const matchesSearch = name.toLowerCase().includes(searchTerm);
+        const restockDays = Number(item.dataset.restockDays);
+        const matchesRestockTime =
+          selectedRestockTime === "all" ||
+          (selectedRestockTime === "two-days" && restockDays <= 2) ||
+          (selectedRestockTime === "three-to-five-days" && restockDays >= 3 && restockDays <= 5) ||
+          (selectedRestockTime === "six-plus-days" && restockDays >= 6);
+        const letter = name.charAt(0).toUpperCase();
+        const letterMatches = selectedLetter === "all" || letter === selectedLetter;
+        const isVisible = matchesSearch && matchesRestockTime && letterMatches;
+
+        item.hidden = !isVisible;
+        if (isVisible) {
+          visibleItemCount++;
+        }
+      }
+
+      const sortedItems = [...items].sort((first, second) =>
+        first.querySelector("strong").textContent.localeCompare(
+          second.querySelector("strong").textContent,
+          undefined,
+          { sensitivity: "base" }
+        )
+      );
+      list.replaceChildren(...sortedItems);
+
+      const listName = listId === "available-ingredient-list" ? "available ingredient" : "out-of-stock item";
+      status.textContent = visibleItemCount === 0
+        ? selectedLetter === "all"
+          ? `No ${listName}s match your search and filters. Try changing your selections.`
+          : `No ${listName}s starting with ${selectedLetter} match your search and filters.`
+        : `Showing ${visibleItemCount} ${listName}${visibleItemCount === 1 ? "" : "s"}.`;
+    }
+
+    function createLetterFilters(alphabetId, name) {
+      const alphabet = document.getElementById(alphabetId);
+      const options = [["all", "All"], ...alphabetLetters.split("").map(letter => [letter, letter])];
+
+      for (const [value, labelText] of options) {
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = alphabetId;
+        input.value = value;
+        input.checked = value === "all";
+        input.addEventListener("change", () => {
+          if (name === "available") {
+            updateAvailableIngredients();
+          } else {
+            updateOutOfStockList();
+          }
+        });
+        label.append(input, document.createTextNode(labelText));
+        alphabet.append(label);
+      }
+    }
+
+    function updateAvailableIngredients() {
+      updateIngredientList(
+        "available-ingredient-list",
+        "available-ingredient-search",
+        "available-ingredient-alphabet",
+        "available-ingredient-status"
+      );
+    }
+
+    function addItemFeatureLabels() {
+      for (const section of inventorySections) {
+        if (section.dataset.setup === "ingredients" || section.dataset.setup === "out-of-stock") {
+          continue;
+        }
+
+        for (const item of section.querySelectorAll("li")) {
+          const features = [];
+          const isReadyToEat = item.dataset.ready === "true" || section.dataset.ready === "true";
+          const needsNoAppliance = item.dataset.noAppliance === "true" || section.dataset.noAppliance === "true";
+
+          if (isReadyToEat) {
+            features.push("Ready to eat / no cooking needed");
+          }
+          if (item.dataset.soft === "true") {
+            features.push("Soft food");
+          }
+          if (item.dataset.utensils === "true") {
+            features.push("Includes eating utensils");
+          }
+          if (item.dataset.easyOpen === "true") {
+            features.push("Easy-open packaging (pull-tab lid)");
+          }
+          if (needsNoAppliance) {
+            features.push("No cooking appliance needed");
+          }
+
+          const featureLabel = document.createElement("small");
+          featureLabel.className = "item-features";
+          featureLabel.textContent = `Features: ${features.join(" | ")}`;
+          const itemDetails = item.querySelector("small");
+          if (itemDetails) {
+            item.insertBefore(featureLabel, itemDetails);
+          }
+        }
+      }
+    }
 
     function updateInventory() {
       const selectedSetup = filterControls.querySelector(
         'input[name="cooking-setup"]:checked'
       ).value;
+      const selectedTools = Array.from(
+        filterControls.querySelectorAll('input[name="kitchen-tools"]:checked')
+      ).map((input) => input.value);
+      const selectedTime = filterControls.querySelector(
+        'input[name="preparation-time"]:checked'
+      ).value;
       const stockStatus = document.getElementById("pref-stock-select").value;
       const softOnly = document.getElementById("pref-soft").checked;
       const utensilsOnly = document.getElementById("pref-utensils").checked;
+      const readyOnly = document.getElementById("pref-ready").checked;
+      const easyOpenOnly = document.getElementById("pref-easy-open").checked;
+      const noApplianceOnly = document.getElementById("pref-no-appliance").checked;
+      let visibleItemCount = 0;
 
       for (const section of inventorySections) {
-        const setupMatches = selectedSetup === "all" || section.dataset.setup === selectedSetup;
+        const isIngredientList = section.dataset.setup === "ingredients";
+        const isOutOfStockList = section.dataset.setup === "out-of-stock";
+        const isPantryList = isIngredientList || isOutOfStockList;
+        const setupMatches =
+          isPantryList || selectedSetup === "all" || section.dataset.setup === selectedSetup;
         let hasVisibleItems = false;
 
         const items = section.querySelectorAll("li");
         for (const item of items) {
-          const stockMatches = stockStatus === "all" || item.dataset.stock === "instock";
-          const softMatches = !softOnly || item.dataset.soft === "true";
-          const utensilsMatch = !utensilsOnly || item.dataset.utensils === "true";
-          const isVisible = setupMatches && stockMatches && softMatches && utensilsMatch;
+          if (isOutOfStockList) {
+            hasVisibleItems = true;
+            continue;
+          }
+
+          const stockMatches = isPantryList || stockStatus === "all" || item.dataset.stock === "instock";
+          const softMatches = isPantryList || !softOnly || item.dataset.soft === "true";
+          const utensilsMatch = isPantryList || !utensilsOnly || item.dataset.utensils === "true";
+          const readyMatches =
+            isPantryList || !readyOnly || item.dataset.ready === "true" || section.dataset.ready === "true";
+          const easyOpenMatches = isPantryList || !easyOpenOnly || item.dataset.easyOpen === "true";
+          const noApplianceMatches =
+            isPantryList || !noApplianceOnly || item.dataset.noAppliance === "true" || section.dataset.noAppliance === "true";
+          const itemTools = (item.dataset.tools || "").split(" ").filter(Boolean);
+          const toolsMatch =
+            isPantryList || selectedTools.length === 0 ||
+            itemTools.every((tool) => selectedTools.includes(tool));
+          const preparationTime = Number(item.dataset.minutes);
+          const timeMatches =
+            isPantryList || selectedTime === "all" ||
+            (selectedTime === "under-15" && preparationTime < 15) ||
+            (selectedTime === "15-to-30" && preparationTime >= 15 && preparationTime < 30) ||
+            (selectedTime === "30-to-60" && preparationTime >= 30 && preparationTime <= 60) ||
+            (selectedTime === "over-60" && preparationTime > 60);
+          const isVisible =
+            setupMatches && stockMatches && softMatches && utensilsMatch &&
+            readyMatches && easyOpenMatches && noApplianceMatches && toolsMatch && timeMatches;
 
           item.hidden = !isVisible;
           if (isVisible) {
             hasVisibleItems = true;
+            if (!isPantryList) {
+              visibleItemCount++;
+            }
           }
         }
 
-        section.hidden = !hasVisibleItems;
+        if (isPantryList) {
+          section.hidden = false;
+        } else {
+          section.hidden = !hasVisibleItems;
+        }
       }
+
+      inventoryStatus.textContent = visibleItemCount === 0
+        ? "No sample items match these filters. Try changing your selections. Ingredient lists use separate filters."
+        : `Showing ${visibleItemCount} sample ${visibleItemCount === 1 ? "item" : "items"}. Ingredient lists use separate filters.`;
     }
 
+    function updateOutOfStockList() {
+      const selectedRestockTime = restockFilterControls.querySelector(
+        'input[name="restock-time"]:checked'
+      ).value;
+      updateIngredientList(
+        "out-of-stock-list",
+        "out-of-stock-search",
+        "out-of-stock-alphabet",
+        "out-of-stock-status",
+        selectedRestockTime
+      );
+    }
+
+    createLetterFilters("available-ingredient-alphabet", "available");
+    createLetterFilters("out-of-stock-alphabet", "out-of-stock");
     filterControls.addEventListener("change", updateInventory);
+    restockFilterControls.addEventListener("change", updateOutOfStockList);
+    document.getElementById("available-ingredient-search").addEventListener("input", updateAvailableIngredients);
+    document.getElementById("out-of-stock-search").addEventListener("input", updateOutOfStockList);
+    updateAvailableIngredients();
+    addItemFeatureLabels();
     updateInventory();
+    updateOutOfStockList();
   </script>
 </body>
 </html>
