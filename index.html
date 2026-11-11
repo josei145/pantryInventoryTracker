@@ -3,53 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pantry Inventory Tracker Prototype</title>
+  <title data-i18n="homePageTitle">Pantry Inventory Tracker Prototype</title>
+  <script>
+    (() => {
+      const sizes = ["xs", "s", "m", "l", "xl"];
+      const themes = ["default", "dark", "soft", "sepia", "colorblind", "high-contrast"];
+      let language = "en";
+      let size = null;
+      let theme = null;
+      try {
+        size = localStorage.getItem("love-pantry-text-size");
+        theme = localStorage.getItem("love-pantry-theme");
+        language = localStorage.getItem("a11y-lang") === "es" ? "es" : "en";
+      } catch (error) {
+        console.warn("Unable to read saved accessibility preferences.", error);
+        size = null;
+        theme = null;
+      }
+      if (!sizes.includes(size)) size = "m";
+      if (!themes.includes(theme)) {
+        theme = matchMedia("(prefers-contrast: more)").matches
+          ? "high-contrast"
+          : matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "default";
+      }
+      document.documentElement.dataset.textSize = size;
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.lang = language;
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home-page">
 
-  <!-- Language Switcher & Support Links -->
-  <div style="text-align: right;">
-    <p>Lang: <a href="#">EN(English)</a> / <a href="#">ES(Espanol)</a></p>
-    <p><a href="#">Support Ticket</a></p>
-  </div>
-
-  <!-- Main Home Page Branding & Welcome Greeting -->
-  <header style="text-align: center;">
-    <h1>LAUREL ORGANIZATION FOR VOLUNTEER & RESOURCE EQUITY (L.O.V.E.)</h1>
-    <h2>Hello! Welcome to L.O.V.E! We are glad to have you here!</h2>
+  <header class="site-header">
+    <a class="brand-link" href="index.html">L.O.V.E. Pantry</a>
+    <nav class="nav-actions" aria-label="Page controls" data-i18n-aria-label="pageControls">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <button type="button" class="language-button" data-language="en" aria-pressed="true">EN</button>
+        <button type="button" class="language-button" data-language="es" aria-pressed="false">ES</button>
+      </div>
+      <a class="header-action support-link" href="support.html"><span aria-hidden="true">🎫 </span><span data-i18n="supportLink">Support</span></a>
+      <button type="button" class="header-action" id="settings-toggle" aria-label="Settings" data-i18n-aria-label="settings" aria-expanded="false" aria-controls="settings-drawer"><span class="header-action-icon" aria-hidden="true">⚙️</span><span class="header-action-label" data-i18n="settings">Settings</span></button>
+    </nav>
+    <section class="settings-drawer" id="settings-drawer" aria-labelledby="settings-heading" hidden>
+      <div class="drawer-heading">
+        <h2 id="settings-heading" data-i18n="accessibilitySettings">Accessibility Settings</h2>
+        <button type="button" class="drawer-close" aria-label="Close settings" data-i18n-aria-label="closeSettings">×</button>
+      </div>
+      <fieldset>
+        <legend data-i18n="textSize">Text Size</legend>
+        <div class="setting-options" role="group" aria-label="Text size" data-i18n-aria-label="textSizeGroup">
+          <button type="button" data-text-size="xs" aria-pressed="false">XS</button>
+          <button type="button" data-text-size="s" aria-pressed="false">S</button>
+          <button type="button" data-text-size="m" aria-pressed="true">M</button>
+          <button type="button" data-text-size="l" aria-pressed="false">L</button>
+          <button type="button" data-text-size="xl" aria-pressed="false">XL</button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend data-i18n="colorTheme">Color Theme</legend>
+        <div class="setting-options theme-options" role="group" aria-label="Color theme" data-i18n-aria-label="colorThemeGroup">
+          <button type="button" data-theme-choice="default" aria-pressed="true">Default</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+          <button type="button" data-theme-choice="soft" aria-pressed="false">Soft</button>
+          <button type="button" data-theme-choice="sepia" aria-pressed="false">Sepia</button>
+          <button type="button" data-theme-choice="colorblind" aria-pressed="false" data-i18n="colorblindSafe">Colorblind-Safe</button>
+          <button type="button" data-theme-choice="high-contrast" aria-pressed="false" data-i18n="highContrast">High Contrast</button>
+        </div>
+      </fieldset>
+      <section id="tts-section" aria-labelledby="tts-heading">
+        <h3 id="tts-heading" data-i18n="readAloud">Read Aloud</h3>
+        <div class="speech-actions">
+          <button type="button" id="tts-play"><span aria-hidden="true">▶ </span><span data-i18n="play">Play</span></button>
+          <button type="button" id="tts-pause"><span aria-hidden="true">⏸ </span><span data-i18n="pause">Pause</span></button>
+          <button type="button" id="tts-stop"><span aria-hidden="true">⏹ </span><span data-i18n="stop">Stop</span></button>
+        </div>
+        <label for="tts-voice" data-i18n="voice">Voice</label>
+        <div class="voice-controls">
+          <select id="tts-voice">
+            <option value="" data-i18n="systemDefault">System Default</option>
+          </select>
+          <button type="button" id="tts-test"><span aria-hidden="true">🔊 </span><span data-i18n="test">Test</span></button>
+        </div>
+        <p id="tts-spanish-voice-note" class="voice-help" hidden data-i18n="spanishVoiceHelp">Spanish voices depend on your browser/OS (Microsoft Edge includes built-in Spanish voices).</p>
+        <label for="tts-rate"><span data-i18n="readingPace">Reading Pace</span> (<output id="tts-rate-value" for="tts-rate">1.0x</output>)</label>
+        <input id="tts-rate" type="range" min="0.7" max="1.5" step="0.1" value="1">
+        <label for="tts-volume"><span data-i18n="volume">Volume</span> (<output id="tts-volume-value" for="tts-volume">100%</output>)</label>
+        <input id="tts-volume" type="range" min="0" max="1" step="0.05" value="1">
+      </section>
+      <button type="button" class="reset-settings" data-i18n="resetSettings">Reset All Settings</button>
+    </section>
   </header>
 
+  <section class="home-welcome">
+    <h1 data-i18n="homeTitle">LAUREL ORGANIZATION FOR VOLUNTEER & RESOURCE EQUITY (L.O.V.E.)</h1>
+    <h2 data-i18n="homeWelcome">Hello! Welcome to L.O.V.E! We are glad to have you here!</h2>
+  </section>
+
   <!-- Instructions -->
-  <div style="text-align: center;">
+  <div class="home-intro">
     <p>
-      Please, help us serve you better by informing<br>
-      us what kind of user you are and what you<br>
-      hope to accomplish<br><br>
-      (click on your intended portal below to be redirected)
+      <span data-i18n="homeInstructions">Please, help us serve you better by informing<br>us what kind of user you are and what you<br>hope to accomplish<br><br>(click on your intended portal below to be redirected)</span>
     </p>
   </div>
 
   <hr>
 
   <!-- SYSTEM PORTALS LOBBY -->
-  <main style="text-align: center; margin: 40px 0;">
-    <h2>Available System Portals</h2>
-    <br>
-    <p>
-      <!-- Relative link to take users to the client portal from the homepage. -->
-      <a href="clientPortal.html" style="font-size: 1.4rem; font-weight: bold; padding: 15px 25px; border: 2px solid #000; text-decoration: none; background-color: #f0f0f0;">
-        ENTER THE CLIENT PORTAL
+  <main class="portal-lobby">
+    <h2 data-i18n="availablePortals">Available System Portals</h2>
+    <div class="portal-actions">
+      <a href="clientPortal.html" class="portal-link">
+        <span data-i18n="enterClientPortal">ENTER THE CLIENT PORTAL</span>
       </a>
-    </p>
-    <br><br>
-    <p style="color: #666;"><small>Volunteer & Admin Portals are currently locked and are in development</small></p>
+      <a href="volunteerPortal.html" class="portal-link volunteer-portal-link">
+        <span data-i18n="enterVolunteerPortal">ENTER THE VOLUNTEER PORTAL</span>
+      </a>
+      <span class="portal-link admin-portal-link" aria-disabled="true">
+        <span data-i18n="adminPortalComingSoon">ADMIN PORTAL — COMING SOON</span>
+      </span>
+    </div>
   </main>
 
-  <hr style="margin-top: 60px;">
+  <hr class="footer-divider">
 
-  <footer style="text-align: center;">
-    <p>L.O.V.E. App Framework Prototype | SMLP 470</p>
+  <footer class="home-footer">
+    <p data-i18n="homeFooter">L.O.V.E. App Framework Prototype | SMLP 470</p>
   </footer>
 
+  <script src="site.js"></script>
 </body>
 </html>

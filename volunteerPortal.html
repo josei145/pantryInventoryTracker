@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="volunteerPageTitle">Volunteer Portal | L.O.V.E. Pantry</title>
+  <script>
+    (() => {
+      const sizes = ["xs", "s", "m", "l", "xl"];
+      const themes = ["default", "dark", "soft", "sepia", "colorblind", "high-contrast"];
+      let language = "en";
+      let size = null;
+      let theme = null;
+      try {
+        size = localStorage.getItem("love-pantry-text-size");
+        theme = localStorage.getItem("love-pantry-theme");
+        language = localStorage.getItem("a11y-lang") === "es" ? "es" : "en";
+      } catch (error) {
+        console.warn("Unable to read saved accessibility preferences.", error);
+        size = null;
+        theme = null;
+        language = "en";
+      }
+      if (!sizes.includes(size)) size = "m";
+      if (!themes.includes(theme)) {
+        theme = matchMedia("(prefers-contrast: more)").matches
+          ? "high-contrast"
+          : matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "default";
+      }
+      document.documentElement.dataset.textSize = size;
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.lang = language;
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand-link" href="index.html">L.O.V.E. Pantry</a>
+    <nav class="nav-actions" aria-label="Page controls" data-i18n-aria-label="pageControls">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <button type="button" class="language-button" data-language="en" aria-pressed="true">EN</button>
+        <button type="button" class="language-button" data-language="es" aria-pressed="false">ES</button>
+      </div>
+      <a class="header-action support-link" href="support.html"><span aria-hidden="true">🎫 </span><span data-i18n="supportLink">Support</span></a>
+      <button type="button" class="header-action" id="settings-toggle" aria-label="Settings" data-i18n-aria-label="settings" aria-expanded="false" aria-controls="settings-drawer"><span class="header-action-icon" aria-hidden="true">⚙️</span><span class="header-action-label" data-i18n="settings">Settings</span></button>
+      <button type="button" class="header-action" id="sections-trigger" aria-label="Sections" data-i18n-aria-label="sections" aria-expanded="false" aria-controls="sections-drawer" hidden><span class="header-action-icon" aria-hidden="true">☰</span><span class="header-action-label" data-i18n="sections">Sections</span></button>
+    </nav>
+    <section class="settings-drawer" id="settings-drawer" aria-labelledby="settings-heading" hidden>
+      <div class="drawer-heading">
+        <h2 id="settings-heading" data-i18n="accessibilitySettings">Accessibility Settings</h2>
+        <button type="button" class="drawer-close" aria-label="Close settings" data-i18n-aria-label="closeSettings">×</button>
+      </div>
+      <fieldset>
+        <legend data-i18n="textSize">Text Size</legend>
+        <div class="setting-options" role="group" aria-label="Text size" data-i18n-aria-label="textSizeGroup">
+          <button type="button" data-text-size="xs" aria-pressed="false">XS</button>
+          <button type="button" data-text-size="s" aria-pressed="false">S</button>
+          <button type="button" data-text-size="m" aria-pressed="true">M</button>
+          <button type="button" data-text-size="l" aria-pressed="false">L</button>
+          <button type="button" data-text-size="xl" aria-pressed="false">XL</button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend data-i18n="colorTheme">Color Theme</legend>
+        <div class="setting-options theme-options" role="group" aria-label="Color theme" data-i18n-aria-label="colorThemeGroup">
+          <button type="button" data-theme-choice="default" aria-pressed="true">Default</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+          <button type="button" data-theme-choice="soft" aria-pressed="false">Soft</button>
+          <button type="button" data-theme-choice="sepia" aria-pressed="false">Sepia</button>
+          <button type="button" data-theme-choice="colorblind" aria-pressed="false" data-i18n="colorblindSafe">Colorblind-Safe</button>
+          <button type="button" data-theme-choice="high-contrast" aria-pressed="false" data-i18n="highContrast">High Contrast</button>
+        </div>
+      </fieldset>
+      <section id="tts-section" aria-labelledby="tts-heading">
+        <h3 id="tts-heading" data-i18n="readAloud">Read Aloud</h3>
+        <div class="speech-actions">
+          <button type="button" id="tts-play"><span aria-hidden="true">▶ </span><span data-i18n="play">Play</span></button>
+          <button type="button" id="tts-pause"><span aria-hidden="true">⏸ </span><span data-i18n="pause">Pause</span></button>
+          <button type="button" id="tts-stop"><span aria-hidden="true">⏹ </span><span data-i18n="stop">Stop</span></button>
+        </div>
+        <label for="tts-voice" data-i18n="voice">Voice</label>
+        <div class="voice-controls">
+          <select id="tts-voice"><option value="" data-i18n="systemDefault">System Default</option></select>
+          <button type="button" id="tts-test"><span aria-hidden="true">🔊 </span><span data-i18n="test">Test</span></button>
+        </div>
+        <p id="tts-spanish-voice-note" class="voice-help" hidden data-i18n="spanishVoiceHelp">Spanish voices depend on your browser/OS (Microsoft Edge includes built-in Spanish voices).</p>
+        <label for="tts-rate"><span data-i18n="readingPace">Reading Pace</span> (<output id="tts-rate-value" for="tts-rate">1.0x</output>)</label>
+        <input id="tts-rate" type="range" min="0.7" max="1.5" step="0.1" value="1">
+        <label for="tts-volume"><span data-i18n="volume">Volume</span> (<output id="tts-volume-value" for="tts-volume">100%</output>)</label>
+        <input id="tts-volume" type="range" min="0" max="1" step="0.05" value="1">
+      </section>
+      <button type="button" class="reset-settings" data-i18n="resetSettings">Reset All Settings</button>
+    </section>
+    <nav class="sections-drawer" id="sections-drawer" aria-label="Jump to a Section" data-i18n-aria-label="jumpToSection" hidden>
+      <div class="drawer-heading">
+        <h2 data-i18n="jumpToSection">Jump to a Section</h2>
+        <button type="button" class="drawer-close" aria-label="Close sections" data-i18n-aria-label="closeSections">×</button>
+      </div>
+      <a href="#inventory-controls-heading" data-i18n="inventoryControls">Inventory Controls</a>
+      <a href="#volunteer-items-heading" data-i18n="inventoryItems">Inventory Items</a>
+      <a href="#donation-heading" data-i18n="logDonation">Log New Donation</a>
+      <a href="#shift-notes-heading" data-i18n="shiftNotesHeading">Shift Notes &amp; Handoff Messenger</a>
+      <a href="#privacy-heading" data-i18n="privacyHeading">Communication &amp; Privacy Settings</a>
+      <a href="#activity-heading" data-i18n="recentUpdates">Recent Shift Updates</a>
+    </nav>
+  </header>
+
+  <main class="volunteer-main">
+    <a class="back-home" href="index.html"><span aria-hidden="true">← </span><span data-i18n="backHome">Back to Home</span></a>
+    <h1 data-i18n="volunteerPortal">Volunteer Portal</h1>
+
+    <section id="volunteer-login" class="volunteer-panel" aria-labelledby="volunteer-login-heading">
+      <h2 id="volunteer-login-heading" data-i18n="volunteerSignIn">Volunteer Sign-In</h2>
+      <div class="prototype-notice" role="note">
+        <p><strong data-i18n="prototypeDisclaimerTitle">Prototype only:</strong> <span data-i18n="volunteerDisclaimer">This is a frontend portfolio prototype with no live backend database. Personal emails will not work; use volunteer@lovepantry.org or testing@umd.edu to preview the dashboard.</span></p>
+        <p><span data-i18n="volunteerSessionIdentityPrefix">Once signed in with either demo email (volunteer@lovepantry.org or testing@umd.edu), your active session will appear across the portal as </span><strong data-i18n="demoUser">Demo User</strong>.</p>
+      </div>
+      <form id="volunteer-login-form" novalidate>
+        <label for="volunteer-email" data-i18n="volunteerEmail">Volunteer email</label>
+        <input id="volunteer-email" name="email" type="email" autocomplete="email" required aria-describedby="volunteer-login-error">
+        <p id="demo-reset-error" class="form-error" role="alert" hidden data-i18n="inventorySaveError">Demo data could not be reset. Please try again.</p>
+        <p id="volunteer-login-error" class="form-error" role="alert" hidden data-i18n="volunteerEmailError">Email not found. Use volunteer@lovepantry.org or testing@umd.edu, then select “Fill Demo Volunteer Email” to preview the portal.</p>
+        <button id="volunteer-next" type="submit" class="volunteer-button" data-i18n="next">Next</button>
+        <button id="fill-demo-email" type="button" class="secondary-button" data-i18n="fillDemoEmail">Fill Demo Volunteer Email</button>
+      </form>
+    </section>
+
+    <section id="volunteer-dashboard" hidden aria-labelledby="volunteer-dashboard-heading">
+      <div class="volunteer-session-bar">
+        <p><span data-i18n="signedInAs">Signed in as</span> <strong id="volunteer-signed-in-email"></strong></p>
+        <button id="volunteer-sign-out" type="button" class="secondary-button" data-i18n="signOut">Sign Out</button>
+      </div>
+      <p class="prototype-notice" data-i18n="volunteerDashboardNotice">Demo inventory only. Changes are saved in this browser and reflected on the Client Portal; there is no live pantry connection.</p>
+      <p class="prototype-notice photo-scan-notice" data-i18n="photoScanNotice">Coming soon: use your phone camera to photograph shelves and automatically update counts. Always double-check quantities manually; scanning can make mistakes.</p>
+      <h2 id="volunteer-dashboard-heading" data-i18n="inventoryDashboard">Inventory Dashboard</h2>
+
+      <section class="volunteer-panel" aria-labelledby="shift-team-heading">
+        <h3 id="shift-team-heading" data-i18n="shiftTeamHeading">Current &amp; Today's Shift Team</h3>
+        <ul id="shift-team-list" class="shift-team-list"></ul>
+      </section>
+
+      <section class="volunteer-panel" aria-labelledby="inventory-controls-heading">
+        <h3 id="inventory-controls-heading" data-i18n="inventoryControls">Inventory Controls</h3>
+        <label for="volunteer-search" data-i18n="searchItems">Search items</label>
+        <input id="volunteer-search" type="search" data-i18n-placeholder="volunteerSearchPlaceholder" placeholder="Search inventory">
+        <div id="volunteer-filter-tabs" class="volunteer-filter-tabs" role="group" aria-label="Filter inventory" data-i18n-aria-label="filterInventory">
+          <button type="button" data-volunteer-filter="all" aria-pressed="true" data-i18n="filterAll">All</button>
+          <button type="button" data-volunteer-filter="instock" aria-pressed="false" data-i18n="filterInStock">✓ In Stock</button>
+          <button type="button" data-volunteer-filter="out" aria-pressed="false" data-i18n="filterOutOfStock">✕ Out of Stock</button>
+        </div>
+        <p id="volunteer-item-count" role="status" aria-live="polite"></p>
+        <p id="inventory-save-error" class="form-error" role="alert" hidden data-i18n="inventorySaveError">Inventory changes could not be saved in this browser.</p>
+      </section>
+
+      <section class="volunteer-panel" aria-labelledby="volunteer-items-heading">
+        <h3 id="volunteer-items-heading" data-i18n="inventoryItems">Inventory Items</h3>
+        <div id="volunteer-inventory-list" class="volunteer-inventory-list"></div>
+      </section>
+
+      <section class="volunteer-panel" aria-labelledby="donation-heading">
+        <h3 id="donation-heading" data-i18n="logDonation">Log New Donation</h3>
+        <form id="donation-form" novalidate>
+          <label for="donation-name" data-i18n="itemName">Item Name</label>
+          <input id="donation-name" name="name" type="text" required maxlength="80" list="existing-items-list" autocomplete="off">
+          <datalist id="existing-items-list"></datalist>
+          <p id="donation-error" class="form-error" role="alert" hidden data-i18n="donationError">Enter a name for the donated item.</p>
+          <label for="donation-setup" data-i18n="cookingSetupLabel">Cooking Setup</label>
+          <select id="donation-setup" name="setup">
+            <option value="no-cook" data-i18n="setupNoCook">No-Cook / Pantry Item</option>
+            <option value="microwave" data-i18n="setupMicrowave">Microwave-Only</option>
+            <option value="full-kitchen" data-i18n="setupKitchen">Full Kitchen</option>
+          </select>
+          <label for="donation-quantity" data-i18n="initialQuantity">Initial Quantity</label>
+          <input id="donation-quantity" name="quantity" type="number" min="0" step="1" value="1" required>
+          <div class="donation-features" role="group" aria-labelledby="donation-features-heading">
+            <h4 id="donation-features-heading" data-i18n="features">Features</h4>
+            <label><input type="checkbox" name="features" value="ready"><span data-i18n="readyToEat">Ready to Eat / No Cooking Needed</span></label>
+            <label><input type="checkbox" name="features" value="soft"><span data-i18n="softFoodOnly">Soft Food Options Only</span></label>
+            <label><input type="checkbox" name="features" value="no-appliance"><span data-i18n="noApplianceNeeded">No Cooking Appliance Needed</span></label>
+          </div>
+          <button type="submit" class="volunteer-button" data-i18n="addDonation">Add Donation</button>
+        </form>
+      </section>
+
+      <section class="volunteer-panel" aria-labelledby="shift-notes-heading">
+        <h2 id="shift-notes-heading" data-i18n="shiftNotesHeading">Shift Notes &amp; Handoff Messenger</h2>
+        <section class="volunteer-subpanel" aria-labelledby="scratchpad-heading">
+          <h3 id="scratchpad-heading" data-i18n="scratchpadHeading">Personal Shift Scratchpad</h3>
+          <div class="scratchpad-title-row">
+            <div>
+              <label for="scratchpad-title" data-i18n="noteTitle">Note Title (optional)</label>
+              <input id="scratchpad-title" type="text" maxlength="100" data-i18n-placeholder="noteTitlePlaceholder" placeholder="Add a title (or leave blank for Note 1, Note 2...)">
+            </div>
+            <button type="button" id="scratchpad-auto-title" class="secondary-button" data-i18n="autoTitle">Auto-Title (Note #)</button>
+          </div>
+          <label for="shift-scratchpad" data-i18n="scratchpadLabel">Private reminders for this shift</label>
+          <textarea id="shift-scratchpad" rows="4" data-i18n-placeholder="scratchpadPlaceholder" placeholder="Only you can see these reminders in this browser."></textarea>
+          <div class="note-action-row">
+            <button type="button" id="save-scratchpad" class="secondary-button" data-i18n="saveScratchpad">Save Note</button>
+            <button type="button" id="view-saved-notes" class="secondary-button" data-i18n="viewSavedNotes" aria-expanded="false" aria-controls="saved-notes-list">View Saved Notes (0)</button>
+          </div>
+          <div id="saved-notes-list" class="saved-notes-list" aria-live="polite" hidden></div>
+          <p id="scratchpad-error" class="form-error" role="alert" hidden data-i18n="scratchpadError">The private scratchpad could not be saved.</p>
+          <p id="scratchpad-saved" class="confirmation-banner" role="status" hidden data-i18n="scratchpadSaved">Note saved privately in this browser.</p>
+        </section>
+        <form id="handoff-form" class="volunteer-subpanel" novalidate>
+          <h3 data-i18n="handoffHeading">Send Handoff Note</h3>
+          <label for="handoff-recipient-type" data-i18n="recipientType">Recipient Type</label>
+          <select id="handoff-recipient-type">
+            <option value="admin" data-i18n="pantryAdmin">Pantry Admin</option>
+            <option value="volunteer" data-i18n="fellowVolunteer">Fellow Volunteer</option>
+          </select>
+          <div id="handoff-volunteer-wrap" hidden>
+            <label for="handoff-recipient" data-i18n="volunteerRecipient">Volunteer recipient</label>
+            <input id="handoff-recipient" type="text" list="volunteer-roster-list" autocomplete="off">
+            <datalist id="volunteer-roster-list"></datalist>
+          </div>
+          <div class="handoff-options-grid">
+          <div class="handoff-option-card" role="group" aria-labelledby="delivery-channel-heading">
+            <h4 id="delivery-channel-heading" data-i18n="deliveryChannel">Delivery Channel</h4>
+            <label><input type="radio" name="handoff-channel" value="email" checked><span data-i18n="emailChannel">Email</span></label>
+            <label><input type="radio" name="handoff-channel" value="sms"><span data-i18n="textChannel">Text / SMS</span></label>
+            <label><input type="radio" name="handoff-channel" value="both"><span data-i18n="bothChannels">Both</span></label>
+          </div>
+          <div class="handoff-option-card" role="group" aria-labelledby="handoff-priority-heading">
+            <h4 id="handoff-priority-heading" data-i18n="handoffPriority">Priority</h4>
+            <label><input type="radio" name="handoff-priority" value="general" checked><span data-i18n="generalPriority">General</span></label>
+            <label><input type="radio" name="handoff-priority" value="urgent"><span data-i18n="urgentPriority">Urgent</span></label>
+          </div>
+          </div>
+          <label for="handoff-message" data-i18n="handoffMessage">Message</label>
+          <textarea id="handoff-message" rows="4" required maxlength="1000"></textarea>
+          <p id="handoff-error" class="form-error" role="alert" hidden data-i18n="handoffError">Choose a listed volunteer and enter a message.</p>
+          <div class="note-action-row">
+            <button type="submit" class="volunteer-button" data-i18n="sendHandoff">Send Note</button>
+            <button type="button" id="view-sent-notes" class="secondary-button" data-i18n="viewSentNotes" aria-expanded="false" aria-controls="sent-notes-list">View Sent Notes (0)</button>
+          </div>
+          <div id="sent-notes-list" class="saved-notes-list" aria-live="polite" hidden></div>
+          <section id="handoff-receipt" class="ticket-confirmation handoff-receipt-card" role="status" aria-live="polite" hidden aria-labelledby="handoff-receipt-heading">
+            <h3 id="handoff-receipt-heading" data-i18n="handoffReceiptHeading">Handoff Note Recorded</h3>
+            <p id="handoff-receipt-subtitle"></p>
+            <ul id="handoff-receipt-details" class="ticket-summary-list"></ul>
+          </section>
+        </form>
+      </section>
+
+      <section class="volunteer-panel" aria-labelledby="privacy-heading">
+        <h3 id="privacy-heading" data-i18n="privacyHeading">Communication &amp; Privacy Settings</h3>
+        <p data-i18n="privacyConsent">You control how teammates can reach you. These preferences help prevent unwanted contact. Contact details are shown only to the volunteer groups you choose; admins can access them for coordination.</p>
+        <form id="privacy-form">
+          <div class="privacy-visibility-grid">
+            <div class="privacy-visibility-field">
+              <label for="email-visibility" data-i18n="emailVisibility">Email Visibility</label>
+              <select id="email-visibility" name="emailVisibility">
+                <option value="current" data-i18n="visibleCurrentShift">Visible to Current Shift Only</option>
+                <option value="today" data-i18n="visibleToday">Visible to Today's Volunteers</option>
+                <option value="admin" data-i18n="hiddenAdminOnly">Hidden from Volunteers (Admin Only)</option>
+              </select>
+            </div>
+            <div class="privacy-visibility-field">
+              <label for="phone-visibility" data-i18n="phoneVisibility">Phone Number Visibility</label>
+              <select id="phone-visibility" name="phoneVisibility">
+                <option value="current" data-i18n="visibleCurrentShift">Visible to Current Shift Only</option>
+                <option value="today" data-i18n="visibleToday">Visible to Today's Volunteers</option>
+                <option value="admin" data-i18n="hiddenAdminOnly">Hidden from Volunteers (Admin Only)</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="secondary-button" data-i18n="savePrivacy">Save Privacy Preferences</button>
+          <p id="privacy-error" class="form-error" role="alert" hidden data-i18n="privacyError">Privacy preferences could not be saved.</p>
+          <p id="privacy-saved" class="confirmation-banner" role="status" hidden data-i18n="privacySaved">Privacy preferences saved.</p>
+        </form>
+      </section>
+
+      <section class="volunteer-panel" aria-labelledby="activity-heading">
+        <div class="volunteer-panel-heading">
+          <h3 id="activity-heading" data-i18n="recentUpdates">Recent Shift Updates</h3>
+          <button id="reset-demo-inventory" type="button" class="secondary-button" data-i18n="resetDemoInventory">Reset Demo Inventory</button>
+        </div>
+        <ul id="volunteer-activity-feed" class="activity-feed" aria-live="polite" aria-relevant="additions"></ul>
+      </section>
+    </section>
+  </main>
+  <script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="supportPageTitle">Support Ticket | L.O.V.E. Pantry</title>
+  <script>
+    (() => {
+      const sizes = ["xs", "s", "m", "l", "xl"];
+      const themes = ["default", "dark", "soft", "sepia", "colorblind", "high-contrast"];
+      let language = "en";
+      let size = null;
+      let theme = null;
+      try {
+        size = localStorage.getItem("love-pantry-text-size");
+        theme = localStorage.getItem("love-pantry-theme");
+        language = localStorage.getItem("a11y-lang") === "es" ? "es" : "en";
+      } catch (error) {
+        console.warn("Unable to read saved accessibility preferences.", error);
+        size = null;
+        theme = null;
+        language = "en";
+      }
+      if (!sizes.includes(size)) size = "m";
+      if (!themes.includes(theme)) {
+        theme = matchMedia("(prefers-contrast: more)").matches
+          ? "high-contrast"
+          : matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "default";
+      }
+      document.documentElement.dataset.textSize = size;
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.lang = language;
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand-link" href="index.html">L.O.V.E. Pantry</a>
+    <nav class="nav-actions" aria-label="Page controls" data-i18n-aria-label="pageControls">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <button type="button" class="language-button" data-language="en" aria-pressed="true">EN</button>
+        <button type="button" class="language-button" data-language="es" aria-pressed="false">ES</button>
+      </div>
+      <a class="header-action support-link" href="support.html" aria-current="page"><span aria-hidden="true">🎫 </span><span data-i18n="supportLink">Support</span></a>
+      <button type="button" class="header-action" id="settings-toggle" aria-label="Settings" data-i18n-aria-label="settings" aria-expanded="false" aria-controls="settings-drawer"><span class="header-action-icon" aria-hidden="true">⚙️</span><span class="header-action-label" data-i18n="settings">Settings</span></button>
+    </nav>
+    <section class="settings-drawer" id="settings-drawer" aria-labelledby="settings-heading" hidden>
+      <div class="drawer-heading">
+        <h2 id="settings-heading" data-i18n="accessibilitySettings">Accessibility Settings</h2>
+        <button type="button" class="drawer-close" aria-label="Close settings" data-i18n-aria-label="closeSettings">×</button>
+      </div>
+      <fieldset>
+        <legend data-i18n="textSize">Text Size</legend>
+        <div class="setting-options" role="group" aria-label="Text size" data-i18n-aria-label="textSizeGroup">
+          <button type="button" data-text-size="xs" aria-pressed="false">XS</button>
+          <button type="button" data-text-size="s" aria-pressed="false">S</button>
+          <button type="button" data-text-size="m" aria-pressed="true">M</button>
+          <button type="button" data-text-size="l" aria-pressed="false">L</button>
+          <button type="button" data-text-size="xl" aria-pressed="false">XL</button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend data-i18n="colorTheme">Color Theme</legend>
+        <div class="setting-options theme-options" role="group" aria-label="Color theme" data-i18n-aria-label="colorThemeGroup">
+          <button type="button" data-theme-choice="default" aria-pressed="true">Default</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+          <button type="button" data-theme-choice="soft" aria-pressed="false">Soft</button>
+          <button type="button" data-theme-choice="sepia" aria-pressed="false">Sepia</button>
+          <button type="button" data-theme-choice="colorblind" aria-pressed="false" data-i18n="colorblindSafe">Colorblind-Safe</button>
+          <button type="button" data-theme-choice="high-contrast" aria-pressed="false" data-i18n="highContrast">High Contrast</button>
+        </div>
+      </fieldset>
+      <section id="tts-section" aria-labelledby="tts-heading">
+        <h3 id="tts-heading" data-i18n="readAloud">Read Aloud</h3>
+        <div class="speech-actions">
+          <button type="button" id="tts-play"><span aria-hidden="true">▶ </span><span data-i18n="play">Play</span></button>
+          <button type="button" id="tts-pause"><span aria-hidden="true">⏸ </span><span data-i18n="pause">Pause</span></button>
+          <button type="button" id="tts-stop"><span aria-hidden="true">⏹ </span><span data-i18n="stop">Stop</span></button>
+        </div>
+        <label for="tts-voice" data-i18n="voice">Voice</label>
+        <div class="voice-controls">
+          <select id="tts-voice"><option value="" data-i18n="systemDefault">System Default</option></select>
+          <button type="button" id="tts-test"><span aria-hidden="true">🔊 </span><span data-i18n="test">Test</span></button>
+        </div>
+        <p id="tts-spanish-voice-note" class="voice-help" hidden data-i18n="spanishVoiceHelp">Spanish voices depend on your browser/OS (Microsoft Edge includes built-in Spanish voices).</p>
+        <label for="tts-rate"><span data-i18n="readingPace">Reading Pace</span> (<output id="tts-rate-value" for="tts-rate">1.0x</output>)</label>
+        <input id="tts-rate" type="range" min="0.7" max="1.5" step="0.1" value="1">
+        <label for="tts-volume"><span data-i18n="volume">Volume</span> (<output id="tts-volume-value" for="tts-volume">100%</output>)</label>
+        <input id="tts-volume" type="range" min="0" max="1" step="0.05" value="1">
+      </section>
+      <button type="button" class="reset-settings" data-i18n="resetSettings">Reset All Settings</button>
+    </section>
+  </header>
+
+  <main class="support-main">
+    <section class="support-card" aria-labelledby="support-title">
+      <a class="back-home" href="index.html"><span aria-hidden="true">← </span><span data-i18n="backHome">Back to Home</span></a>
+      <h1 id="support-title" data-i18n="supportTitle">Support Ticket</h1>
+      <p data-i18n="supportIntro">Tell us what happened. This prototype does not send or save tickets; it creates a local confirmation for demonstration.</p>
+      <form id="support-form" novalidate>
+        <section class="support-form-section" aria-labelledby="role-heading">
+          <h2 id="role-heading" data-i18n="yourRole">Your Role</h2>
+          <div class="support-radio-options" role="radiogroup" aria-labelledby="role-heading" aria-describedby="role-error">
+            <label><input type="radio" name="role" value="Pantry Client" required><span data-i18n="roleClient">Pantry Client</span></label>
+            <label><input type="radio" name="role" value="Volunteer"><span data-i18n="roleVolunteer">Volunteer</span></label>
+            <label><input type="radio" name="role" value="Community Partner / Donor"><span data-i18n="rolePartner">Community Partner / Donor</span></label>
+            <label><input type="radio" name="role" value="Other"><span data-i18n="roleOther">Other</span></label>
+          </div>
+          <p class="form-error" id="role-error" role="alert" hidden data-i18n="roleError">Please select your role.</p>
+          <div id="other-role-wrap" hidden>
+            <label for="other-role" data-i18n="otherRoleOptional">Specify your role (optional)</label>
+            <input id="other-role" name="otherRole" type="text" autocomplete="organization-title">
+          </div>
+        </section>
+
+        <section class="support-form-section" aria-labelledby="category-heading">
+          <h2 id="category-heading" data-i18n="issueCategory">Issue Category</h2>
+          <div id="issue-category" class="support-radio-options" role="radiogroup" aria-labelledby="category-heading" aria-describedby="category-error">
+            <label><input type="radio" name="category" value="Stock Count / Item Availability" required data-i18n-value="categoryStock"><span data-i18n="categoryStock">Stock Count / Item Availability</span></label>
+            <label><input type="radio" name="category" value="Filter or Search Issue" data-i18n-value="categoryFilters"><span data-i18n="categoryFilters">Filter or Search Issue</span></label>
+            <label><input type="radio" name="category" value="Accessibility / Display / Read Aloud" data-i18n-value="categoryAccessibility"><span data-i18n="categoryAccessibility">Accessibility / Display / Read Aloud</span></label>
+            <label><input type="radio" name="category" value="Pantry Hours & Pickup Info" data-i18n-value="categoryHours"><span data-i18n="categoryHours">Pantry Hours & Pickup Info</span></label>
+            <label><input type="radio" name="category" value="General Feedback" data-i18n-value="categoryFeedback"><span data-i18n="categoryFeedback">General Feedback</span></label>
+          </div>
+          <p class="form-error" id="category-error" role="alert" hidden data-i18n="categoryError">Please choose an issue category.</p>
+        </section>
+
+        <section class="support-form-section">
+          <label for="related-item" data-i18n="relatedItem">Related Item or Section (Optional)</label>
+          <input id="related-item" name="relatedItem" type="text" placeholder="e.g., Maseca Corn Flour or Microwave-Only filters" data-i18n-placeholder="relatedPlaceholder">
+        </section>
+
+        <section class="support-form-section">
+          <label for="description" data-i18n="description">Description</label>
+          <span id="description-help" class="field-help" data-i18n="descriptionHelp">Please include enough detail for us to understand the issue.</span>
+          <textarea id="description" name="description" rows="5" required maxlength="2000" aria-describedby="description-help character-count-label description-error"></textarea>
+          <div class="character-counter" id="character-count-label"><span data-i18n="charactersUsed">Characters used:</span> <span id="character-count">0</span> / 2000</div>
+          <p class="form-error" id="description-error" role="alert" hidden data-i18n="descriptionError">Please describe the issue.</p>
+        </section>
+
+        <section class="support-form-section support-urgent-section">
+          <label class="urgent-option" for="ticket-urgent">
+            <input id="ticket-urgent" name="urgent" type="checkbox">
+            <span data-i18n="urgentNeeded">Urgent — needed before today's pantry pickup</span>
+          </label>
+        </section>
+
+        <section class="support-form-section" aria-labelledby="follow-up-heading">
+          <h2 id="follow-up-heading" data-i18n="followUpPreference">Follow-Up Preference</h2>
+          <div id="follow-up" class="support-radio-options" role="radiogroup" aria-labelledby="follow-up-heading">
+            <label><input type="radio" name="followUp" value="none" checked data-i18n-value="anonymousReply"><span data-i18n="anonymousReply">No reply needed (Anonymous)</span></label>
+            <label><input type="radio" name="followUp" value="email" data-i18n-value="emailReply"><span data-i18n="emailReply">Email</span></label>
+            <label><input type="radio" name="followUp" value="phone" data-i18n-value="phoneReply"><span data-i18n="phoneReply">Phone / Text</span></label>
+          </div>
+          <div id="email-wrap" class="contact-field" hidden>
+            <label for="contact-email" data-i18n="emailAddress">Email Address</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" aria-describedby="email-error">
+            <p class="form-error" id="email-error" role="alert" hidden data-i18n="emailError">Enter a valid email address for follow-up.</p>
+          </div>
+          <div id="phone-wrap" class="contact-field" hidden>
+            <label for="contact-phone" data-i18n="phoneNumber">Phone Number</label>
+            <input id="contact-phone" name="phone" type="tel" autocomplete="tel" aria-describedby="phone-error">
+            <p class="form-error" id="phone-error" role="alert" hidden data-i18n="phoneError">Enter a phone number for follow-up.</p>
+          </div>
+        </section>
+
+        <section class="support-form-section support-submit-section">
+          <p class="form-error" id="form-error" role="alert" hidden data-i18n="formError">Please review the highlighted fields.</p>
+          <button type="submit" class="submit-ticket" data-i18n="submitTicket">Submit Ticket</button>
+        </section>
+      </form>
+
+      <section id="ticket-confirmation" class="ticket-confirmation" aria-live="polite" aria-labelledby="confirmation-title" hidden>
+        <h2 id="confirmation-title" tabindex="-1" data-i18n="ticketReceived">Ticket Received</h2>
+        <p><span data-i18n="referenceId">Reference ID</span>: <strong id="ticket-reference"></strong> <span aria-hidden="true">·</span> <span data-i18n="submitted">Submitted</span>: <time id="ticket-submitted"></time></p>
+        <div id="ticket-summary"></div>
+        <div class="confirmation-actions">
+          <button type="button" id="copy-ticket" data-i18n="copySummary">Copy Ticket Summary</button>
+          <button type="button" id="another-ticket" data-i18n="anotherTicket">Submit Another Ticket</button>
+          <a class="button-link" href="clientPortal.html" data-i18n="returnPortal">Return to Client Portal</a>
+        </div>
+        <p id="copy-status" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+  </main>
+  <script src="site.js"></script>
+</body>
+</html>

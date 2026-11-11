@@ -3,118 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L.O.V.E. Client Portal</title>
-  
-  <!-- Controls the different states of the links and the colors to represent them. -->
-  <style>
-    #filter-controls fieldset {
-      margin-bottom: 1rem;
-    }
-    .radio-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1rem;
-    }
-    .radio-options p {
-      margin: 0;
-    }
-    .checkbox-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem 1rem;
-    }
-    .checkbox-options p {
-      margin: 0;
-    }
-    .item-features {
-      display: block;
-    }
-    #inventory-list li {
-      margin-bottom: 1rem;
-    }
-    [hidden] {
-      display: none !important;
-    }
-    a:focus-visible,
-    input:focus-visible,
-    select:focus-visible {
-      outline: 3px solid orange;
-      outline-offset: 2px;
-    }
-    input[type="search"] {
-      box-sizing: border-box;
-      max-width: 24rem;
-      width: 100%;
-      min-height: 2.5rem;
-    }
-    .alphabet-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.25rem 0.5rem;
-    }
-    .alphabet-links label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.2rem;
-      padding: 0.25rem;
-    }
-    nav a {
-      color: blue;
-      text-decoration: underline;
-      padding: 5px;
-    }
-    nav a:hover {
-      color: darkblue;
-      background-color: lightgray;
-    }
-    nav a:focus {
-      outline: 3px solid orange;
-    }
-    nav a:active {
-      color: red;
-    }
-    .status-in {
-      color: #176b2c;
-      font-weight: bold;
-    }
-    .status-out {
-      color: #b00020;
-      font-weight: bold;
-    }
-  </style>
+  <title data-i18n="clientPageTitle">L.O.V.E. Client Portal</title>
+  <script>
+    (() => {
+      const sizes = ["xs", "s", "m", "l", "xl"];
+      const themes = ["default", "dark", "soft", "sepia", "colorblind", "high-contrast"];
+      let language = "en";
+      let size = null;
+      let theme = null;
+      try {
+        size = localStorage.getItem("love-pantry-text-size");
+        theme = localStorage.getItem("love-pantry-theme");
+        language = localStorage.getItem("a11y-lang") === "es" ? "es" : "en";
+      } catch (error) {
+        console.warn("Unable to read saved accessibility preferences.", error);
+        size = null;
+        theme = null;
+      }
+      if (!sizes.includes(size)) size = "m";
+      if (!themes.includes(theme)) {
+        theme = matchMedia("(prefers-contrast: more)").matches
+          ? "high-contrast"
+          : matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "default";
+      }
+      document.documentElement.dataset.textSize = size;
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.lang = language;
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <p><a href="index.html">Return to Main Home Page</a></p>
-
-  <header>
-    <h1>LAUREL ORGANIZATION FOR VOLUNTEER & RESOURCE EQUITY (L.O.V.E.) CLIENT PORTAL</h1>
-    <p>This prototype shows illustrative quantities and availability, not live inventory. Cooking setup and preparation time depend on the recipe.</p>
+  <header class="site-header">
+    <a class="brand-link" href="index.html">L.O.V.E. Pantry</a>
+    <nav class="nav-actions" aria-label="Page controls" data-i18n-aria-label="pageControls">
+      <div class="language-toggle" role="group" aria-label="Language">
+        <button type="button" class="language-button" data-language="en" aria-pressed="true">EN</button>
+        <button type="button" class="language-button" data-language="es" aria-pressed="false">ES</button>
+      </div>
+      <a class="header-action support-link" href="support.html"><span aria-hidden="true">🎫 </span><span data-i18n="supportLink">Support</span></a>
+      <button type="button" class="header-action" id="settings-toggle" aria-label="Settings" data-i18n-aria-label="settings" aria-expanded="false" aria-controls="settings-drawer"><span class="header-action-icon" aria-hidden="true">⚙️</span><span class="header-action-label" data-i18n="settings">Settings</span></button>
+      <button type="button" class="header-action" id="sections-trigger" aria-label="Sections" data-i18n-aria-label="sections" aria-expanded="false" aria-controls="sections-drawer"><span class="header-action-icon" aria-hidden="true">☰</span><span class="header-action-label" data-i18n="sections">Sections</span></button>
+    </nav>
+    <section class="settings-drawer" id="settings-drawer" aria-labelledby="settings-heading" hidden>
+      <div class="drawer-heading">
+        <h2 id="settings-heading" data-i18n="accessibilitySettings">Accessibility Settings</h2>
+        <button type="button" class="drawer-close" aria-label="Close settings" data-i18n-aria-label="closeSettings">×</button>
+      </div>
+      <fieldset>
+        <legend data-i18n="textSize">Text Size</legend>
+        <div class="setting-options" role="group" aria-label="Text size" data-i18n-aria-label="textSizeGroup">
+          <button type="button" data-text-size="xs" aria-pressed="false">XS</button>
+          <button type="button" data-text-size="s" aria-pressed="false">S</button>
+          <button type="button" data-text-size="m" aria-pressed="true">M</button>
+          <button type="button" data-text-size="l" aria-pressed="false">L</button>
+          <button type="button" data-text-size="xl" aria-pressed="false">XL</button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend data-i18n="colorTheme">Color Theme</legend>
+        <div class="setting-options theme-options" role="group" aria-label="Color theme" data-i18n-aria-label="colorThemeGroup">
+          <button type="button" data-theme-choice="default" aria-pressed="true">Default</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+          <button type="button" data-theme-choice="soft" aria-pressed="false">Soft</button>
+          <button type="button" data-theme-choice="sepia" aria-pressed="false">Sepia</button>
+          <button type="button" data-theme-choice="colorblind" aria-pressed="false" data-i18n="colorblindSafe">Colorblind-Safe</button>
+          <button type="button" data-theme-choice="high-contrast" aria-pressed="false" data-i18n="highContrast">High Contrast</button>
+        </div>
+      </fieldset>
+      <section id="tts-section" aria-labelledby="tts-heading">
+        <h3 id="tts-heading" data-i18n="readAloud">Read Aloud</h3>
+        <div class="speech-actions">
+          <button type="button" id="tts-play"><span aria-hidden="true">▶ </span><span data-i18n="play">Play</span></button>
+          <button type="button" id="tts-pause"><span aria-hidden="true">⏸ </span><span data-i18n="pause">Pause</span></button>
+          <button type="button" id="tts-stop"><span aria-hidden="true">⏹ </span><span data-i18n="stop">Stop</span></button>
+        </div>
+        <label for="tts-voice" data-i18n="voice">Voice</label>
+        <div class="voice-controls">
+          <select id="tts-voice">
+            <option value="" data-i18n="systemDefault">System Default</option>
+          </select>
+          <button type="button" id="tts-test"><span aria-hidden="true">🔊 </span><span data-i18n="test">Test</span></button>
+        </div>
+        <p id="tts-spanish-voice-note" class="voice-help" hidden data-i18n="spanishVoiceHelp">Spanish voices depend on your browser/OS (Microsoft Edge includes built-in Spanish voices).</p>
+        <label for="tts-rate"><span data-i18n="readingPace">Reading Pace</span> (<output id="tts-rate-value" for="tts-rate">1.0x</output>)</label>
+        <input id="tts-rate" type="range" min="0.7" max="1.5" step="0.1" value="1">
+        <label for="tts-volume"><span data-i18n="volume">Volume</span> (<output id="tts-volume-value" for="tts-volume">100%</output>)</label>
+        <input id="tts-volume" type="range" min="0" max="1" step="0.05" value="1">
+      </section>
+      <button type="button" class="reset-settings" data-i18n="resetSettings">Reset All Settings</button>
+    </section>
+    <nav class="sections-drawer" id="sections-drawer" aria-label="Jump to a section" data-i18n-aria-label="jumpToSection" hidden>
+      <div class="drawer-heading">
+        <h2 data-i18n="jumpToSection">Jump to a Section</h2>
+        <button type="button" class="drawer-close" aria-label="Close sections" data-i18n-aria-label="closeSettings">×</button>
+      </div>
+      <a href="#filter-controls" data-i18n="filterInventoryTools">Filter Inventory Tools</a>
+      <a href="#no-cook" data-i18n="noCookSection">No-Cook / Shelter Friendly</a>
+      <a href="#microwave" data-i18n="microwaveOnly">Microwave-Only</a>
+      <a href="#full-kitchen" data-i18n="fullKitchenRequired">Full Kitchen Required</a>
+      <a href="#available-ingredients" data-i18n="availableIngredients">Available Ingredients</a>
+      <a href="#out-of-stock" data-i18n="outOfStock">Out of Stock</a>
+    </nav>
   </header>
+
+  <section class="page-intro" aria-labelledby="portal-title">
+    <a class="back-home" href="index.html"><span aria-hidden="true">← </span><span data-i18n="backHome">Back to Home</span></a>
+    <h1 id="portal-title" data-i18n="clientPortal">Client Portal</h1>
+    <p data-i18n="prototypeNotice">This prototype shows illustrative quantities and availability, not live inventory. Cooking setup and preparation time depend on the recipe.</p>
+  </section>
 
   <hr>
 
   <!-- Radio buttons and Checkbox Interfaces  -->
   <section id="filter-controls">
-    <h2>Filter Inventory Tools</h2>
-    <p>All items, recipes, quantities, availability, and descriptions on this page are sample data and do not represent live items or inventory.</p>
-    <p>These filters apply to the cooking items and recipes shown, not the Available Ingredients or Out of Stock lists, which are controlled by their own respective filters.</p>
-    
+    <h2 data-i18n="filterInventoryTools">Filter Inventory Tools</h2>
+    <button type="button" id="reset-all-filters" data-i18n="resetFilters">Reset All Filters</button>
+    <p id="visible-results-count" role="status" aria-live="polite" aria-atomic="true"></p>
+    <p data-i18n="sampleDataNotice">All items, recipes, quantities, availability, and descriptions on this page are sample data and do not represent live items or inventory.</p>
+    <p data-i18n="filterScopeNotice">These filters apply to the cooking items and recipes shown, not the Available Ingredients or Out of Stock lists, which are controlled by their own respective filters.</p>
+
     <!-- Radio buttons: No Cook and Microwave -->
     <fieldset>
-      <legend>Select Your Cooking Setup (Choose Only One):</legend>
+      <legend data-i18n="cookingSetup">Select Your Cooking Setup (Choose Only One):</legend>
       <div class="radio-options">
         <p>
           <input type="radio" id="setup-all" name="cooking-setup" value="all" checked>
-          <label for="setup-all">Show ALL Layouts</label>
+          <label for="setup-all" data-i18n="showAllLayouts">Show ALL Layouts</label>
         </p>
         <p>
           <input type="radio" id="setup-nocook" name="cooking-setup" value="nocook">
-          <label for="setup-nocook">No-Cook / Shelter Friendly</label>
+          <label for="setup-nocook" data-i18n="noCookSection">No-Cook / Shelter Friendly</label>
         </p>
         <p>
           <input type="radio" id="setup-microwave" name="cooking-setup" value="microwave">
-          <label for="setup-microwave">Microwave-Only</label>
+          <label for="setup-microwave" data-i18n="microwaveOnly">Microwave-Only</label>
         </p>
       </div>
     </fieldset>
@@ -284,20 +310,6 @@
   </section>
 
   <br>
-  <hr>
-
-  <!-- Navigation Bar -->
-  <nav id="top">
-    <strong>Jump to a Category:</strong>
-    <p>
-      <a href="#no-cook">No-Cook Options</a> | 
-      <a href="#microwave">Microwave-Only</a> | 
-      <a href="#full-kitchen">Full Kitchen Required</a> |
-      <a href="#available-ingredients">Available Ingredients</a> |
-      <a href="#out-of-stock">Out of Stock</a>
-    </p>
-  </nav>
-
   <hr>
 
   <!-- Inventory Content -->
@@ -483,7 +495,6 @@
           <br><small>Type: Breakfast / Dessert | Packaging: Bag/Box | Ingredients: Chia seeds, Oat milk (Boxed) or Almond milk (Boxed), Maple syrup, Cocoa powder (unsweetened), Coconut flakes / shreds | Equipment needed: Bowl or jar, spoon | Preparation time: About 8 minutes</small>
         </li>
       </ul>
-      <p><a href="#top">Scroll Back to Category Setup</a></p>
     </section>
 
     <hr>
@@ -552,7 +563,6 @@
           <br><small>Type: Main Course | Packaging: Pouch/Fresh | Ingredients: Tuna (Canned &amp; pouches), Unsalted butter, Lemons, Flat-leaf parsley, Fine salt, Black peppercorns | Note: Uses canned tuna warmed with lemon and herbs; it is not poached fish | Equipment needed: Microwave, microwave-safe pie dish or shallow bowl, fork | Preparation time: About 20 minutes</small>
         </li>
       </ul>
-      <p><a href="#top">Scroll Back to Category Setup</a></p>
     </section>
 
     <hr>
@@ -562,10 +572,6 @@
       <h2>Full Kitchen Required / Family Dinners</h2>
       <p>Bulk family resources requiring preparation tools, stove burners, or boiling water.</p>
       <ul>
-        <li data-stock="instock" data-minutes="30" data-tools="stovetop pot">
-          <strong>Spaghetti & Pasta Sauce</strong> - <span class="status-in">In Stock | 5 units</span>
-          <br><small>Type: Grains/Sauce | Packaging: Box & Jar | Note: Dynamic bulk family combo | Equipment needed: Stovetop and pot | Preparation time: About 30 minutes</small>
-        </li>
         <li data-stock="out" data-minutes="20" data-tools="stovetop skillet-comal">
           <strong>Maseca Corn Flour</strong> - <span class="status-out">Out of Stock | 0 units</span>
           <br><small>Type: Flour | Packaging: Large Dry Bag | Note: Tortilla base flour | Equipment needed: Stovetop and skillet or comal | Preparation time: About 20 minutes</small>
@@ -573,6 +579,10 @@
       </ul>
       <h3>15 to 30 Minute Recipes</h3>
       <ul>
+        <li data-stock="instock" data-minutes="30" data-tools="stovetop pot">
+          <strong>Spaghetti & Pasta Sauce</strong> - <span class="status-in">In Stock | 5 units</span>
+          <br><small>Type: Grains/Sauce | Packaging: Box & Jar | Note: Dynamic bulk family combo | Equipment needed: Stovetop and pot | Preparation time: About 30 minutes</small>
+        </li>
         <li data-stock="instock" data-minutes="20" data-tools="stovetop skillet-comal knife spoon">
           <strong>Spam &amp; Scallion Fried Rice</strong> - <span class="status-in">In Stock | 4 servings</span>
           <br><small>Type: Main Course | Packaging: Canned/Fresh | Ingredients: White rice, Spam, Scallions, Garlic, Soy sauce or tamari, Vegetable oil | Equipment needed: Stovetop, skillet or comal, knife, spoon | Preparation time: About 20 minutes</small>
@@ -689,7 +699,6 @@
           <br><small>Type: Main Course | Packaging: Box/Fresh/Canned | Ingredients: Polenta, Italian sausage, Cheddar, Parmesan (wedge), Tomatoes (Diced, crushed, paste, &amp; peeled), Garlic, Onions | Equipment needed: Oven, casserole dish, pot, skillet, spoon | Preparation time: About 75 minutes</small>
         </li>
       </ul>
-      <p><a href="#top">Scroll Back to Category Setup</a></p>
     </section>
 
     <hr>
@@ -949,7 +958,6 @@
         <li data-stock="instock"><strong>Pumpkin puree (canned)</strong> - <span class="status-in">In Stock | 4 units</span></li>
         <li data-stock="instock"><strong>Worcestershire sauce</strong> - <span class="status-in">In Stock | 5 units</span></li>
       </ul>
-      <p><a href="#top">Scroll Back to Category Setup</a></p>
     </section>
 
     <hr>
@@ -1050,7 +1058,6 @@
         <li data-stock="out" data-restock-days="5"><strong>Pomegranates</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 5 days</span></li>
         <li data-stock="out" data-restock-days="3"><strong>Watermelon (whole)</strong> - <span class="status-out">Out of Stock | 0 units | Restock expected in 3 days</span></li>
       </ul>
-      <p><a href="#top">Scroll Back to Category Setup</a></p>
     </section>
 
   </main>
@@ -1083,15 +1090,16 @@
 
       for (const item of items) {
         const name = item.querySelector("strong").textContent.trim();
-        const matchesSearch = name.toLowerCase().includes(searchTerm);
+        const matchesSearch = (item.dataset.searchText || name.toLocaleLowerCase()).includes(searchTerm);
+        const searchNames = [item.dataset.searchNameEn, item.dataset.searchNameEs, name].filter(Boolean);
         const restockDays = Number(item.dataset.restockDays);
         const matchesRestockTime =
           selectedRestockTime === "all" ||
           (selectedRestockTime === "two-days" && restockDays <= 2) ||
           (selectedRestockTime === "three-to-five-days" && restockDays >= 3 && restockDays <= 5) ||
           (selectedRestockTime === "six-plus-days" && restockDays >= 6);
-        const letter = name.charAt(0).toUpperCase();
-        const letterMatches = selectedLetter === "all" || letter === selectedLetter;
+        const letterMatches = selectedLetter === "all" ||
+          searchNames.some((searchName) => searchName.charAt(0).toLocaleUpperCase() === selectedLetter);
         const isVisible = matchesSearch && matchesRestockTime && letterMatches;
 
         item.hidden = !isVisible;
@@ -1110,11 +1118,25 @@
       list.replaceChildren(...sortedItems);
 
       const listName = listId === "available-ingredient-list" ? "available ingredient" : "out-of-stock item";
-      status.textContent = visibleItemCount === 0
-        ? selectedLetter === "all"
-          ? `No ${listName}s match your search and filters. Try changing your selections.`
-          : `No ${listName}s starting with ${selectedLetter} match your search and filters.`
-        : `Showing ${visibleItemCount} ${listName}${visibleItemCount === 1 ? "" : "s"}.`;
+      const translations = window.siteTranslations?.[document.documentElement.lang];
+      if (translations) {
+        const available = listId === "available-ingredient-list";
+        const messageKey = visibleItemCount
+          ? available ? "showingAvailable" : "showingOut"
+          : available
+            ? selectedLetter === "all" ? "noMatchAvailable" : "noMatchAvailableLetter"
+            : selectedLetter === "all" ? "noMatchOut" : "noMatchOutLetter";
+        status.textContent = translations[messageKey]
+          .replace("{count}", String(visibleItemCount))
+          .replace("{plural}", visibleItemCount === 1 ? "" : "s")
+          .replace("{letter}", selectedLetter === "all" ? "" : selectedLetter);
+      } else {
+        status.textContent = visibleItemCount === 0
+          ? selectedLetter === "all"
+            ? `No ${listName}s match your search and filters. Try changing your selections.`
+            : `No ${listName}s starting with ${selectedLetter} match your search and filters.`
+          : `Showing ${visibleItemCount} ${listName}${visibleItemCount === 1 ? "" : "s"}.`;
+      }
     }
 
     function createLetterFilters(alphabetId, name) {
@@ -1156,6 +1178,9 @@
         }
 
         for (const item of section.querySelectorAll("li")) {
+          if (item.querySelector(":scope > .item-features")) {
+            continue;
+          }
           const features = [];
           const isReadyToEat = item.dataset.ready === "true" || section.dataset.ready === "true";
           const needsNoAppliance = item.dataset.noAppliance === "true" || section.dataset.noAppliance === "true";
@@ -1185,6 +1210,10 @@
           const featureLabel = document.createElement("small");
           featureLabel.className = "item-features";
           featureLabel.textContent = `Features: ${features.join(" | ")}`;
+          if (features.length === 0) {
+            featureLabel.remove();
+            continue;
+          }
           const itemDetails = item.querySelector("small");
           if (itemDetails) {
             item.insertBefore(featureLabel, itemDetails);
@@ -1219,14 +1248,14 @@
           isPantryList || selectedSetup === "all" || section.dataset.setup === selectedSetup;
         let hasVisibleItems = false;
 
-        const items = section.querySelectorAll("li");
+        const items = section.querySelectorAll(":scope > ul > li");
         for (const item of items) {
           if (isOutOfStockList) {
             hasVisibleItems = true;
             continue;
           }
 
-          const stockMatches = isPantryList || stockStatus === "all" || item.dataset.stock === "instock";
+          const stockMatches = isPantryList || stockStatus === "all" || item.dataset.stock !== "out";
           const softMatches = isPantryList || !softOnly || item.dataset.soft === "true";
           const utensilsMatch = isPantryList || !utensilsOnly || item.dataset.utensils === "true";
           const readyMatches =
@@ -1244,8 +1273,8 @@
           const timeMatches =
             isPantryList || selectedTime === "all" ||
             (selectedTime === "under-15" && preparationTime < 15) ||
-            (selectedTime === "15-to-30" && preparationTime >= 15 && preparationTime < 30) ||
-            (selectedTime === "30-to-60" && preparationTime >= 30 && preparationTime <= 60) ||
+            (selectedTime === "15-to-30" && preparationTime >= 15 && preparationTime <= 30) ||
+            (selectedTime === "30-to-60" && preparationTime > 30 && preparationTime <= 60) ||
             (selectedTime === "over-60" && preparationTime > 60);
           const isVisible =
             setupMatches && stockMatches && softMatches && utensilsMatch &&
@@ -1267,9 +1296,37 @@
         }
       }
 
-      inventoryStatus.textContent = visibleItemCount === 0
-        ? "No sample items match these filters. Try changing your selections. Ingredient lists use separate filters."
-        : `Showing ${visibleItemCount} sample ${visibleItemCount === 1 ? "item" : "items"}. Ingredient lists use separate filters.`;
+      const translations = window.siteTranslations?.[document.documentElement.lang];
+      if (translations) {
+        inventoryStatus.textContent = visibleItemCount === 0
+          ? translations.noMatchingItems
+          : translations.showingSample
+            .replace("{count}", String(visibleItemCount))
+            .replace("{itemWord}", translations[visibleItemCount === 1 ? "sampleItem" : "sampleItems"]);
+        document.getElementById("visible-results-count").textContent =
+          translations[visibleItemCount === 1 ? "countOneItem" : "countItems"].replace("{count}", String(visibleItemCount));
+      } else {
+        inventoryStatus.textContent = visibleItemCount === 0
+          ? "No sample items match these filters. Try changing your selections. Ingredient lists use separate filters."
+          : `Showing ${visibleItemCount} sample ${visibleItemCount === 1 ? "item" : "items"}. Ingredient lists use separate filters.`;
+        document.getElementById("visible-results-count").textContent =
+          `${visibleItemCount} cooking ${visibleItemCount === 1 ? "item or recipe" : "items and recipes"} shown`;
+      }
+    }
+
+    function resetAllFilters() {
+      document.querySelectorAll('#filter-controls input[type="radio"], #restock-filter-controls input[type="radio"], .alphabet-links input[type="radio"]').forEach((input) => {
+        input.checked = input.value === "all";
+      });
+      filterControls.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+        input.checked = false;
+      });
+      document.getElementById("pref-stock-select").value = "instock";
+      document.getElementById("available-ingredient-search").value = "";
+      document.getElementById("out-of-stock-search").value = "";
+      updateAvailableIngredients();
+      updateOutOfStockList();
+      updateInventory();
     }
 
     function updateOutOfStockList() {
@@ -1285,16 +1342,224 @@
       );
     }
 
+    const volunteerInventoryKey = "love-pantry-inventory";
+    const volunteerSectionIds = {
+      "no-cook": "no-cook",
+      microwave: "microwave",
+      "full-kitchen": "full-kitchen"
+    };
+
+    function volunteerItemId(name) {
+      return name.trim().toLocaleLowerCase();
+    }
+
+    function syncIngredientCatalogItem(record) {
+      const lists = ["available-ingredient-list", "out-of-stock-list"].map((id) => document.getElementById(id));
+      const sourceName = String(record.name || "");
+      const items = lists.flatMap((list) => Array.from(list.children));
+      let matches = items.filter((item) =>
+        volunteerItemId(item.dataset.sourceTitle || item.querySelector(":scope > strong")?.textContent || "") === record.id
+      );
+      if (matches.length === 0 && record.isDonation) {
+        const item = document.createElement("li");
+        item.dataset.sourceTitle = sourceName;
+        const title = document.createElement("strong");
+        title.textContent = sourceName;
+        const status = document.createElement("span");
+        status.className = "status-in";
+        const detail = document.createElement("small");
+        detail.className = "stock-detail";
+        item.append(title, document.createTextNode(" "), status, detail);
+        matches = [item];
+      }
+
+      const quantity = Math.max(0, Number(record.quantity) || 0);
+      const outOfStock = quantity === 0;
+      const targetList = document.getElementById(outOfStock ? "out-of-stock-list" : "available-ingredient-list");
+      const language = document.documentElement.lang;
+      const label = language === "es"
+        ? outOfStock ? "Agotado" : "En stock"
+        : outOfStock ? "Out of Stock" : "In Stock";
+      const restockDays = outOfStock ? Math.max(0, Number(record.restockDays) || 0) : 0;
+      const detailText = language === "es"
+        ? `${quantity} ${quantity === 1 ? "unidad" : "unidades"}${restockDays ? ` | reposición prevista en ${restockDays} ${restockDays === 1 ? "día" : "días"}` : ""}`
+        : `${quantity} ${quantity === 1 ? "unit" : "units"}${restockDays ? ` | Restock expected in ${restockDays} ${restockDays === 1 ? "day" : "days"}` : ""}`;
+      matches.forEach((item) => {
+        item.dataset.sourceTitle = sourceName;
+        item.dataset.stock = outOfStock ? "out" : "instock";
+        item.dataset.restockDays = String(restockDays);
+        const badge = item.querySelector(".status-in, .status-out");
+        if (badge) {
+          badge.classList.toggle("status-out", outOfStock);
+          badge.classList.toggle("status-in", !outOfStock);
+          badge.dataset.i18n = outOfStock ? "outOfStockBadge" : "inStock";
+          badge.textContent = label;
+          badge.setAttribute("aria-label", label);
+        }
+        let detail = item.querySelector(":scope > .stock-detail");
+        if (!detail) {
+          detail = document.createElement("small");
+          detail.className = "stock-detail";
+          item.append(detail);
+        }
+        detail.dataset.sourceValue = `${quantity} ${quantity === 1 ? "unit" : "units"}${restockDays ? ` | Restock expected in ${restockDays} ${restockDays === 1 ? "day" : "days"}` : ""}`;
+        detail.textContent = detailText;
+        const oldList = item.parentElement;
+        if (oldList && oldList !== targetList) {
+          const oldItems = ingredientLists.get(oldList.id);
+          const targetItems = ingredientLists.get(targetList.id);
+          const oldIndex = oldItems?.indexOf(item) ?? -1;
+          if (oldItems && oldIndex >= 0) oldItems.splice(oldIndex, 1);
+          if (targetItems && !targetItems.includes(item)) targetItems.push(item);
+          targetList.append(item);
+        } else if (!oldList) {
+          targetList.append(item);
+          ingredientLists.get(targetList.id).push(item);
+        }
+      });
+    }
+
+    function applyVolunteerInventory(state) {
+      if (!state || !Array.isArray(state.items)) return;
+      const allItems = Array.from(document.querySelectorAll("#inventory-list > section > ul > li"));
+      for (const record of state.items) {
+        const matchingItems = allItems.filter((item) =>
+          volunteerItemId(item.dataset.sourceTitle || item.querySelector(":scope > strong")?.textContent || "") === record.id
+        );
+        if (matchingItems.length === 0 && record.isDonation) {
+          const setup = record.setup || record.cookingSetup || "no-cook";
+          const section = document.getElementById(volunteerSectionIds[setup]);
+          const list = section?.querySelector(":scope > ul");
+          if (!list) continue;
+          const item = document.createElement("li");
+          item.dataset.volunteerDonation = "true";
+          item.dataset.stock = "instock";
+          item.dataset.minutes = "0";
+          item.dataset.sourceTitle = record.name;
+          item.innerHTML = "";
+          const title = document.createElement("strong");
+          title.textContent = record.name;
+          const status = document.createElement("span");
+          status.className = "status-in";
+          status.textContent = "In Stock";
+          const detail = document.createElement("small");
+          detail.className = "stock-detail";
+          item.append(title, document.createTextNode(" "), status, detail);
+          if (record.features?.length) {
+            const names = {
+              ready: "Ready to eat / no cooking needed",
+              soft: "Soft food",
+              "no-appliance": "No cooking appliance needed"
+            };
+            const featureLine = document.createElement("small");
+            featureLine.className = "item-features";
+            featureLine.textContent = `Features: ${record.features.map((feature) => names[feature]).filter(Boolean).join(" | ")}`;
+            item.append(featureLine);
+          }
+          const metadata = document.createElement("small");
+          metadata.textContent = "Type: Pantry Item | Packaging: Donated | Preparation time: None needed";
+          item.append(metadata);
+          list.append(item);
+          allItems.push(item);
+          matchingItems.push(item);
+        }
+        if (matchingItems.length === 0) {
+          syncIngredientCatalogItem(record);
+          continue;
+        }
+
+        const quantity = Math.max(0, Number(record.quantity) || 0);
+        const outOfStock = quantity === 0;
+        for (const item of matchingItems) {
+          item.dataset.stock = outOfStock ? "out" : "instock";
+          if (record.features) {
+            item.dataset.ready = String(record.features.includes("ready"));
+            item.dataset.soft = String(record.features.includes("soft"));
+            item.dataset.noAppliance = String(record.features.includes("no-appliance"));
+          }
+          const badge = item.querySelector(".status-in, .status-out");
+          if (badge) {
+            const key = outOfStock ? "outOfStockBadge" : "inStock";
+            badge.classList.toggle("status-out", outOfStock);
+            badge.classList.toggle("status-in", !outOfStock);
+            badge.dataset.i18n = key;
+            badge.dataset.i18nAriaLabel = key;
+            badge.textContent = window.siteTranslations?.[document.documentElement.lang]?.[key] ||
+              (document.documentElement.lang === "es" ? outOfStock ? "Agotado" : "En stock" : outOfStock ? "Out of Stock" : "In Stock");
+            badge.setAttribute("aria-label", badge.textContent);
+          }
+          let detail = item.querySelector(":scope > .stock-detail");
+          if (!detail && badge) {
+            detail = document.createElement("small");
+            detail.className = "stock-detail";
+            badge.insertAdjacentElement("afterend", detail);
+          }
+          if (detail) {
+            const restockDays = Math.max(0, Number(record.restockDays) || 0);
+            const restock = outOfStock && restockDays
+              ? ` | Restock expected in ${restockDays} ${restockDays === 1 ? "day" : "days"}`
+              : "";
+            detail.dataset.sourceValue = `${quantity} ${quantity === 1 ? "unit" : "units"}${restock}`;
+            detail.textContent = document.documentElement.lang === "es"
+              ? `${quantity} ${quantity === 1 ? "unidad" : "unidades"}${outOfStock && restockDays
+                ? ` | reposición prevista en ${restockDays} ${restockDays === 1 ? "día" : "días"}`
+                : ""}`
+              : detail.dataset.sourceValue;
+          }
+          if (item.dataset.volunteerDonation === "true") {
+            const section = item.closest("section");
+            const featuresLine = item.querySelector(":scope > .item-features");
+            if (featuresLine && record.features?.length) {
+              const names = {
+                ready: "Ready to eat / no cooking needed",
+                soft: "Soft food",
+                "no-appliance": "No cooking appliance needed"
+              };
+              featuresLine.textContent = `Features: ${record.features.map((feature) => names[feature]).filter(Boolean).join(" | ")}`;
+            }
+            if (section) section.hidden = false;
+          }
+        }
+        syncIngredientCatalogItem(record);
+      }
+      if (typeof addItemFeatureLabels === "function") addItemFeatureLabels();
+      window.dispatchEvent(new CustomEvent("love-pantry-inventory-updated"));
+      updateAvailableIngredients();
+      updateOutOfStockList();
+      updateInventory();
+    }
+
+    function readVolunteerInventory() {
+      try {
+        const stored = localStorage.getItem(volunteerInventoryKey);
+        if (stored) applyVolunteerInventory(JSON.parse(stored));
+      } catch (error) {
+        console.error("Unable to read volunteer inventory updates.", error);
+      }
+    }
+
+    window.addEventListener("storage", (event) => {
+      if (event.key === volunteerInventoryKey) readVolunteerInventory();
+    });
+
     createLetterFilters("available-ingredient-alphabet", "available");
     createLetterFilters("out-of-stock-alphabet", "out-of-stock");
     filterControls.addEventListener("change", updateInventory);
+    document.getElementById("reset-all-filters").addEventListener("click", resetAllFilters);
     restockFilterControls.addEventListener("change", updateOutOfStockList);
     document.getElementById("available-ingredient-search").addEventListener("input", updateAvailableIngredients);
     document.getElementById("out-of-stock-search").addEventListener("input", updateOutOfStockList);
+    window.addEventListener("love-pantry-language-change", () => {
+      updateAvailableIngredients();
+      updateInventory();
+      updateOutOfStockList();
+    });
     updateAvailableIngredients();
     addItemFeatureLabels();
+    readVolunteerInventory();
     updateInventory();
     updateOutOfStockList();
   </script>
+  <script src="site.js"></script>
 </body>
 </html>
