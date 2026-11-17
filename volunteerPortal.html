@@ -14,7 +14,8 @@
       try {
         size = localStorage.getItem("love-pantry-text-size");
         theme = localStorage.getItem("love-pantry-theme");
-        language = localStorage.getItem("a11y-lang") === "es" ? "es" : "en";
+        const savedLanguage = localStorage.getItem("a11y-lang");
+        language = ["en", "es", "fr"].includes(savedLanguage) ? savedLanguage : "en";
       } catch (error) {
         console.warn("Unable to read saved accessibility preferences.", error);
         size = null;
@@ -34,16 +35,65 @@
       document.documentElement.lang = language;
     })();
   </script>
+  <script>
+    (() => {
+      document.documentElement.setAttribute("data-i18n-pending", "true");
+      try {
+        const savedLanguage = localStorage.getItem("a11y-lang");
+        if (savedLanguage) document.documentElement.lang = savedLanguage;
+      } catch (error) {
+        console.warn("Unable to read the saved language.", error);
+      }
+      window.setTimeout(() => document.documentElement.removeAttribute("data-i18n-pending"), 500);
+    })();
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
     <a class="brand-link" href="index.html">L.O.V.E. Pantry</a>
     <nav class="nav-actions" aria-label="Page controls" data-i18n-aria-label="pageControls">
-      <div class="language-toggle" role="group" aria-label="Language">
-        <button type="button" class="language-button" data-language="en" aria-pressed="true">EN</button>
-        <button type="button" class="language-button" data-language="es" aria-pressed="false">ES</button>
+      <div class="language-dropdown">
+        <button type="button" class="header-action language-trigger" id="language-trigger" aria-expanded="false" aria-controls="language-menu" aria-label="Language">
+          <span class="language-current-flag" aria-hidden="true">
+            <svg width="20" height="14" viewBox="0 0 20 14" style="border-radius: 2px; display: block;">
+              <rect width="20" height="14" fill="#b22234"/>
+              <path d="M0 3h20M0 7h20M0 11h20" stroke="#fff" stroke-width="2"/>
+              <rect width="9" height="8" fill="#3c3b6e"/>
+            </svg>
+          </span>
+          <span class="language-current-code">EN</span>
+          <span aria-hidden="true">▾</span>
+        </button>
+        <div class="language-menu" id="language-menu" hidden>
+          <button type="button" class="language-option" data-language="en" aria-pressed="true">
+            <svg aria-hidden="true" width="20" height="14" viewBox="0 0 20 14" style="border-radius: 2px; flex-shrink: 0;">
+              <rect width="20" height="14" fill="#b22234"/>
+              <path d="M0 3h20M0 7h20M0 11h20" stroke="#fff" stroke-width="2"/>
+              <rect width="9" height="8" fill="#3c3b6e"/>
+            </svg>
+            <span>English (EN)</span>
+          </button>
+          <button type="button" class="language-option" data-language="es" aria-pressed="false">
+            <svg aria-hidden="true" width="20" height="14" viewBox="0 0 21 14" style="border-radius: 2px; flex-shrink: 0;">
+              <rect width="7" height="14" fill="#006847"/>
+              <rect x="7" width="7" height="14" fill="#ffffff"/>
+              <rect x="14" width="7" height="14" fill="#ce1126"/>
+              <circle cx="10.5" cy="7" r="1.6" fill="#8c6239"/>
+            </svg>
+            <span>Español (ES)</span>
+          </button>
+          <button type="button" class="language-option" data-language="fr" aria-pressed="false">
+            <svg aria-hidden="true" width="20" height="14" viewBox="0 0 21 14" style="border-radius: 2px; flex-shrink: 0;">
+              <rect width="7" height="14" fill="#002395"/>
+              <rect x="7" width="7" height="14" fill="#ffffff"/>
+              <rect x="14" width="7" height="14" fill="#ed2939"/>
+            </svg>
+            <span>Français (FR)</span>
+          </button>
+        </div>
       </div>
+
       <a class="header-action support-link" href="support.html"><span aria-hidden="true">🎫 </span><span data-i18n="supportLink">Support</span></a>
       <button type="button" class="header-action" id="settings-toggle" aria-label="Settings" data-i18n-aria-label="settings" aria-expanded="false" aria-controls="settings-drawer"><span class="header-action-icon" aria-hidden="true">⚙️</span><span class="header-action-label" data-i18n="settings">Settings</span></button>
       <button type="button" class="header-action" id="sections-trigger" aria-label="Sections" data-i18n-aria-label="sections" aria-expanded="false" aria-controls="sections-drawer" hidden><span class="header-action-icon" aria-hidden="true">☰</span><span class="header-action-label" data-i18n="sections">Sections</span></button>
@@ -66,10 +116,10 @@
       <fieldset>
         <legend data-i18n="colorTheme">Color Theme</legend>
         <div class="setting-options theme-options" role="group" aria-label="Color theme" data-i18n-aria-label="colorThemeGroup">
-          <button type="button" data-theme-choice="default" aria-pressed="true">Default</button>
-          <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
-          <button type="button" data-theme-choice="soft" aria-pressed="false">Soft</button>
-          <button type="button" data-theme-choice="sepia" aria-pressed="false">Sepia</button>
+          <button type="button" data-theme-choice="default" aria-pressed="true" data-i18n="defaultTheme">Default</button>
+          <button type="button" data-theme-choice="dark" aria-pressed="false" data-i18n="darkTheme">Dark</button>
+          <button type="button" data-theme-choice="soft" aria-pressed="false" data-i18n="softTheme">Soft</button>
+          <button type="button" data-theme-choice="sepia" aria-pressed="false" data-i18n="sepiaTheme">Sepia</button>
           <button type="button" data-theme-choice="colorblind" aria-pressed="false" data-i18n="colorblindSafe">Colorblind-Safe</button>
           <button type="button" data-theme-choice="high-contrast" aria-pressed="false" data-i18n="highContrast">High Contrast</button>
         </div>
@@ -284,6 +334,9 @@
       </section>
     </section>
   </main>
+  <button type="button" id="back-to-top" class="back-to-top" aria-label="Top" data-i18n-aria-label="backToTop" hidden>
+    <span aria-hidden="true">↑ </span><span data-i18n="backToTop">Top</span>
+  </button>
   <script src="site.js"></script>
 </body>
 </html>

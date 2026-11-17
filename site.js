@@ -4,6 +4,7 @@
       supportLink: "Support",
       homePageTitle: "Pantry Inventory Tracker Prototype",
       clientPageTitle: "L.O.V.E. Client Portal",
+      recipesPageTitle: "Meal Ideas & Recipes | L.O.V.E. Pantry",
       supportPageTitle: "Support Ticket | L.O.V.E. Pantry",
       volunteerPageTitle: "Volunteer Portal | L.O.V.E. Pantry",
       pageControls: "Page controls",
@@ -35,6 +36,10 @@
       volume: "Volume",
       resetSettings: "Reset All Settings",
       jumpToSection: "Jump to a Section",
+      portalViews: "Client portal views",
+      viewInventory: "View Inventory",
+      mealIdeasRecipes: "Meal Ideas & Recipes",
+      filterRecipes: "Filter Recipes",
       filterInventoryTools: "Filter Inventory Tools",
       noCookSection: "No-Cook / Shelter Friendly",
       microwaveOnly: "Microwave-Only",
@@ -43,6 +48,7 @@
       availableIngredients: "Available Ingredients",
       outOfStock: "Out of Stock",
       backHome: "Back to Home",
+      backToTop: "Top",
       clientPortal: "Client Portal",
       prototypeNotice: "This prototype shows illustrative quantities and availability, not live inventory. Cooking setup and preparation time depend on the recipe.",
       resetFilters: "Reset All Filters",
@@ -391,6 +397,11 @@
       volume: "Volumen",
       resetSettings: "Restablecer todos los ajustes",
       jumpToSection: "Ir a una sección",
+      recipesPageTitle: "Ideas de comidas y recetas | Despensa L.O.V.E.",
+      portalViews: "Vistas del portal de clientes",
+      viewInventory: "Ver inventario",
+      mealIdeasRecipes: "Ideas de comidas y recetas",
+      filterRecipes: "Filtrar recetas",
       filterInventoryTools: "Filtrar herramientas del inventario",
       noCookSection: "Sin cocción / Apto para refugios",
       microwaveOnly: "Solo microondas",
@@ -399,6 +410,7 @@
       availableIngredients: "Ingredientes disponibles",
       outOfStock: "Agotado",
       backHome: "Volver al inicio",
+      backToTop: "Arriba",
       clientPortal: "Portal para clientes",
       prototypeNotice: "Este prototipo muestra cantidades y disponibilidad ilustrativas, no inventario en tiempo real. La preparación depende de la receta.",
       resetFilters: "Restablecer todos los filtros",
@@ -514,7 +526,7 @@
       prototypeDisclaimerTitle: "Solo prototipo:",
       volunteerDisclaimer: "Este es un prototipo de portafolio frontend sin base de datos backend en vivo. Los correos personales no funcionarán; use volunteer@lovepantry.org o testing@umd.edu para ver el panel.",
       volunteerSessionIdentityPrefix: "Al iniciar sesión con cualquiera de los correos de demostración (volunteer@lovepantry.org o testing@umd.edu), su sesión activa aparecerá en el portal como ",
-      demoUser: "Demo User",
+      demoUser: "Usuario de demostración",
       volunteerEmail: "Correo electrónico del voluntario",
       volunteerEmailError: "No encontramos el correo. Use volunteer@lovepantry.org o testing@umd.edu y seleccione «Completar correo de voluntario de demostración» para ver el portal.",
       next: "Siguiente",
@@ -714,6 +726,368 @@
       summaryFollowUp: "Preferencia de seguimiento",
       summaryContact: "Contacto",
       summaryPriority: "Prioridad"
+    },
+    fr: {
+      supportLink: "Assistance",
+      homePageTitle: "Prototype du suivi d'inventaire du garde-manger",
+      clientPageTitle: "Portail client L.O.V.E.",
+      recipesPageTitle: "Idées de repas et recettes | Garde-manger L.O.V.E.",
+      supportPageTitle: "Demande d'assistance | Garde-manger L.O.V.E.",
+      volunteerPageTitle: "Portail bénévole | Garde-manger L.O.V.E.",
+      pageControls: "Contrôles de la page",
+      language: "Langue",
+      textSizeGroup: "Taille du texte",
+      colorThemeGroup: "Thème de couleur",
+      settings: "Paramètres",
+      sections: "Sections",
+      accessibilitySettings: "Paramètres d'accessibilité",
+      closeSettings: "Fermer les paramètres",
+      closeSections: "Fermer les sections",
+      textSize: "Taille du texte",
+      colorTheme: "Thème de couleur",
+      defaultTheme: "Par défaut",
+      darkTheme: "Sombre",
+      softTheme: "Doux",
+      sepiaTheme: "Sépia",
+      colorblindSafe: "Adapté aux daltoniens",
+      highContrast: "Contraste élevé",
+      readAloud: "Lire à voix haute",
+      play: "Lire",
+      pause: "Pause",
+      stop: "Arrêter",
+      voice: "Voix",
+      systemDefault: "Voix par défaut du système",
+      spanishVoiceHelp: "Les voix disponibles dépendent de votre navigateur ou système d'exploitation.",
+      test: "Tester la voix",
+      readingPace: "Vitesse de lecture",
+      volume: "Volume sonore",
+      resetSettings: "Réinitialiser tous les paramètres",
+      jumpToSection: "Aller à une section",
+      portalViews: "Vues du portail client",
+      viewInventory: "Voir l’inventaire",
+      mealIdeasRecipes: "Idées de repas et recettes",
+      filterRecipes: "Filtrer les recettes",
+      filterInventoryTools: "Filtrer les outils d'inventaire",
+      noCookSection: "Sans cuisson / Adapté aux refuges",
+      microwaveOnly: "Micro-ondes uniquement",
+      fullKitchenRequired: "Cuisine complète requise",
+      familyDinners: "Cuisine complète requise / Repas familiaux",
+      availableIngredients: "Ingrédients disponibles",
+      outOfStock: "En rupture de stock",
+      backHome: "Retour à l'accueil",
+      backToTop: "Haut",
+      clientPortal: "Portail client",
+      prototypeNotice: "Ce prototype affiche des quantités et disponibilités à titre illustratif, pas un inventaire en temps réel. Les noms des aliments et recettes sont traduits lorsque le français est sélectionné.",
+      resetFilters: "Réinitialiser tous les filtres",
+      sampleDataNotice: "Les articles, recettes, quantités et descriptions sur cette page sont des données d'exemple ; les noms sont traduits lorsque le français est sélectionné.",
+      filterScopeNotice: "Ces filtres s'appliquent aux plats et recettes, pas aux listes d'ingrédients disponibles ou en rupture de stock.",
+      cookingSetup: "Choisissez votre équipement de cuisine (un seul choix) :",
+      showAllLayouts: "Afficher toutes les options",
+      equipmentYouHave: "Équipement dont vous disposez :",
+      equipmentInstructions: "Cochez les outils que vous avez. Les articles apparaissent lorsque vous avez tous les outils requis.",
+      preparationTime: "Temps de préparation (un seul choix) :",
+      showAllTimes: "Afficher tous les temps",
+      under15: "Moins de 15 minutes",
+      "15to30": "15 à 30 minutes",
+      "30to60": "30 à 60 minutes",
+      over1Hour: "Plus d'une heure",
+      dietaryPreferences: "Préférences et options alimentaires :",
+      stockAvailability: "Disponibilité :",
+      showAllItems: "Afficher tous les articles",
+      inStockOnly: "Articles en stock uniquement",
+      softFoodOnly: "Aliments mous uniquement",
+      eatingUtensils: "Comprend des couverts",
+      readyToEat: "Prêt à manger / Sans cuisson",
+      easyOpen: "Emballage facile à ouvrir",
+      noApplianceNeeded: "Aucun appareil de cuisson requis",
+      selectFirstLetter: "Filtrer par première lettre (un seul choix) :",
+      searchAvailable: "Rechercher des ingrédients disponibles :",
+      availablePlaceholder: "Rechercher des ingrédients disponibles",
+      searchOutOfStock: "Rechercher des articles en rupture de stock :",
+      outOfStockPlaceholder: "Rechercher des articles en rupture de stock",
+      estimatedRestock: "Filtrer par délai de réapprovisionnement estimé :",
+      allRestock: "Afficher toutes les estimations",
+      twoDaysOrLess: "2 jours ou moins",
+      threeToFiveDays: "3 à 5 jours",
+      sixPlusDays: "6 jours ou plus",
+      inStock: "En stock",
+      outOfStockBadge: "Rupture de stock",
+      noCookDescription: "Optimisé pour les clients sans appareils électroménagers, cuisine ou ustensiles.",
+      microwaveDescription: "Recettes et options pouvant être préparées au micro-ondes.",
+      fullKitchenDescription: "Ressources familiales nécessitant des ustensiles, une cuisinière ou de l'eau bouillante.",
+      availableIngredientNote: "Les quantités sont des exemples. Vérifiez auprès du garde-manger pour le stock actuel.",
+      outOfStockNote: "Les articles en rupture de stock et estimations sont des exemples uniquement.",
+      quickNoCookRecipes: "Recettes rapides sans cuisson",
+      under15RecipeHeading: "Recettes de moins de 15 minutes",
+      microwaveMeals: "Repas rapides au micro-ondes",
+      samplePortalFooter: "Prototype du portail client L.O.V.E. | SMLP 470",
+      all: "Tous",
+      typeLabel: "Catégorie :",
+      packagingLabel: "Emballage :",
+      noteLabel: "Note :",
+      equipmentLabel: "Équipement requis :",
+      preparationLabel: "Temps de préparation :",
+      ingredientsLabel: "Ingrédients :",
+      featuresLabel: "Caractéristiques :",
+      featureReady: "Prêt à manger / sans cuisson",
+      featureSoft: "Aliment mou",
+      featureUtensils: "Comprend des couverts",
+      featureEasyOpen: "Emballage facile à ouvrir (languette)",
+      featureNoAppliance: "Aucun appareil de cuisson requis",
+      featureMicrowave: "Adapté au micro-ondes",
+      featureOven: "Four / cuisson au four uniquement",
+      countItems: "{count} articles et recettes affichés",
+      countOneItem: "{count} article ou recette affiché",
+      noMatchingItems: "Aucun article d'exemple ne correspond à ces filtres. Essayez de modifier vos choix.",
+      showingSample: "Affichage de {count} {itemWord} d'exemple.",
+      sampleItem: "article",
+      sampleItems: "articles",
+      showingList: "Affichage de {count} {name}{plural}.",
+      availableIngredient: "ingrédient disponible",
+      outOfStockItem: "article en rupture de stock",
+      homeTitle: "ORGANISATION LAUREL POUR L'ÉQUITÉ DES BÉNÉVOLES ET DES RESSOURCES (L.O.V.E.)",
+      homeWelcome: "Bonjour ! Bienvenue chez L.O.V.E ! Nous sommes ravis de vous accueillir !",
+      homeInstructions: "Aidez-nous à mieux vous servir en nous indiquant<br>quel type d'utilisateur vous êtes et ce que vous<br>souhaitez accomplir<br><br>(cliquez sur votre portail ci-dessous pour continuer)",
+      availablePortals: "Portails système disponibles",
+      enterClientPortal: "ENTRER DANS LE PORTAIL CLIENT",
+      portalsLocked: "Les portails bénévole et administrateur sont en cours de développement",
+      homeFooter: "Prototype de l'application L.O.V.E. | SMLP 470",
+      enterVolunteerPortal: "ENTRER DANS LE PORTAIL BÉNÉVOLE",
+      adminPortalComingSoon: "PORTAIL ADMIN — BIENTÔT DISPONIBLE",
+      volunteerPortal: "Portail bénévole",
+      volunteerSignIn: "Connexion bénévole",
+      next: "Suivant",
+      fillDemoEmail: "Remplir l'e-mail bénévole de démonstration",
+      signedInAs: "Connecté en tant que",
+      signOut: "Se déconnecter",
+      inventoryDashboard: "Tableau de bord de l'inventaire",
+      shiftTeamHeading: "Équipe du quart actuel et d'aujourd'hui",
+      shiftNotesHeading: "Notes de quart et messagerie de relève",
+      scratchpadHeading: "Bloc-notes personnel du quart",
+      saveScratchpad: "Enregistrer la note",
+      handoffHeading: "Envoyer une note de relève",
+      sendHandoff: "Envoyer la note",
+      privacyHeading: "Paramètres de communication et de confidentialité",
+      savePrivacy: "Enregistrer les préférences",
+      currentShift: "Quart actuel",
+      todaysShift: "Quart d'aujourd'hui",
+      inventoryControls: "Contrôles d'inventaire",
+      searchItems: "Rechercher des articles",
+      volunteerSearchPlaceholder: "Rechercher dans l'inventaire",
+      filterInventory: "Filtrer l'inventaire",
+      filterAll: "Tous",
+      filterInStock: "✓ En stock",
+      filterOutOfStock: "✕ Rupture de stock",
+      inventoryItems: "Articles en inventaire",
+      logDonation: "Enregistrer un nouveau don",
+      addDonation: "Ajouter le don",
+      recentUpdates: "Mises à jour récentes du quart",
+      resetDemoInventory: "Réinitialiser l'inventaire de démonstration",
+      stockInStatus: "✓ En stock",
+      stockOutStatus: "✕ Rupture de stock",
+      supportTitle: "Demande d'assistance",
+      submitTicket: "Envoyer la demande",
+      ticketReceived: "Demande reçue",
+      copySummary: "Copier le résumé",
+      anotherTicket: "Envoyer une autre demande",
+      returnPortal: "Retourner au portail client",
+      noMatchAvailable: "Aucun ingrédient disponible ne correspond à votre recherche.",
+      noMatchOut: "Aucun article en rupture de stock ne correspond à votre recherche.",
+      noMatchAvailableLetter: "Aucun ingrédient disponible commençant par {letter} ne correspond.",
+      noMatchOutLetter: "Aucun article en rupture de stock commençant par {letter} ne correspond.",
+      showingAvailable: "Affichage de {count} ingrédient(s) disponible(s).",
+      showingOut: "Affichage de {count} article(s) en rupture de stock.",
+      "15to30Recipes": "Recettes de 15 à 30 minutes",
+      "15to30Baking": "Recettes de pâtisserie de 15 à 30 minutes",
+      "30to60Recipes": "Recettes de 30 à 60 minutes",
+      "30to60Baking": "Recettes de pâtisserie de 30 à 60 minutes",
+      adminOnlyContact: "Administrateur uniquement",
+      anonymousReply: "Aucune réponse nécessaire (anonyme)",
+      autoTitle: "Nom automatique",
+      bakingDish: "Plat de cuisson",
+      bakingSheet: "Plaque de cuisson",
+      bothChannels: "Les deux",
+      bowl: "Bol",
+      bowlCover: "Couvercle de bol",
+      cancelEdit: "Annuler la modification",
+      canOpener: "Ouvre-boîte",
+      casseroleDish: "Plat à gratin",
+      categoryAccessibility: "Accessibilité / Affichage / Lecture à voix haute",
+      categoryError: "Veuillez choisir une catégorie de problème.",
+      categoryFeedback: "Commentaires généraux",
+      categoryFilters: "Problème de filtre ou de recherche",
+      categoryHours: "Horaires et informations de retrait",
+      categoryStock: "Quantité en stock / Disponibilité d'un article",
+      charactersUsed: "Caractères utilisés :",
+      chooseCategory: "Choisir une catégorie",
+      cookingSetupLabel: "Équipement de cuisine",
+      copied: "Résumé de la demande copié.",
+      copyFailed: "Impossible de copier le résumé. Sélectionnez et copiez le texte ci-dessous.",
+      dayPlural: "jours",
+      daySingular: "jour",
+      decreaseQuantity: "Diminuer la quantité de {name}",
+      deleteNote: "Supprimer",
+      deleteNoteFor: "Supprimer la note : {title}",
+      deleteSentNote: "Supprimer",
+      deleteSentNoteFor: "Supprimer la note envoyée à {recipient}",
+      deliveryChannel: "Mode d'envoi",
+      demoUser: "Utilisateur démo",
+      description: "Description",
+      descriptionError: "Veuillez décrire le problème.",
+      descriptionHelp: "Donnez suffisamment de détails pour nous aider à comprendre le problème.",
+      donationDuplicateError: "Un article portant ce nom figure déjà dans l'inventaire.",
+      donationError: "Saisissez le nom de l'article donné.",
+      donationLogged: "{actor} a enregistré un don : +{quantity} unités de {name}.",
+      editedResentTimestamp: "Modifiée et renvoyée : {time}",
+      editedTimestamp: "Modifiée : {time}",
+      editNote: "Modifier",
+      editResendNote: "Modifier et renvoyer",
+      emailAddress: "Adresse e-mail",
+      emailChannel: "E-mail",
+      emailError: "Saisissez une adresse e-mail valide pour le suivi.",
+      emailReply: "E-mail",
+      emailVisibility: "Visibilité de l'e-mail",
+      features: "Caractéristiques",
+      fellowVolunteer: "Autre bénévole",
+      followUpPreference: "Préférence de suivi",
+      fork: "Fourchette",
+      formError: "Veuillez vérifier les champs signalés.",
+      generalPriority: "Générale",
+      grater: "Râpe",
+      handoffError: "Choisissez un bénévole disponible et saisissez un message.",
+      handoffGeneral: "générale",
+      handoffMessage: "Message",
+      handoffPriority: "Priorité",
+      handoffReceipt: "Note {priority} enregistrée pour {recipient} via {channel} à {time} : {message} Cette démonstration n'envoie aucun message.",
+      handoffReceiptChannel: "Mode d'envoi : {channel}",
+      handoffReceiptEditedResent: "Identifiant : {reference} · Modifiée et renvoyée : {time}",
+      handoffReceiptHeading: "Note de relève enregistrée",
+      handoffReceiptMessage: "Message : cliquez sur « Voir les notes envoyées » ci-dessus pour lire le message complet.",
+      handoffReceiptNote: "Prototype de démonstration — aucun e-mail ou SMS réel n'est envoyé.",
+      handoffReceiptPriority: "Priorité : {priority}",
+      handoffReceiptRecipient: "Destinataire : {recipient}",
+      handoffReceiptSender: "Expéditeur : {sender}",
+      handoffReceiptSent: "Identifiant : {reference} · Envoyée : {time}",
+      handoffResent: "{actor} a modifié et renvoyé une note de relève {priority} à {recipient} via {channel}.",
+      handoffSaveError: "La note envoyée n'a pas pu être enregistrée dans ce navigateur.",
+      handoffSent: "{actor} a envoyé une note de relève {priority} à {recipient} via {channel}.",
+      handoffUrgent: "urgente",
+      hiddenAdminOnly: "Caché pour les bénévoles (administrateur uniquement)",
+      increaseQuantity: "Augmenter la quantité de {name}",
+      initialQuantity: "Quantité initiale",
+      inventoryReset: "Inventaire de démonstration réinitialisé.",
+      inventorySaveError: "Les modifications de l'inventaire n'ont pas pu être enregistrées dans ce navigateur.",
+      issueCategory: "Catégorie du problème",
+      itemDonationMerged: "{actor} a ajouté {quantity} unités données à {name} ; nouveau total : {total}.",
+      itemName: "Nom de l'article",
+      itemQuantityUpdated: "{actor} a modifié {name} de {from} à {quantity} unités.",
+      itemRestockUpdated: "{actor} a modifié le délai de réapprovisionnement de {name} à {days} jours.",
+      itemRestockUpdatedOne: "{actor} a modifié le délai de réapprovisionnement de {name} à {days} jour.",
+      jar: "Bocal",
+      knife: "Couteau",
+      largeBowl: "Grand bol",
+      microwave: "Micro-ondes",
+      microwaveSafeBowl: "Bol adapté au micro-ondes",
+      microwaveSafePlate: "Assiette adaptée au micro-ondes",
+      noInventoryMatches: "Aucun article d'inventaire ne correspond à ce filtre.",
+      noteCardBody: "Texte de la note :",
+      noteCardDate: "Date et heure : {timestamp}",
+      noteCardTitle: "Titre : {title}",
+      noteTitle: "Titre de la note (facultatif)",
+      noteTitlePlaceholder: "Ajoutez un titre (ou laissez vide pour Note 1, Note 2...)",
+      otherRoleOptional: "Précisez votre rôle (facultatif)",
+      oven: "Four",
+      overHourBaking: "Recettes de pâtisserie de plus d'une heure",
+      overHourRecipes: "Recettes de plus d'une heure",
+      pantryAdmin: "Administrateur de la pantry",
+      phoneError: "Saisissez un numéro de téléphone pour le suivi.",
+      phoneNumber: "Numéro de téléphone",
+      phoneReply: "Téléphone / SMS",
+      phoneVisibility: "Visibilité du numéro de téléphone",
+      photoScanNotice: "Bientôt disponible : utilisez l'appareil photo de votre téléphone pour photographier les étagères et mettre automatiquement les quantités à jour. Vérifiez toujours les quantités manuellement ; le scan peut comporter des erreurs.",
+      pieDish: "Moule à tarte",
+      pot: "Casserole",
+      priority: "Priorité",
+      priorityStandard: "Standard",
+      priorityUrgent: "Urgente",
+      privacyConsent: "Vous contrôlez la façon dont vos coéquipiers peuvent vous contacter. Ces préférences aident à éviter les contacts indésirables. Vos coordonnées ne sont visibles que par les groupes de bénévoles que vous choisissez ; les administrateurs peuvent y accéder pour la coordination.",
+      privacyError: "Les préférences de confidentialité n'ont pas pu être enregistrées.",
+      privacySaved: "Préférences de confidentialité enregistrées.",
+      prototypeDisclaimerTitle: "Prototype uniquement :",
+      quantityFor: "Quantité de {name}",
+      quantityRestockSummary: "Quantité : {quantity} {unit} | Réapprovisionnement prévu dans {days} {dayUnit}",
+      quantitySummary: "Quantité : {quantity} unités",
+      quantitySummaryOne: "Quantité : {quantity} unité",
+      ramekins: "Ramequins",
+      recipientType: "Type de destinataire",
+      referenceId: "Identifiant de référence",
+      relatedItem: "Article ou section concerné (facultatif)",
+      relatedPlaceholder: "ex. farine de maïs Maseca ou filtres Micro-ondes uniquement",
+      restockEta: "Délai de réapprovisionnement en jours",
+      roleClient: "Client de la pantry",
+      roleError: "Veuillez sélectionner votre rôle.",
+      roleOther: "Autre",
+      rolePartner: "Partenaire communautaire / Donateur",
+      roleVolunteer: "Bénévole",
+      rollingPin: "Rouleau à pâtisserie",
+      saveChanges: "Enregistrer les modifications",
+      savedNotesEmpty: "Aucune note enregistrée pour le moment.",
+      saveResendNote: "Enregistrer et renvoyer",
+      scratchpadError: "La note n'a pas pu être enregistrée dans ce navigateur.",
+      scratchpadLabel: "Rappels privés pour ce quart",
+      scratchpadPlaceholder: "Vous seul pouvez voir ces rappels dans ce navigateur.",
+      scratchpadSaved: "Note enregistrée en privé dans ce navigateur.",
+      searchLetterNoMatch: "Aucun {name} commençant par {letter} ne correspond à votre recherche et à vos filtres.",
+      searchNoMatch: "Aucun {name} ne correspond à votre recherche et à vos filtres. Essayez de modifier vos choix.",
+      seedAlmondMilkOut: "Priya S. a marqué le lait d'amande (en boîte) comme étant en rupture de stock (réapprovisionnement : 1 jour).",
+      seedBlackBeansUpdate: "Marcus T. a modifié les haricots noirs (en conserve) de 14 à 22 unités.",
+      seedBrownRiceDonation: "Elena R. a enregistré un nouveau don : +12 unités de riz brun.",
+      seedCoolerHandoff: "David K. a envoyé une note de relève urgente à l'administrateur au sujet de l'espace dans le réfrigérateur.",
+      sentNoteChannel: "Mode d'envoi : {channel}",
+      sentNoteDate: "Date et heure : {timestamp}",
+      sentNoteMessage: "Message :",
+      sentNotePriority: "Priorité : {priority}",
+      sentNoteRecipient: "Destinataire : {recipient}",
+      sentNotesEmpty: "Aucune note envoyée pour le moment.",
+      sentNoteSender: "Expéditeur : {sender}",
+      setupKitchen: "Cuisine complète",
+      setupMicrowave: "Micro-ondes uniquement",
+      setupNoCook: "Sans cuisson / Article de pantry",
+      showingVolunteerItem: "1 article d'inventaire affiché.",
+      showingVolunteerItems: "{count} articles d'inventaire affichés.",
+      skilletOrComal: "Poêle ou comal",
+      spoon: "Cuillère",
+      stovetop: "Plaque de cuisson",
+      submitted: "Envoyée",
+      summaryCategory: "Catégorie",
+      summaryContact: "Contact",
+      summaryDescription: "Description",
+      summaryFollowUp: "Préférence de suivi",
+      summaryPriority: "Priorité",
+      summaryRelated: "Article ou section concerné",
+      summaryRole: "Rôle",
+      supportIntro: "Expliquez ce qui s'est passé. Ce prototype n'envoie ni n'enregistre les demandes ; il crée une confirmation locale à des fins de démonstration.",
+      textChannel: "SMS",
+      under15Recipes: "Recettes de moins de 15 minutes",
+      unitPlural: "unités",
+      unitSingular: "unité",
+      unknownVolunteer: "Un bénévole",
+      urgentNeeded: "Urgent — nécessaire avant le retrait d'aujourd'hui",
+      urgentPriority: "Urgente",
+      viewSavedNotes: "Voir les notes enregistrées ({count})",
+      viewSentNotes: "Voir les notes envoyées ({count})",
+      visibleCurrentShift: "Visible par le quart actuel uniquement",
+      visibleToday: "Visible par les bénévoles d'aujourd'hui",
+      volunteerDashboardNotice: "Inventaire de démonstration uniquement. Les modifications sont enregistrées dans ce navigateur et reflétées sur le portail client ; aucune connexion réelle à la pantry.",
+      volunteerDisclaimer: "Ceci est un prototype de portfolio frontend sans base de données backend active. Les adresses e-mail personnelles ne fonctionneront pas ; utilisez volunteer@lovepantry.org ou testing@umd.edu pour voir le tableau de bord.",
+      volunteerEmail: "E-mail du bénévole",
+      volunteerEmailError: "E-mail introuvable. Utilisez volunteer@lovepantry.org ou testing@umd.edu, puis sélectionnez « Remplir l'e-mail bénévole de démonstration » pour voir le portail.",
+      volunteerRecipient: "Bénévole destinataire",
+      volunteerSessionIdentityPrefix: "Après vous être connecté avec l'une des adresses e-mail de démonstration (volunteer@lovepantry.org ou testing@umd.edu), votre session active apparaîtra sur le portail sous le nom ",
+      volunteerSignedIn: "{actor} s'est connecté.",
+      volunteerSignedOut: "{actor} s'est déconnecté.",
+      whisk: "Fouet",
+      yourRole: "Votre rôle"
     }
   };
   window.siteTranslations = translations;
@@ -726,6 +1100,8 @@
   const sectionsDrawer = document.getElementById("sections-drawer");
   const settingsTrigger = document.getElementById("settings-toggle");
   const sectionsTrigger = document.getElementById("sections-trigger");
+  const languageTrigger = document.getElementById("language-trigger");
+  const languageMenu = document.getElementById("language-menu");
   let openedDrawerTrigger = null;
   let speechGeneration = 0;
   let speechQueue = [];
@@ -733,7 +1109,8 @@
   let voices = [];
   let currentChunk = null;
   let settingsRestartTimer = 0;
-  let currentLanguage = root.lang === "es" ? "es" : "en";
+  const supportedLanguages = ["en", "es", "fr"];
+  let currentLanguage = supportedLanguages.includes(root.lang) ? root.lang : "en";
   let autoVoiceName = null;
 
   function translated(key) {
@@ -754,10 +1131,11 @@
     });
   }
 
-  function applyLanguage(language, persist = true) {
-    currentLanguage = language === "es" ? "es" : "en";
-    root.lang = currentLanguage;
-    refreshVoices();
+    function applyLanguage(language, persist = true) {
+      currentLanguage = supportedLanguages.includes(language) ? language : "en";
+      root.lang = currentLanguage;
+      refreshVoices();
+
     document.querySelectorAll("[data-language]").forEach((button) => {
       button.setAttribute("aria-pressed", String(button.dataset.language === currentLanguage));
     });
@@ -777,15 +1155,53 @@
     document.querySelectorAll(".drawer-close").forEach((button) => {
       button.setAttribute("aria-label", translated(button.closest("#sections-drawer") ? "closeSections" : "closeSettings"));
     });
+
     document.querySelectorAll("#inventory-list > section > ul > li[aria-label]").forEach((item) => {
       const title = item.querySelector(":scope > strong")?.textContent.trim();
-      if (title) item.setAttribute("aria-label", `${currentLanguage === "es" ? "Leer en voz alta" : "Read aloud"}: ${title}`);
+      if (title) item.setAttribute("aria-label", `${translated("readAloud")}: ${title}`);
     });
-    document.querySelectorAll(".language-toggle").forEach((group) => {
-      group.setAttribute("aria-label", currentLanguage === "es" ? "Idioma" : "Language");
-    });
+      const activeOption = document.querySelector(`.language-option[data-language="${currentLanguage}"]`);
+      const triggerFlag = languageTrigger?.querySelector(".language-current-flag");
+      const triggerCode = languageTrigger?.querySelector(".language-current-code");
+      const optionSvg = activeOption?.querySelector("svg");
+      if (triggerFlag && optionSvg) triggerFlag.replaceChildren(optionSvg.cloneNode(true));
+      if (triggerCode) triggerCode.textContent = currentLanguage.toUpperCase();
+      languageTrigger?.setAttribute("aria-label", translated("language"));
+      languageTrigger?.addEventListener("click", () => {
+        const willOpen = languageMenu.hidden;
+        closeDrawers();
+        languageMenu.hidden = !willOpen;
+        languageTrigger.setAttribute("aria-expanded", String(willOpen));
+      });
+
+      document.querySelectorAll(".language-option").forEach((button) => {
+        button.addEventListener("click", () => {
+          applyLanguage(button.dataset.language);
+          if (languageMenu) languageMenu.hidden = true;
+          languageTrigger?.setAttribute("aria-expanded", "false");
+          languageTrigger?.focus();
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        if (languageMenu && !languageMenu.hidden && !event.target.closest(".language-dropdown")) {
+          languageMenu.hidden = true;
+          languageTrigger?.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && languageMenu && !languageMenu.hidden) {
+          languageMenu.hidden = true;
+          languageTrigger?.setAttribute("aria-expanded", "false");
+          languageTrigger?.focus();
+        }
+      });
+      
     if (persist) savePreference("a11y-lang", currentLanguage);
-    if (currentLanguage === "es" && voiceSelect && !voiceSelect.value) selectLanguageVoice("es");
+    if ((currentLanguage === "es" || currentLanguage === "fr") && voiceSelect && !voiceSelect.value) {
+      selectLanguageVoice(currentLanguage);
+    }
     if (currentLanguage === "en" && voiceSelect?.value === autoVoiceName) {
       voiceSelect.value = "";
       autoVoiceName = null;
@@ -922,6 +1338,19 @@
   setTextSize(root.dataset.textSize || "m", false);
   setTheme(root.dataset.theme || "default", false);
 
+  const backToTop = document.getElementById("back-to-top");
+  function updateBackToTop() {
+    if (backToTop) backToTop.hidden = window.scrollY <= 250;
+  }
+  backToTop?.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+    });
+  });
+  window.addEventListener("scroll", updateBackToTop, { passive: true });
+  updateBackToTop();
+
   const speechSupported = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
   const ttsSection = document.getElementById("tts-section");
   if (!speechSupported && ttsSection) ttsSection.hidden = true;
@@ -952,9 +1381,11 @@
     const selectedName = voiceSelect.value;
     const english = voices.filter((voice) => voice.lang.toLowerCase().startsWith("en"));
     const spanish = voices.filter((voice) => voice.lang.toLowerCase().startsWith("es"));
+    const french = voices.filter((voice) => voice.lang.toLowerCase().startsWith("fr"));
     voiceSelect.replaceChildren(new Option(translated("systemDefault"), ""));
-    const groups = [[currentLanguage === "es" ? "Inglés" : "English", english]];
+    const groups = [["English", english]];
     if (spanish.length) groups.push(["Español", spanish]);
+    if (french.length) groups.push(["Français", french]);
     for (const [label, groupVoices] of groups) {
       const group = document.createElement("optgroup");
       group.label = label;
@@ -963,7 +1394,9 @@
     }
     if (spanishVoiceNote) spanishVoiceNote.hidden = spanish.length > 0;
     if (voices.some((voice) => voice.name === selectedName)) voiceSelect.value = selectedName;
-    if (!selectedName && currentLanguage === "es") selectLanguageVoice("es");
+    if (!selectedName && (currentLanguage === "es" || currentLanguage === "fr")) {
+      selectLanguageVoice(currentLanguage);
+    }
   }
 
   function selectLanguageVoice(language) {
@@ -1029,9 +1462,13 @@
   }
 
   function currentGreeting() {
-    return currentLanguage === "es"
-      ? "Hola, bienvenido al rastreador de inventario de LOVE Pantry. Listo para ayudar."
-      : "Hi, welcome to the LOVE Pantry Inventory Tracker! Ready to help.";
+    if (currentLanguage === "es") {
+      return "Hola, bienvenido al rastreador de inventario de LOVE Pantry. Listo para ayudar.";
+    }
+    if (currentLanguage === "fr") {
+      return "Bonjour, bienvenue sur le suivi d'inventaire de LOVE Pantry. Prêt à vous aider.";
+    }
+    return "Hi, welcome to the LOVE Pantry Inventory Tracker! Ready to help.";
   }
 
   function restartSpeechWithUpdatedSettings() {
@@ -1226,6 +1663,122 @@
     "Maseca Corn Flour": "Harina de maíz Maseca",
     "Maseca corn flour": "Harina de maíz Maseca"
   }));
+  const catalogTitlesFr = new Map(Object.entries({
+    "Fruit Snack & Granola Bars": "Barres aux fruits et au granola",
+    "Applesauce Cups": "Compotes de pommes en portions",
+    "Apple rings": "Rondelles de pomme",
+    "Banana chips": "Chips de banane",
+    "Blueberries (dried)": "Myrtilles séchées",
+    "Cantaloupe (whole)": "Melon cantaloup entier",
+    Clementines: "Clémentines",
+    "Coconut flakes / shreds": "Noix de coco en flocons / râpée",
+    Currants: "Groseilles",
+    "Dates (Medjool, Deglet Noor)": "Dattes (Medjool, Deglet Noor)",
+    "Figs (Mission, Turkish)": "Figues (Mission, turques)",
+    "Goji berries": "Baies de goji",
+    Grapefruit: "Pamplemousse",
+    "Grapefruit segments (canned)": "Quartiers de pamplemousse en conserve",
+    "Honeydew melon (whole)": "Melon miel entier",
+    "Jackfruit (green in brine or sweet in syrup)": "Jacquier (vert en saumure ou sucré au sirop)",
+    "Lychees (canned)": "Litchis en conserve",
+    "Mandarin oranges (canned)": "Mandarines en conserve",
+    "Maraschino cherries": "Cerises au marasquin",
+    Oranges: "Oranges",
+    "Pears (canned slices or halves)": "Poires en conserve (moitiés ou tranches)",
+    "Pie fillings (apple, cherry, blueberry)": "Garnitures pour tarte (pomme, cerise, myrtille)",
+    "Pineapple chunks (dried)": "Morceaux d'ananas séchés",
+    "Pineapple slices, chunks, tidbits, or crushed (canned)": "Tranches, morceaux ou morceaux écrasés d'ananas en conserve",
+    Pomegranates: "Grenades",
+    "Prunes (dried plums)": "Pruneaux",
+    "Pumpkin puree (canned)": "Purée de citrouille en conserve",
+    "Watermelon (whole)": "Pastèque entière",
+    Apricots: "Abricots",
+    Avocados: "Avocats",
+    "Bay leaves": "Feuilles de laurier",
+    "Breadcrumbs (plain or panko)": "Chapelure (nature ou panko)",
+    "Cajun seasoning": "Assaisonnement cajun",
+    "Cayenne pepper": "Poivre de Cayenne",
+    Chard: "Blette",
+    "Chile powder": "Poudre de chili",
+    "Chiles (chipotles in adobo or pickled jalapenos)": "Piments (chipotles à l'adobo ou jalapeños marinés)",
+    Cookies: "Biscuits",
+    "Crushed red pepper": "Piment rouge broyé",
+    "Dill seed": "Graines d'aneth",
+    "Fennel seed": "Graines de fenouil",
+    Hominy: "Maïs hominy",
+    Jam: "Confiture",
+    Jelly: "Gelée",
+    Ketchup: "Ketchup",
+    Marshmallows: "Guimauves",
+    "Popcorn kernels": "Maïs à éclater",
+    Preserves: "Conserves de fruits",
+    Scallions: "Oignons verts",
+    Shells: "Pâtes coquilles",
+    "Soybean oil": "Huile de soja",
+    Tea: "Thé",
+    "Toasted sesame oil": "Huile de sésame grillé",
+    "Vanilla ice cream": "Crème glacée à la vanille",
+    "Walnut oil": "Huile de noix",
+    "Worcestershire sauce": "Sauce Worcestershire",
+    Baguette: "Baguette",
+    Coffee: "Café",
+    "Multi-grain cereal": "Céréales multigrains",
+    "Mediterranean Chickpea Salad": "Salade méditerranéenne de pois chiches",
+    "Fruit & Seed Energy Bowl": "Bol énergétique aux fruits et aux graines",
+    "Canned Chicken Salad Romaine Wraps": "Wraps de laitue romaine à la salade de poulet en conserve",
+    "Spicy Avocado & Cracker Mash": "Purée épicée d'avocat et de crackers",
+    "Anchovy & Garlic White Bean Salad": "Salade de haricots blancs aux anchois et à l'ail",
+    "Spicy Spam & Pickle Lettuce Boats": "Barquettes de laitue au Spam épicé et aux cornichons",
+    "Harvest Yogurt Breakfast Parfait": "Parfait déjeuner au yaourt et aux fruits de saison",
+    "Zesty Rice Cake & Bean Tostadas": "Tostadas relevées aux galettes de riz et aux haricots",
+    "Tropical Coconut Oatmeal Bowls": "Bols de flocons d'avoine tropicaux à la noix de coco",
+    "Crunch-Master Protein Snack Mix": "Mélange protéiné croustillant",
+    "Goat Cheese & Roasted Red Pepper Wraps": "Wraps au fromage de chèvre et aux poivrons rouges rôtis",
+    "Orchard Fruit & Nut Butter Crackers": "Crackers aux fruits du verger et au beurre de noix",
+    "Sweet Chili Canned Chicken Salad": "Salade de poulet en conserve au chili doux",
+    "Sweet & Savory Chia Seed Pudding": "Pudding de graines de chia sucré-salé",
+    "Mac & Cheese Cups": "Portions de macaronis au fromage",
+    "Canned Vegetable Soup": "Soupe de légumes en conserve",
+    "Microwave Mac and Cheese Up-grade": "Macaronis au fromage améliorés au micro-ondes",
+    "Easy Microwave Tuna & Pea Mac": "Macaronis faciles au thon et aux pois au micro-ondes",
+    "Microwave Loaded Canned Potato Chowder": "Chaudrée de pommes de terre garnie au micro-ondes",
+    "Steamed Curry Rice Mix with Chicken": "Mélange de riz au curry et au poulet cuit à la vapeur",
+    "Quick Sweet Agave Oatmeal": "Flocons d'avoine rapides et sucrés à l'agave",
+    "Warm Garlic & Herb Cannellini Beans": "Haricots cannellini chauds à l'ail et aux herbes",
+    "Microwave Cheesy Broccoli Rice Bowl": "Bol de riz au brocoli et au fromage au micro-ondes",
+    "Quick Microwave Polenta Porridge": "Bouillie de polenta rapide au micro-ondes",
+    "Microwave Sweet Potato & Black Bean Bowl": "Bol de patate douce et de haricots noirs au micro-ondes",
+    "Quick Steamed Couscous & Veggie Medley": "Couscous rapide cuit à la vapeur avec légumes variés",
+    "Microwave Poached Salmon/Fish-Style Tuna": "Saumon poché ou thon façon poisson au micro-ondes",
+    "Spaghetti & Pasta Sauce": "Spaghettis et sauce pour pâtes",
+    "Spam & Scallion Fried Rice": "Riz frit au Spam et aux oignons verts",
+    "Quick Egg Noodles with Garlic Butter": "Nouilles aux œufs rapides au beurre à l'ail",
+    "Savory Polenta with Mushrooms & Greens": "Polenta salée aux champignons et aux légumes verts",
+    "Quick Chili-Lime Ground Turkey Tacos": "Tacos rapides de dinde hachée au chili et au citron vert",
+    "Tomato Garlic Bruschetta Skillet": "Bruschetta à la tomate et à l'ail à la poêle",
+    "Quick Cinnamon Apple Puff Bites": "Bouchées rapides feuilletées à la pomme et à la cannelle",
+    "Fast Savory Cheddar Biscuits": "Biscuits salés rapides au cheddar",
+    "Quick Ground Turkey & Rice Skillet": "Poêlée rapide de dinde hachée et de riz",
+    "Creamy Tomato Shells": "Pâtes coquilles crémeuses à la tomate",
+    "Skillet Italian Sausage & Cannellini Beans": "Saucisse italienne et haricots cannellini à la poêle",
+    "Cajun Chicken & Brown Rice Casserole": "Gratin cajun de poulet et de riz complet",
+    "Potato and Green Bean Curry": "Curry de pommes de terre et de haricots verts",
+    "Easy Canned Peach Galette": "Galette facile aux pêches en conserve",
+    "Sweet Potato Puff Pastry Turnovers": "Chaussons feuilletés à la patate douce",
+    "Italian Sausage & Mozzarella Pizza Pockets": "Pochettes de pizza à la saucisse italienne et à la mozzarella",
+    "Classic Dry Black Bean Stew": "Ragoût classique de haricots noirs secs",
+    "Slow-Simmered Bolognese with Rotini": "Bolognaise mijotée aux rotinis",
+    "Scratch-Made Lentil Soup": "Soupe de lentilles faite maison",
+    "Red Beans and Rice with Sausage": "Haricots rouges, riz et saucisse",
+    "Slow-Simmered Chicken Bulgur Porridge": "Bouillie de boulgour au poulet mijotée",
+    "Old-Fashioned Baked Apple Crisp": "Croustillant aux pommes au four traditionnel",
+    "Three-Bean Savory Biscuit Casserole": "Gratin salé de trois haricots et de biscuits",
+    "Deep Dish Berry Pie from Scratch": "Tarte épaisse aux fruits rouges faite maison",
+    "Slow-Baked Pumpkin Custard Pots": "Petits flans de citrouille cuits lentement",
+    "Cheesy Polenta & Sausage Bake": "Gratin de polenta au fromage et à la saucisse",
+    "Maseca Corn Flour": "Farine de maïs Maseca",
+    "Maseca corn flour": "Farine de maïs Maseca"
+  }));
   const catalogTermsEs = new Map(Object.entries({
     "Black beans": "frijoles negros", "white beans": "frijoles blancos", "kidney beans": "frijoles rojos",
     "pinto beans": "frijoles pintos", "navy beans": "frijoles blancos pequeños", "green beans": "ejotes",
@@ -1321,14 +1874,161 @@
     "pouch": "bolsa", "pouches": "bolsas", "cup": "vasito", "cups": "vasitos", "bag": "bolsa",
     "jar": "frasco", "about": "aproximadamente", "minutes": "minutos", "servings": "porciones", "units": "unidades", "unit": "unidad"
   }));
+  const catalogTermsFr = new Map(Object.entries({
+    "Black beans": "haricots noirs", "white beans": "haricots blancs", "kidney beans": "haricots rouges",
+    "pinto beans": "haricots pinto", "navy beans": "haricots blancs lingots", "green beans": "haricots verts",
+    "cannellini beans": "haricots cannellini", "chickpeas": "pois chiches", "lentils": "lentilles",
+    "refried beans": "haricots frits", "rice noodles": "nouilles de riz", "egg noodles": "nouilles aux œufs",
+    "whole grain pasta": "pâtes complètes", "spaghetti": "spaghettis", "rotini": "rotinis", "polenta": "polenta",
+    "couscous": "couscous", "bulgur": "boulgour", "brown rice": "riz complet", "white rice": "riz blanc",
+    "rice mixes": "mélanges de riz", "oatmeal": "flocons d'avoine", "rolled oats": "flocons d'avoine",
+    "granola bars": "barres de granola", "fruit snack": "collation aux fruits", "applesauce": "compote de pommes",
+    "apple": "pomme", "apples": "pommes", "banana": "banane", "bananas": "bananes", "pears": "poires",
+    "pear": "poire", "peaches": "pêches", "peach": "pêche", "pineapple": "ananas", "mango": "mangue",
+    "mangos": "mangues", "oranges": "oranges", "orange": "orange", "lemons": "citrons", "lemon": "citron",
+    "limes": "citrons verts", "lime": "citron vert", "grapefruit": "pamplemousse", "grapes": "raisins",
+    "cherries": "cerises", "cherry": "cerise", "berries": "fruits rouges", "blueberries": "myrtilles",
+    "strawberries": "fraises", "watermelon": "pastèque", "pumpkin": "citrouille",
+    "sweet potatoes": "patates douces", "potatoes": "pommes de terre", "potato": "pomme de terre",
+    "yams": "ignames", "tomatoes": "tomates", "tomato": "tomate", "onions": "oignons", "onion": "oignon",
+    "garlic": "ail", "garlic powder": "ail en poudre", "ground garlic": "ail en poudre", "broccoli": "brocoli", "carrots": "carottes", "cauliflower": "chou-fleur",
+    "celery": "céleri", "spinach": "épinards", "kale": "chou kale", "lettuce": "laitue", "greens": "feuilles vertes",
+    "mushrooms": "champignons", "mushroom": "champignon", "bell peppers": "poivrons", "peppers": "piments",
+    "corn": "maïs", "peas": "petits pois", "mixed vegetables": "légumes mélangés", "chicken": "poulet",
+    "turkey": "dinde", "beef": "bœuf", "sausage": "saucisse", "bacon": "bacon", "tuna": "thon",
+    "salmon": "saumon", "anchovy": "anchois", "spam": "Spam", "eggs": "œufs", "milk": "lait",
+    "yogurt": "yaourt", "cheddar": "cheddar", "mozzarella": "mozzarella", "goat cheese": "fromage de chèvre",
+    "parmesan": "parmesan", "cheese": "fromage", "butter": "beurre", "unsalted butter": "beurre doux", "flour": "farine", "corn flour": "farine de maïs",
+    "bread": "pain", "biscuits": "biscuits", "crackers": "crackers", "tortillas": "tortillas",
+    "puff pastry": "pâte feuilletée", "pie dough": "pâte à tarte", "pizza dough": "pâte à pizza",
+    "chocolate": "chocolat", "cocoa powder": "cacao en poudre", "sugar": "sucre", "honey": "miel",
+    "agave syrup": "sirop d'agave", "maple syrup": "sirop d'érable", "coconut milk": "lait de coco",
+    "almond milk": "lait d'amande", "oat milk": "lait d'avoine", "olive oil": "huile d'olive",
+    "vegetable oil": "huile végétale", "vinegar": "vinaigre", "soy sauce": "sauce soja", "mayonnaise": "mayonnaise",
+    "mustard": "moutarde", "salsa": "salsa", "pickles": "cornichons", "olives": "olives", "capers": "câpres",
+    "cilantro": "coriandre", "parsley": "persil", "basil": "basilic", "oregano": "origan", "thyme": "thym",
+    "rosemary": "romarin", "cinnamon": "cannelle", "cumin": "cumin", "paprika": "paprika",
+    "chili powder": "poudre de chili", "Chile powder": "poudre de chili", "black pepper": "poivre noir", "salt": "sel", "ginger": "gingembre",
+    "curry powder": "curry en poudre", "sunflower seeds": "graines de tournesol", "chia seeds": "graines de chia",
+    "flax seeds": "graines de lin", "hemp seeds": "graines de chanvre", "sesame seeds": "graines de sésame",
+    "pecans": "noix de pécan", "walnuts": "noix", "almonds": "amandes", "raisins": "raisins secs",
+    "pretzels": "bretzels", "chicken broth": "bouillon de poulet", "ground beef": "bœuf haché",
+    "bay leaves": "feuilles de laurier", "cayenne pepper": "poivre de Cayenne", "crushed red pepper": "piment rouge broyé",
+    "dill seed": "graines d'aneth", "fennel seed": "graines de fenouil", "soybean oil": "huile de soja",
+    "sesame oil": "huile de sésame", "walnut oil": "huile de noix", "worcestershire sauce": "sauce Worcestershire",
+    "bread crumbs": "chapelure", "breadcrumbs": "chapelure", "cajun seasoning": "assaisonnement cajun",
+    "cayenne": "cayenne", "chard": "blette", "hominy": "maïs hominy", "jam": "confiture", "jelly": "gelée",
+    "ketchup": "ketchup", "marshmallows": "guimauves", "popcorn kernels": "maïs à éclater",
+    "preserves": "conserves", "scallions": "oignons verts", "shells": "pâtes coquilles", "tea": "thé",
+    "vanilla ice cream": "glace à la vanille", "baguette": "baguette", "coffee": "café",
+    "multi-grain cereal": "céréales multigrains", "quinoa": "quinoa", "apricots": "abricots", "avocados": "avocats",
+    "cookies": "biscuits", "chiles": "piments", "farro": "épeautre", "main course": "plat principal",
+    "side dish": "accompagnement", "light meal": "repas léger", "breakfast": "petit-déjeuner", "dessert": "dessert",
+    "snack": "collation", "meal": "repas", "soup": "soupe", "fruit": "fruit", "salad": "salade", "pasta": "pâtes",
+    "large": "grand", "deep": "profond", "plastic": "plastique", "wrapper": "emballage",
+    "includes plastic forks/napkins": "comprend des fourchettes et serviettes en plastique",
+    "easy-open packaging varies by product": "l'emballage facile à ouvrir varie selon le produit",
+    "commonly used for cooking or baking": "souvent utilisé pour cuisiner ou pâtisser",
+    "commonly used for baking": "souvent utilisé pour pâtisser", "does not require cooking": "ne nécessite pas de cuisson",
+    "microwave to prepare": "à préparer au micro-ondes", "not a ready-to-eat item": "ce n'est pas un produit prêt à manger",
+    "peel by hand": "se pèle à la main", "whole fruit": "fruit entier", "restock expected in": "réapprovisionnement prévu dans",
+    "days": "jours", "day": "jour", "black peppercorns": "grains de poivre noir", "fine salt": "sel fin",
+    "kosher salt": "sel casher", "granulated garlic": "ail granulé", "ground cinnamon": "cannelle moulue",
+    "ground cloves": "clous de girofle moulus", "ground cumin": "cumin moulu", "extra virgin olive oil": "huile d'olive extra vierge",
+    "coconut flakes": "noix de coco en flocons", "flat-leaf parsley": "persil plat", "canned peaches": "pêches en conserve",
+    "canned chicken": "poulet en conserve", "canned vegetable soup": "soupe de légumes en conserve", "rice cake": "galette de riz",
+    "fruit snack pouches": "gourdes de collation aux fruits", "mixed fruit cans": "boîtes de fruits mélangés",
+    "oatmeal bars": "barres d'avoine", "crispy rice": "riz soufflé", "cornflakes": "flocons de maïs",
+    "red beans": "haricots rouges", "cherry tomatoes": "tomates cerises", "roasted red peppers": "poivrons rouges rôtis",
+    "brown sugar": "cassonade", "granulated sugar": "sucre granulé", "balsamic vinegar": "vinaigre balsamique",
+    "apple cider vinegar": "vinaigre de cidre", "hot sauce": "sauce piquante", "fish sauce": "sauce de poisson",
+    "tomato paste": "concentré de tomate", "tomato sauce": "sauce tomate", "tomato puree": "purée de tomate",
+    "pumpkin puree": "purée de citrouille", "evaporated milk": "lait évaporé", "cream of tartar": "crème de tartre",
+    "baking powder": "levure chimique", "baking soda": "bicarbonate de soude", "can opener": "ouvre-boîte",
+    "microwave-safe bowl": "bol adapté au micro-ondes", "microwave-safe plate": "assiette adaptée au micro-ondes",
+    "baking sheet": "plaque de cuisson", "rolling pin": "rouleau à pâtisserie", "skillet": "poêle", "spoon": "cuillère",
+    "knife": "couteau", "fork": "fourchette", "bowl": "bol", "whisk": "fouet", "oven": "four", "microwave": "micro-ondes",
+    "stovetop": "plaque de cuisson", "none needed": "aucun nécessaire", "tool needed": "ustensile nécessaire",
+    "may be needed": "peut être nécessaire", "ready to eat": "prêt à manger", "ready-to-eat": "prêt à manger",
+    "after opening": "après ouverture", "pull-tab lid": "couvercle à languette", "soft food": "aliment mou",
+    "easy-open packaging": "emballage facile à ouvrir", "no cooking appliance needed": "aucun appareil de cuisson requis",
+    "microwave-friendly": "adapté au micro-ondes", "dry": "sec", "dried": "séché", "whole": "entier", "fresh": "frais",
+    "canned": "en conserve", "frozen": "surgelé", "box": "boîte", "boxed": "en boîte", "pouch": "sachet",
+    "pouches": "sachets", "cup": "portion", "cups": "portions", "bag": "sac", "jar": "bocal", "about": "environ",
+    "minutes": "minutes", "servings": "portions", "units": "unités", "unit": "unité",
+    "Type": "Catégorie", "Packaging": "Emballage", "Note": "Remarque", "Equipment needed": "Équipement requis",
+    "Preparation time": "Temps de préparation", "Ingredients": "Ingrédients", "Features": "Caractéristiques",
+    "Ready to eat / no cooking needed": "Prêt à manger / sans cuisson", "Soft food": "Aliment mou",
+    "Includes eating utensils": "Comprend des couverts", "Easy-open packaging (pull-tab lid)": "Emballage facile à ouvrir (languette)",
+    "Oven / baking only": "Four / cuisson au four uniquement", "Ready-to-eat wrapper": "Emballage prêt à manger",
+    "None": "Aucun", "None needed": "Aucun nécessaire", "About": "Environ",
+    "requires": "nécessite", "remove pits if present": "retirer les noyaux s'ils sont présents",
+    "anchovy fillets": "filets d'anchois", "paste": "pâte", "plain yogurt": "yaourt nature",
+    "regular": "nature", "Greek": "grec", "apple rings": "rondelles de pomme", "currants": "groseilles",
+    "dried cranberries": "canneberges séchées", "uses": "utilise", "quick oats": "flocons d'avoine rapides",
+    "Optimized for temporary housing or quick meals requiring minimal cooking tools.": "Optimisé pour les logements temporaires ou les repas rapides nécessitant peu d'ustensiles de cuisine.",
+    "Can": "Conserve", "no can opener tool needed": "aucun ouvre-boîte nécessaire", "cooked": "cuit",
+    "Cooked or": "Cuits ou", "dry beans must be cooked ahead": "les haricots secs doivent être cuits à l'avance",
+    "warmed with lemon and herbs": "réchauffé avec du citron et des herbes", "it is not poached fish": "ce n'est pas du poisson poché",
+    "microwave-safe": "adapté au micro-ondes", "pie dish": "moule à tarte", "shallow": "peu profond",
+    "Appetizer": "Hors-d'œuvre", "baking dish": "plat de cuisson", "casserole dish": "plat à gratin",
+    "pot": "casserole", "ramekins or baking dish": "ramequins ou plat de cuisson", "Baking soda": "bicarbonate de soude",
+    "Baking powder": "levure chimique", "Fruit snack pouches": "gourdes de collation aux fruits",
+    "Dynamic bulk family combo": "combinaison familiale en vrac modulable", "Grains/Sauce": "Céréales/Sauce",
+    "Can/fresh": "En conserve/frais", "ground ginger": "gingembre moulu", "ground turkey": "dinde hachée",
+    "rice vinegar": "vinaigre de riz", "chicken breast": "blanc de poulet", "chicken breasts": "blancs de poulet",
+    "boneless, skinless chicken breasts (freezer)": "blancs de poulet désossés et sans peau (congélation)",
+    "Boneless, skinless": "Désossés et sans peau", "freezer": "congélation", "Asian": "asiatique",
+    "Asian fish sauce": "sauce de poisson asiatique", "crackers": "biscuits salés", "Grape tomatoes": "tomates raisins",
+    "sweet": "doux", "smoked": "fumé", "cherry": "cerise", "watermelon": "pastèque", "potato": "pomme de terre",
+    "onion": "oignon", "cauliflower": "chou-fleur", "lettuce": "laitue", "bell peppers": "poivrons",
+    "mixed vegetables": "légumes mélangés", "sausage": "saucisse", "spam": "Spam", "mozzarella": "mozzarella",
+    "cheese": "fromage", "mayonnaise": "mayonnaise", "olives": "olives", "basil": "basilic",
+    "cinnamon": "cannelle", "black pepper": "poivre noir", "sunflower seeds": "graines de tournesol",
+    "hemp seeds": "graines de chanvre", "walnuts": "noix", "chicken broth": "bouillon de poulet",
+    "crushed red pepper": "piment rouge broyé", "fennel seed": "graines de fenouil",
+    "worcestershire sauce": "sauce Worcestershire", "breadcrumbs": "chapelure", "chard": "blette",
+    "tea": "thé", "coffee": "café", "apricots": "abricots", "chiles": "piments",
+    "main course": "plat principal", "breakfast": "petit-déjeuner", "soup": "soupe",
+    "does not require cooking": "ne nécessite pas de cuisson", "not a ready-to-eat item": "ce n'est pas un produit prêt à manger",
+    "restock expected in": "réapprovisionnement prévu dans", "black peppercorns": "grains de poivre noir",
+    "granulated garlic": "ail granulé", "ground cumin": "cumin moulu", "canned peaches": "pêches en conserve",
+    "canned vegetable soup": "soupe de légumes en conserve", "cherry tomatoes": "tomates cerises",
+    "balsamic vinegar": "vinaigre balsamique", "hot sauce": "sauce piquante", "tomato sauce": "sauce tomate",
+    "evaporated milk": "lait évaporé", "can opener": "ouvre-boîte", "microwave-safe plate": "assiette adaptée au micro-ondes",
+    "rolling pin": "rouleau à pâtisserie", "fork": "fourchette", "ready-to-eat": "prêt à manger",
+    "soft food": "aliment mou", "no cooking appliance needed": "aucun appareil de cuisson requis",
+    "dry": "sec", "pouch": "sachet", "jar": "bocal", "or": "ou", "and": "et", "with": "avec", "for": "pour"
+  }));
+
+  function getCatalogTitle(map, value) {
+    if (map.has(value)) return map.get(value);
+    const normalizedValue = value.toLocaleLowerCase();
+    for (const [sourceTitle, translatedTitle] of map) {
+      if (sourceTitle.toLocaleLowerCase() === normalizedValue) return translatedTitle;
+    }
+    return null;
+  }
 
   function translateCatalogText(value) {
-    if (currentLanguage !== "es") return value;
-    if (catalogTitlesEs.has(value)) return catalogTitlesEs.get(value);
-    const terms = [...catalogTermsEs.entries()].sort((first, second) => second[0].length - first[0].length);
+    if (currentLanguage === "en") return value;
+    if (currentLanguage === "es") {
+      const translatedTitle = getCatalogTitle(catalogTitlesEs, value);
+      if (translatedTitle) return translatedTitle;
+    }
+    if (currentLanguage === "fr") {
+      const translatedTitle = getCatalogTitle(catalogTitlesFr, value);
+      if (translatedTitle) return translatedTitle;
+    }
+    const terms = [...(currentLanguage === "fr" ? catalogTermsFr : catalogTermsEs).entries()]
+      .sort((first, second) => second[0].length - first[0].length);
     const alternatives = terms.map(([english]) => english.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-    const lookup = new Map(terms.map(([english, spanish]) => [english.toLowerCase(), spanish]));
+    const lookup = new Map(terms.map(([english, translatedText]) => [english.toLowerCase(), translatedText]));
     return value.replace(new RegExp(`\\b(${alternatives.join("|")})\\b`, "gi"), (match) => lookup.get(match.toLowerCase()) || match);
+  }
+
+  function capitalizeCatalogTitle(value) {
+    return value ? value.charAt(0).toLocaleUpperCase() + value.slice(1) : value;
   }
 
   function translatePortalCards() {
@@ -1338,23 +2038,30 @@
       if (!title) return;
       const sourceTitle = item.dataset.sourceTitle || title.textContent.trim();
       item.dataset.sourceTitle = sourceTitle;
-      const spanishTitle = catalogTitlesEs.get(sourceTitle) || translateCatalogText(sourceTitle);
-      title.textContent = currentLanguage === "es" ? spanishTitle : sourceTitle;
-      item.dataset.searchText = `${sourceTitle} ${spanishTitle}`.toLocaleLowerCase();
+      const translatedTitle = currentLanguage === "es"
+        ? getCatalogTitle(catalogTitlesEs, sourceTitle) || sourceTitle
+        : currentLanguage === "fr"
+          ? capitalizeCatalogTitle(getCatalogTitle(catalogTitlesFr, sourceTitle) || translateCatalogText(sourceTitle))
+          : sourceTitle;
+      const spanishTitle = getCatalogTitle(catalogTitlesEs, sourceTitle) || sourceTitle;
+      const frenchTitle = capitalizeCatalogTitle(getCatalogTitle(catalogTitlesFr, sourceTitle) || translateCatalogText(sourceTitle));
+      title.textContent = translatedTitle;
+      item.dataset.searchText = `${sourceTitle} ${spanishTitle} ${frenchTitle}`.toLocaleLowerCase();
       item.dataset.searchNameEn = sourceTitle;
       item.dataset.searchNameEs = spanishTitle;
+      item.dataset.searchNameFr = frenchTitle;
 
       item.querySelectorAll(":scope > .stock-detail").forEach((detail) => {
         const sourceValue = detail.dataset.sourceValue || detail.textContent.trim();
         detail.dataset.sourceValue = sourceValue;
-        detail.textContent = currentLanguage === "es" ? translateCatalogText(sourceValue) : sourceValue;
+        detail.textContent = currentLanguage === "en" ? sourceValue : translateCatalogText(sourceValue);
       });
 
       item.querySelectorAll(":scope > .item-details > .item-detail").forEach((detail) => {
         if (detail.querySelector("[data-i18n^='feature']")) return;
         const value = detail.dataset.sourceValue || detail.lastChild?.textContent.trim() || "";
         detail.dataset.sourceValue = value;
-        const translatedValue = currentLanguage === "es" ? translateCatalogText(value) : value;
+        const translatedValue = currentLanguage === "en" ? value : translateCatalogText(value);
         if (detail.lastChild?.nodeType === Node.TEXT_NODE && detail.querySelector("strong")) {
           detail.lastChild.textContent = ` ${translatedValue}`;
         } else if (!detail.querySelector("strong")) {
@@ -1412,7 +2119,7 @@
             entry.className = "item-detail";
             const label = document.createElement("strong");
             label.dataset.i18n = "featuresLabel";
-            label.textContent = "Features:";
+            label.textContent = translated("featuresLabel");
             entry.append(label, document.createTextNode(" "));
             features.split(", ").forEach((feature, index) => {
               if (index) entry.append(document.createTextNode(", "));
@@ -1432,7 +2139,7 @@
               const labelText = part.slice(0, colon + 1);
               const labelKey = detailLabelKeys.get(labelText);
               if (labelKey) label.dataset.i18n = labelKey;
-              label.textContent = labelText;
+              label.textContent = labelKey ? translated(labelKey) : labelText;
               const value = part.slice(colon + 1).trim();
               entry.dataset.sourceValue = value;
               entry.append(label, document.createTextNode(` ${value}`));
@@ -1451,7 +2158,7 @@
       if (!item.hasAttribute("tabindex")) item.tabIndex = 0;
       if (!item.hasAttribute("aria-label")) {
         const title = item.querySelector(":scope > strong")?.textContent.trim();
-        if (title) item.setAttribute("aria-label", currentLanguage === "es" ? `Leer en voz alta: ${title}` : `Read aloud: ${title}`);
+        if (title) item.setAttribute("aria-label", `${translated("readAloud")}: ${title}`);
       }
     });
   }
@@ -2173,8 +2880,12 @@
     }
 
     function rosterName(email) {
-      if (email === "Demo User") return email;
+      if (email === "Demo User") return translated("demoUser");
       return shiftTeam.find((person) => person.email === email)?.name || email;
+    }
+
+    function displayVolunteerName(name) {
+      return name === "Demo User" ? translated("demoUser") : name;
     }
 
     function readPrivacyPreferences() {
@@ -2460,7 +3171,7 @@
         { reference: note.referenceId, time: wasResent ? note.editedAt : note.timestamp }
       );
       const details = [
-        formatText("handoffReceiptSender", { sender: note.sender }),
+        formatText("handoffReceiptSender", { sender: displayVolunteerName(note.sender) }),
         formatText("handoffReceiptRecipient", { recipient }),
         formatText("handoffReceiptChannel", { channel }),
         formatText("handoffReceiptPriority", { priority }),
@@ -2497,7 +3208,7 @@
         const title = document.createElement("h4");
         title.textContent = translated("handoffHeading");
         const sender = document.createElement("p");
-        sender.textContent = formatText("sentNoteSender", { sender: note.sender });
+        sender.textContent = formatText("sentNoteSender", { sender: displayVolunteerName(note.sender) });
         const recipientName = note.recipientType === "admin" ? translated("pantryAdmin") : note.recipientName;
         const recipient = document.createElement("p");
         recipient.textContent = formatText("sentNoteRecipient", {
@@ -2623,7 +3334,7 @@
     function matchesFilter(item) {
       const quantity = Math.max(0, Number(item.quantity) || 0);
       const searchTerm = searchInput.value.trim().toLocaleLowerCase();
-      const displayName = translateCatalogText(item.name);
+      const displayName = capitalizeCatalogTitle(translateCatalogText(item.name));
       const matchesSearch = `${item.name} ${displayName}`.toLocaleLowerCase().includes(searchTerm);
       const matchesStock = activeFilter === "all" ||
         (activeFilter === "instock" && quantity > 0) ||
@@ -2637,7 +3348,7 @@
       visibleItems.forEach((item) => {
         const quantity = Math.max(0, Number(item.quantity) || 0);
         const inStock = quantity > 0;
-        const displayName = translateCatalogText(item.name);
+        const displayName = capitalizeCatalogTitle(translateCatalogText(item.name));
         const card = document.createElement("article");
         card.className = "volunteer-item-card";
         card.dataset.stock = inStock ? "instock" : "out";
@@ -2738,7 +3449,7 @@
     function loadInventory() {
       inventoryState = readInventory();
       if (!inventoryStored || inventoryNeedsMigration) persistInventory();
-      document.getElementById("volunteer-signed-in-email").textContent = "Demo User";
+      document.getElementById("volunteer-signed-in-email").textContent = translated("demoUser");
       sectionsTrigger.hidden = false;
       login.hidden = true;
       dashboard.hidden = false;
