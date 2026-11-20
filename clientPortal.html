@@ -142,10 +142,12 @@
     </nav>
   </header>
 
+  <p class="daily-sync-notice" role="note" data-i18n="dailySyncNotice">Inventory is updated once daily at closing hours and reflects an evening estimate for next-day visitors—not live minute-by-minute stock.</p>
+
   <section class="page-intro" aria-labelledby="portal-title">
     <a class="back-home" href="index.html"><span aria-hidden="true">← </span><span data-i18n="backHome">Back to Home</span></a>
     <h1 id="portal-title" data-i18n="clientPortal">Client Portal</h1>
-    <p data-i18n="prototypeNotice">This prototype shows illustrative quantities and availability, not live inventory. Cooking setup and preparation time depend on the recipe.</p>
+    <p data-i18n="prototypeNotice">Browse current pantry items or filter meal ideas by your kitchen setup.</p>
     <nav class="portal-tab-links" aria-label="Client portal views" data-i18n-aria-label="portalViews">
       <a href="clientPortal.html" class="portal-tab-button" aria-current="page" data-i18n="viewInventory">View Inventory</a>
       <a href="recipes.html" class="portal-tab-button" data-i18n="mealIdeasRecipes">Meal Ideas &amp; Recipes</a>
@@ -519,6 +521,10 @@
   <footer>
     <p>L.O.V.E. Client Portal Interface Prototype | SMLP 470</p>
   </footer>
+
+  <button type="button" id="back-to-top" class="back-to-top" aria-label="Top" data-i18n-aria-label="backToTop" hidden>
+    <span aria-hidden="true">↑ </span><span data-i18n="backToTop">Top</span>
+  </button>
 
   <!-- JavaScript to handle filtering logic -->
   <script>

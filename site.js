@@ -13,6 +13,7 @@
       colorThemeGroup: "Color theme",
       settings: "Settings",
       sections: "Sections",
+      dailySyncNotice: "Inventory is updated once daily at closing hours and reflects an evening estimate for next-day visitors—not live minute-by-minute stock.",
       accessibilitySettings: "Accessibility Settings",
       closeSettings: "Close settings",
       closeSections: "Close sections",
@@ -50,14 +51,15 @@
       backHome: "Back to Home",
       backToTop: "Top",
       clientPortal: "Client Portal",
-      prototypeNotice: "This prototype shows illustrative quantities and availability, not live inventory. Cooking setup and preparation time depend on the recipe.",
+      prototypeNotice: "Browse current pantry items or filter meal ideas by your kitchen setup.",
+      recipeFilterNotice: "Filter recipes by cooking setup, kitchen tools, and prep time.",
       resetFilters: "Reset All Filters",
       sampleDataNotice: "All items, recipes, quantities, availability, and descriptions on this page are sample data and do not represent live items or inventory.",
       filterScopeNotice: "These filters apply to the cooking items and recipes shown, not the Available Ingredients or Out of Stock lists, which are controlled by their own respective filters.",
       cookingSetup: "Select Your Cooking Setup (Choose Only One):",
       showAllLayouts: "Show ALL Layouts",
       equipmentYouHave: "Equipment You Have:",
-      equipmentInstructions: "Check the tools you have. Items appear when you have all the tools they require. Leave all unchecked to show items regardless of their tool requirements.",
+      equipmentInstructions: "Check what you have (or leave blank for all).",
       preparationTime: "Preparation Time (Choose One):",
       showAllTimes: "Show All Preparation Times",
       under15: "Under 15 Minutes",
@@ -171,8 +173,7 @@
       fillDemoEmail: "Fill Demo Volunteer Email",
       signedInAs: "Signed in as",
       signOut: "Sign Out",
-      volunteerDashboardNotice: "Demo inventory only. Changes are saved in this browser and reflected on the Client Portal; there is no live pantry connection.",
-      photoScanNotice: "Coming soon: use your phone camera to photograph shelves and automatically update counts. Always double-check quantities manually; scanning can make mistakes.",
+      volunteerDashboardNotice: "Browser demo mode: edits save locally and sync with the Client Portal.",
       inventoryDashboard: "Inventory Dashboard",
       shiftTeamHeading: "Current & Today's Shift Team",
       inventorySaveError: "Inventory changes could not be saved in this browser.",
@@ -250,6 +251,8 @@
       privacyError: "Privacy preferences could not be saved.",
       currentShift: "Current Shift",
       todaysShift: "Today's Shift",
+      shiftOnFloorNow: "On Floor Now",
+      shiftLaterEarlierToday: "Later / Earlier Today",
       unitSingular: "unit",
       unitPlural: "units",
       daySingular: "day",
@@ -374,6 +377,7 @@
       colorThemeGroup: "Tema de color",
       settings: "Ajustes",
       sections: "Secciones",
+      dailySyncNotice: "El inventario se actualiza una vez al día al cierre y muestra una estimación nocturna para quienes visitan el día siguiente, no existencias en vivo minuto a minuto.",
       accessibilitySettings: "Ajustes de accesibilidad",
       closeSettings: "Cerrar ajustes",
       closeSections: "Cerrar secciones",
@@ -412,14 +416,15 @@
       backHome: "Volver al inicio",
       backToTop: "Arriba",
       clientPortal: "Portal para clientes",
-      prototypeNotice: "Este prototipo muestra cantidades y disponibilidad ilustrativas, no inventario en tiempo real. La preparación depende de la receta.",
+      prototypeNotice: "Explora los alimentos disponibles o filtra ideas de comidas según tu cocina.",
+      recipeFilterNotice: "Filtra las recetas por tipo de cocina, utensilios y tiempo de preparación.",
       resetFilters: "Restablecer todos los filtros",
       sampleDataNotice: "Los artículos, recetas, cantidades, disponibilidad y descripciones de esta página son datos de ejemplo y no representan inventario real.",
       filterScopeNotice: "Estos filtros se aplican a los alimentos y recetas, no a las listas de ingredientes disponibles o agotados, que tienen filtros propios.",
       cookingSetup: "Elija su método de cocina (solo uno):",
       showAllLayouts: "Mostrar todas las opciones",
       equipmentYouHave: "Equipo que tiene:",
-      equipmentInstructions: "Marque las herramientas que tiene. Los artículos aparecerán cuando tenga todas las herramientas necesarias. Deje todo sin marcar para mostrar todos los artículos.",
+      equipmentInstructions: "Marca lo que tienes (o déjalo en blanco para ver todo).",
       preparationTime: "Tiempo de preparación (elija uno):",
       showAllTimes: "Mostrar todos los tiempos",
       under15: "Menos de 15 minutos",
@@ -533,8 +538,7 @@
       fillDemoEmail: "Completar correo de voluntario de demostración",
       signedInAs: "Sesión iniciada como",
       signOut: "Cerrar sesión",
-      volunteerDashboardNotice: "Solo inventario de demostración. Los cambios se guardan en este navegador y se reflejan en el Portal para clientes; no hay conexión en vivo con la despensa.",
-      photoScanNotice: "Próximamente: use la cámara de su teléfono para fotografiar los estantes y actualizar las cantidades automáticamente. Siempre verifique las cantidades manualmente; el escaneo puede equivocarse.",
+      volunteerDashboardNotice: "Modo demo: los cambios se guardan en este navegador y se sincronizan con el Portal del Cliente.",
       inventoryDashboard: "Panel de inventario",
       shiftTeamHeading: "Equipo del turno actual y de hoy",
       inventorySaveError: "No se pudieron guardar los cambios del inventario en este navegador.",
@@ -612,6 +616,8 @@
       privacyError: "No se pudieron guardar las preferencias de privacidad.",
       currentShift: "Turno actual",
       todaysShift: "Turno de hoy",
+      shiftOnFloorNow: "En el piso ahora",
+      shiftLaterEarlierToday: "Más tarde / Más temprano hoy",
       unitSingular: "unidad",
       unitPlural: "unidades",
       daySingular: "día",
@@ -740,6 +746,7 @@
       colorThemeGroup: "Thème de couleur",
       settings: "Paramètres",
       sections: "Sections",
+      dailySyncNotice: "L’inventaire est mis à jour une fois par jour à la fermeture et donne une estimation en soirée pour le lendemain — pas un stock en direct minute par minute.",
       accessibilitySettings: "Paramètres d'accessibilité",
       closeSettings: "Fermer les paramètres",
       closeSections: "Fermer les sections",
@@ -777,14 +784,15 @@
       backHome: "Retour à l'accueil",
       backToTop: "Haut",
       clientPortal: "Portail client",
-      prototypeNotice: "Ce prototype affiche des quantités et disponibilités à titre illustratif, pas un inventaire en temps réel. Les noms des aliments et recettes sont traduits lorsque le français est sélectionné.",
+      prototypeNotice: "Parcourez les aliments disponibles ou filtrez des idées de repas selon votre cuisine.",
+      recipeFilterNotice: "Filtrez les recettes par équipement de cuisine et temps de préparation.",
       resetFilters: "Réinitialiser tous les filtres",
       sampleDataNotice: "Les articles, recettes, quantités et descriptions sur cette page sont des données d'exemple ; les noms sont traduits lorsque le français est sélectionné.",
       filterScopeNotice: "Ces filtres s'appliquent aux plats et recettes, pas aux listes d'ingrédients disponibles ou en rupture de stock.",
       cookingSetup: "Choisissez votre équipement de cuisine (un seul choix) :",
       showAllLayouts: "Afficher toutes les options",
       equipmentYouHave: "Équipement dont vous disposez :",
-      equipmentInstructions: "Cochez les outils que vous avez. Les articles apparaissent lorsque vous avez tous les outils requis.",
+      equipmentInstructions: "Cochez ce que vous avez (ou laissez vide pour tout voir).",
       preparationTime: "Temps de préparation (un seul choix) :",
       showAllTimes: "Afficher tous les temps",
       under15: "Moins de 15 minutes",
@@ -871,6 +879,8 @@
       savePrivacy: "Enregistrer les préférences",
       currentShift: "Quart actuel",
       todaysShift: "Quart d'aujourd'hui",
+      shiftOnFloorNow: "Sur place maintenant",
+      shiftLaterEarlierToday: "Plus tard / Plus tôt aujourd'hui",
       inventoryControls: "Contrôles d'inventaire",
       searchItems: "Rechercher des articles",
       volunteerSearchPlaceholder: "Rechercher dans l'inventaire",
@@ -1004,7 +1014,6 @@
       phoneNumber: "Numéro de téléphone",
       phoneReply: "Téléphone / SMS",
       phoneVisibility: "Visibilité du numéro de téléphone",
-      photoScanNotice: "Bientôt disponible : utilisez l'appareil photo de votre téléphone pour photographier les étagères et mettre automatiquement les quantités à jour. Vérifiez toujours les quantités manuellement ; le scan peut comporter des erreurs.",
       pieDish: "Moule à tarte",
       pot: "Casserole",
       priority: "Priorité",
@@ -1078,7 +1087,7 @@
       viewSentNotes: "Voir les notes envoyées ({count})",
       visibleCurrentShift: "Visible par le quart actuel uniquement",
       visibleToday: "Visible par les bénévoles d'aujourd'hui",
-      volunteerDashboardNotice: "Inventaire de démonstration uniquement. Les modifications sont enregistrées dans ce navigateur et reflétées sur le portail client ; aucune connexion réelle à la pantry.",
+      volunteerDashboardNotice: "Mode démo : les modifications sont enregistrées dans ce navigateur et synchronisées avec le Portail client.",
       volunteerDisclaimer: "Ceci est un prototype de portfolio frontend sans base de données backend active. Les adresses e-mail personnelles ne fonctionneront pas ; utilisez volunteer@lovepantry.org ou testing@umd.edu pour voir le tableau de bord.",
       volunteerEmail: "E-mail du bénévole",
       volunteerEmailError: "E-mail introuvable. Utilisez volunteer@lovepantry.org ou testing@umd.edu, puis sélectionnez « Remplir l'e-mail bénévole de démonstration » pour voir le portail.",
@@ -2913,11 +2922,35 @@
       roster.replaceChildren();
       shiftTeam.forEach((person) => {
         const row = document.createElement("li");
+        const isCurrent = person.shift === "current";
+        const statusText = translated(isCurrent ? "shiftOnFloorNow" : "shiftLaterEarlierToday");
+        const initials = person.name
+          .split(/\s+/)
+          .filter(Boolean)
+          .map((part) => part.replace(/\W/g, "").charAt(0))
+          .join("")
+          .slice(0, 2)
+          .toUpperCase();
+        row.className = `shift-card ${isCurrent ? "shift-card-current" : "shift-card-today"}`;
+        row.setAttribute("aria-label", `${person.name}: ${statusText}`);
+        const avatar = document.createElement("span");
+        avatar.className = "shift-avatar";
+        avatar.setAttribute("aria-hidden", "true");
+        avatar.textContent = initials;
+        const details = document.createElement("span");
+        details.className = "shift-card-details";
         const name = document.createElement("strong");
         name.textContent = person.name;
         const status = document.createElement("span");
-        status.textContent = translated(person.shift === "current" ? "currentShift" : "todaysShift");
-        row.append(name, document.createTextNode(" — "), status);
+        status.className = "shift-status";
+        status.textContent = statusText;
+        const indicator = document.createElement("span");
+        indicator.className = isCurrent ? "shift-live-dot" : "shift-clock";
+        indicator.setAttribute("aria-hidden", "true");
+        indicator.textContent = isCurrent ? "●" : "🕒";
+        status.prepend(indicator, " ");
+        details.append(name, status);
+        row.append(avatar, details);
         roster.append(row);
       });
     }
